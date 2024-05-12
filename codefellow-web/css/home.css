@@ -27,6 +27,7 @@
         background-color:  #3a424f;
         display: flex; /* 添加 Flex 布局 */
         align-items: center; /* 在垂直方向上居中 */
+        z-index: 999;
     }
 
     /* 菜单按钮 */
@@ -123,6 +124,10 @@
     .search-box input::placeholder {
         color: #fff;
     }
+
+
+    /* 登录注册按钮 */
+
 }
 
 
@@ -144,6 +149,7 @@
     display: flex;
 
 }
+
 
 /* 左侧容器 */
 .left-content {
