@@ -1,0 +1,19 @@
+
+/* 主题 */
+
+/* 默认蓝白色主题 */
+:root {
+    --background-color: #F6F8FDFF;
+    --header-bar-color: #2174F1FF;
+    --ui-color: #2174f1;
+    --header-input-background-color: #F6F8FDFF;
+    --header-input-text-color: #000000;
+}
+
+/* 黑色主题 */
+.theme-dark {
+    --background-color: #F6F8FDFF;
+    --header-bar-color: #2174F1FF;
+    --ui-color: #2174f1;
+    --header-input-background-color: #F6F8FDFF;
+}
