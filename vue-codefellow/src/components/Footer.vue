@@ -34,6 +34,6 @@ export default {
   left: 0;
   height: 250px;
   width: 100%;
-  background-color: var(--ui-color);
+  background-color: #000000;  
 }
 </style>

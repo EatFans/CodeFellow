@@ -24,6 +24,27 @@
       </div>
     </div>
 
+    <!--  用户操作盒子    -->
+    <div class="user-box">
+      <!-- 用户未登录 -->
+      <div v-if="!isLogin" class="not-login-user-box">
+        <button @click="onLoginButtonClick"  class="login-button">
+          <i class='bx bx-arrow-from-left'></i>
+          <p>登录</p>
+        </button>
+
+        <button @click="onRegisterButtonClick" class="register-button">
+          <i class='bx bx-user-plus'></i>
+          <p>注册</p>
+        </button>
+
+      </div>
+      <!-- 用户已经登录 -->
+      <div v-else class="login-user-box">
+        <button>用户主页</button>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -45,6 +66,19 @@ export default {
     }
   },
   methods: {
+
+    /**
+     * 当头部登录按钮被点击
+     */
+    onLoginButtonClick(){
+      //TODO: 头部按钮点击后处理
+    },
+    /**
+     * 当头部注册按钮被点击
+     */
+    onRegisterButtonClick(){
+      //TODO:头部注册按钮被点击后处理
+    },
     /**
      * 当头部菜单被点击
      */
@@ -178,5 +212,70 @@ export default {
 .search-box input::placeholder {
   color: #fff;
 }
+
+.user-box {
+  height: 30px;
+  width: 200px;
+  display: flex;
+  margin-left: auto;
+  margin-right: 30px;
+  position: relative;
+
+}
+
+.not-login-user-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* 绝对定位 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+
+}
+
+.register-button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: #bcd5f9;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-button {
+  margin-left: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: #bcd5f9;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.not-login-user-box button i {
+  font-size: 1.5em;
+}
+
+.not-login-user-box p {
+  font-size: 12px;
+}
+
+.login-button:hover,
+.register-button:hover {
+  color: #fff;
+}
+
 
 </style>

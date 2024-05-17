@@ -1,10 +1,9 @@
 <template>
-  <HeaderBar/>
+  <ForumHomePage />
 </template>
 
 <script setup>
-  import HeaderBar from "@/components/HeaderBar.vue";
-
+import ForumHomePage from "@/views/ForumHomePage.vue";
 </script>
 
 <style>
