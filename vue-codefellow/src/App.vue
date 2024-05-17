@@ -1,9 +1,9 @@
 <template>
-  <ForumHomePage />
+  <HeaderBar></HeaderBar>
 </template>
 
 <script setup>
-import ForumHomePage from "@/views/ForumHomePage.vue";
+import HeaderBar from "@/components/HeaderBar.vue";
 </script>
 
 <style>

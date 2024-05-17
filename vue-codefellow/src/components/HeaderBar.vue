@@ -41,7 +41,20 @@
       </div>
       <!-- 用户已经登录 -->
       <div v-else class="login-user-box">
-        <button>用户主页</button>
+        <button class="user-button">
+          <img :src="user.avatar" alt="">
+          <p>{{user.name}}</p>
+        </button>
+
+        <button  class="message-button">
+          <i class='bx bxs-envelope' ></i>
+        </button>
+        <button class="star-button">
+          <i class='bx bxs-bookmark-star' ></i>
+        </button>
+        <button class="post-button">
+          <i class='bx bxs-book-add' ></i>
+        </button>
       </div>
     </div>
 
@@ -55,7 +68,11 @@ export default {
   data() {
     return {
       showSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
-      isLogin: false  // 是否登录
+      isLogin: false,  // 是否登录
+      user: {
+        name: "EatFan",
+        avatar: "https://avatars.githubusercontent.com/u/122099628?v=4"
+      }
     }
   },
 
@@ -274,6 +291,83 @@ export default {
 
 .login-button:hover,
 .register-button:hover {
+  color: #fff;
+}
+
+
+.login-user-box {
+  display: flex;
+  align-items: center;
+  position: absolute; /* 绝对定位 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+
+  justify-content: flex-start;
+
+  //background: #00bd7e;
+}
+
+.user-button {
+  margin-left: 0;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #bcd5f9;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.user-button img {
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+}
+
+.user-button p {
+  margin-left: 5px;
+}
+
+
+.user-button {
+  flex: 0 0 auto; /* 不要伸缩，固定宽度 */
+  width: 80px; /* 缩小 user-button 宽度 */
+  margin-right: 15px; /* user-button 和 message-button 之间间隔增大 */
+}
+
+.message-button,
+.star-button,
+.post-button {
+  flex: 0 0 auto; /* 不要伸缩，固定宽度 */
+  width: calc((200px - 80px - 15px - 2 * 10px) / 3); /* 计算剩余按钮的宽度 */
+  margin-right: 10px; /* 设置按钮之间的间隔 */
+  border: none;
+  background: transparent;
+  color: #bcd5f9;
+}
+
+/* 最后一个按钮去掉右侧间距 */
+.post-button {
+  margin-right: 0;
+}
+
+
+.message-button i,
+.star-button i,
+.post-button i {
+  font-size: 1.4em;
+}
+
+.user-button:hover,
+.message-button:hover,
+.star-button:hover,
+.post-button:hover {
   color: #fff;
 }
 
