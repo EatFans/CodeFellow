@@ -1,7 +1,7 @@
 <!-- 底部栏 -->
 <template>
   <div class="footer">
-
+    <p>底部栏</p>
   </div>
 </template>
 

@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       showSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
-      isLogin: false,  // 是否登录
+      isLogin: true,  // 是否登录
       user: {
         name: "EatFan",
         avatar: "https://avatars.githubusercontent.com/u/122099628?v=4"
