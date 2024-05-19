@@ -1,9 +1,7 @@
 <!-- 论坛主页页面组件  -->
 <template>
   <HeaderBar />
-<!--  TODO:左边侧边栏宽度208px -->
   <ForumHomeContent />
-  <Footer />
 </template>
 
 <script>
@@ -15,7 +13,6 @@ export default {
   components: {
     HeaderBar,
     ForumHomeContent,
-    Footer
   }
 }
 

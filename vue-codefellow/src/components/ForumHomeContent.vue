@@ -13,21 +13,35 @@
 
     <!-- 论坛主页主体主要内容容器 -->
     <div class="forum-home-body-main-container">
-      <div class="body-pageContent">
-        <!-- 推荐 轮播图+推荐帖子 -->
-<!--        TODO: 2024/5/18 写到这里就没有再继续了   -->
+      <!-- 主页页面主要内容 -->
+      <div class="body-content">
+        <div class="body-pageContent">
+          <!-- 推荐 轮播图+推荐帖子 -->
+          <RecommendedSection />
 
+          <!-- 论坛版块节点 -->
+          <ForumNodeList />
+        </div>
+      </div>
+
+      <!-- 主体页面中的侧边栏 -->
+      <div class="body-sidebar">
 
       </div>
+
     </div>
   </div>
 </template>
 
 <script>
 import NoticesContainer from "@/components/NoticesContainer.vue"
+import RecommendedSection from "@/components/RecommendedSection.vue"
+import ForumNodeList from "@/components/ForumNodeList.vue"
 export default {
   components:{
-    NoticesContainer
+    NoticesContainer,
+    RecommendedSection,
+    ForumNodeList
   }
 
 }
@@ -58,6 +72,7 @@ export default {
   width: 200px;
 }
 
+/* 标题文字样式 */
 .title-value {
   position: absolute;
   bottom: 10px;
@@ -66,5 +81,7 @@ export default {
   color: #1c1010; /* 较柔和的文本颜色 */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+
 
 </style>
