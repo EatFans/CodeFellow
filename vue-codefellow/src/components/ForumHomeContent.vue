@@ -9,6 +9,11 @@
       <div class="forum-home-body-header-title">
         <h1 class="title-value">推荐列表</h1>
       </div>
+      <div class="forum-home-body-header-list-button">
+        <button>
+          展
+        </button>
+      </div>
     </div>
 
     <!-- 论坛主页主体主要内容容器 -->
@@ -27,12 +32,24 @@
 
 
         </div>
+
+        <!-- 主体页面中的侧边栏 -->
+        <div v-if="isOpenListBar" class="body-sidebar">
+
+          <!-- 广告框 -->
+          <div class="body-sidebar-advertise-container">
+            <p>广告联盟广告框</p>
+          </div>
+
+          <!-- 签到框 -->
+          <div class="body-sidebar-checkin-container">
+            <p>签到</p>
+          </div>
+
+        </div>
       </div>
 
-      <!-- 主体页面中的侧边栏 -->
-      <div class="body-sidebar">
 
-      </div>
 
     </div>
 
@@ -52,6 +69,14 @@ export default {
     RecommendedSection,
     ForumNodeList,
     FriendLinks
+  },
+  data(){
+    return {
+      isOpenListBar: true
+    }
+  },
+  methods:{
+
   }
 
 }
@@ -71,6 +96,8 @@ export default {
   height: 47px;
   width: 100%;
   margin-top: 20px;
+
+  display: flex;
 }
 
 /* 论坛主页主体头部标题盒样式 */
@@ -90,14 +117,61 @@ export default {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* 论坛主页主体头部右边侧边栏显示按钮盒子样式 */
+.forum-home-body-header-list-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  margin-left: auto;
+}
+
+.forum-home-body-header-list-button button {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  width: 25px;
+  height: 40px;
+}
+
+/* 主体部分样式 */
+.body-content {
+  display: flex;
+}
+
 /* 主页页面主要内容容器样式 */
 .body-pageContent {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 20px; /* 设置各容器之间的间距 */
 }
 
 .body-content-item {
   flex: 1 0 auto; /* 使容器自适应 */
+}
+
+
+/* 主体侧边栏容器样式 */
+.body-sidebar {
+  //display: none;
+
+  width: 250px;
+  margin-left: 15px;
+  background: #00bd7e;
+  right: 0;
+}
+
+/* 侧边栏广告容器样式 */
+.body-sidebar-advertise-container{
+  height: 250px;
+  background: forestgreen;
+}
+
+/* 侧边栏签到容器样式 */
+.body-sidebar-checkin-container {
+  height: 300px;
+  background: deeppink;
+  margin-top: 40px;
 }
 </style>

@@ -1,10 +1,10 @@
-<!-- 游戏开发 -->
+<!-- 特定领域开发 -->
 <template>
   <div class="forum-node-container">
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">游戏开发</h1>
+        <h1 class="node-title">特定领域开发</h1>
       </div>
       <div class="border-bottom"></div>
     </div>

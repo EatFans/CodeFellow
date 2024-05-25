@@ -1,17 +1,21 @@
-<!-- 编程语言与开发技术 -->
+<!-- 项目管理与职业发展 -->
 <template>
   <div class="forum-node-container">
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">编程语言与开发技术</h1>
+        <h1 class="node-title">项目管理与职业发展</h1>
       </div>
       <div class="border-bottom"></div>
     </div>
 
     <!-- 节点展开后容器 -->
     <div class="node-content">
+      <!-- 新闻资讯 -->
 
+      <!-- 公告 -->
+
+      <!-- 开发讨论 -->
 
     </div>
   </div>

@@ -1,10 +1,10 @@
-<!-- 数据库与数据存储 -->
+<!-- 技术问答与社区互动 -->
 <template>
   <div class="forum-node-container">
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">数据库与数据存储</h1>
+        <h1 class="node-title">技术问答与社区互动</h1>
       </div>
       <div class="border-bottom"></div>
     </div>

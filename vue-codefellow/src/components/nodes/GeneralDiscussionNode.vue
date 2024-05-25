@@ -1,10 +1,11 @@
-<!-- 人工智能与大数据 -->
+<!-- 综合讨论区 -->
 <template>
   <div class="forum-node-container">
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">人工智能与大数据</h1>
+        <h1 class="node-title">综合讨论区</h1>
+        <button>展开</button>
       </div>
       <div class="border-bottom"></div>
     </div>
@@ -74,8 +75,8 @@ export default {
 
 .node-content {
   width: 100%;
-  height: 200px;
   margin-top: 5px;
-  background: red;
+  height: 200px;
+  background: transparent;
 }
 </style>

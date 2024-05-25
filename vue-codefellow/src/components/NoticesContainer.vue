@@ -8,6 +8,7 @@
       </div>
       <div class="fixed-notices-message">
         <p>{{fixedNoticeMessage}}</p>
+        <a :href=joinQQLink>点击加入</a>
       </div>
     </div>
     <!-- 轮播通知栏 -->
@@ -25,7 +26,8 @@ export default {
   data(){
     return {
       // TODO:测试
-      fixedNoticeMessage: "CodeFellow 开发者交流论坛正在建设开发中... By EatFan on 2024/5/18"
+      fixedNoticeMessage: "CodeFellow 开发者交流论坛官方QQ群聊 ：",
+      joinQQLink: "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=xKzWslt79g0x_wg5V0y7eJD4ae-9ZJsc&authKey=oRDmZXWDgw8JcsfBzdzGoyUtFT1Up7WRDKVphWBddHh9vhfEZbowMB6zuaAmAKYy&noverify=0&group_code=835378015"
     }
   }
 }
@@ -81,6 +83,15 @@ export default {
 .fixed-notices-message p {
   font-size: 13px;
   color: #384764;
+}
+
+.fixed-notices-message a {
+  font-size: 13px;
+  color: #999999;
+}
+
+.fixed-notices-message a:hover {
+  color: gold;
 }
 
 /* 轮播通知栏样式 */

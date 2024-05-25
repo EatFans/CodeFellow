@@ -1,10 +1,10 @@
-<!-- 问题与反馈 -->
+<!-- 学习资源与知识分享 -->
 <template>
   <div class="forum-node-container">
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">问题与反馈</h1>
+        <h1 class="node-title">学习资源与知识分享</h1>
       </div>
       <div class="border-bottom"></div>
     </div>

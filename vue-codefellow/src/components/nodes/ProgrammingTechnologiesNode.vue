@@ -1,21 +1,17 @@
-<!-- 移动应用开发 -->
+<!-- 编程语言与技术讨论 -->
 <template>
   <div class="forum-node-container">
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">移动应用开发</h1>
+        <h1 class="node-title">编程语言与技术讨论</h1>
       </div>
       <div class="border-bottom"></div>
     </div>
 
     <!-- 节点展开后容器 -->
     <div class="node-content">
-      <!-- 新闻资讯 -->
 
-      <!-- 公告 -->
-
-      <!-- 开发讨论 -->
 
     </div>
   </div>
