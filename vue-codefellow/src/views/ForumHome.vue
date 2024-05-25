@@ -2,6 +2,7 @@
 <template>
   <HeaderBar />
   <ForumHomeContent />
+  <Footer />
 </template>
 
 <script>
@@ -13,6 +14,7 @@ export default {
   components: {
     HeaderBar,
     ForumHomeContent,
+    Footer
   }
 }
 

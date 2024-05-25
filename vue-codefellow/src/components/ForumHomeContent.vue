@@ -17,10 +17,15 @@
       <div class="body-content">
         <div class="body-pageContent">
           <!-- 推荐 轮播图+推荐帖子 -->
-          <RecommendedSection />
+          <RecommendedSection class="body-content-item" />
 
           <!-- 论坛版块节点 -->
-          <ForumNodeList />
+          <ForumNodeList class="body-content-item"/>
+
+          <!-- 友情链接 -->
+          <FriendLinks class="body-content-item"/>
+
+
         </div>
       </div>
 
@@ -31,7 +36,6 @@
 
     </div>
 
-    <!-- 友情链接 -->
 
     <!-- 广告位 -->
   </div>
@@ -41,11 +45,13 @@
 import NoticesContainer from "@/components/NoticesContainer.vue"
 import RecommendedSection from "@/components/RecommendedSection.vue"
 import ForumNodeList from "@/components/ForumNodeList.vue"
+import FriendLinks from "@/components/FriendLinks.vue"
 export default {
   components:{
     NoticesContainer,
     RecommendedSection,
-    ForumNodeList
+    ForumNodeList,
+    FriendLinks
   }
 
 }
@@ -54,11 +60,9 @@ export default {
 <style scoped>
 /* 论坛主页主体容器样式 */
 .forum-home-content-container {
-  height: 900px;
+  height: auto;
   max-width: 1200px;
-  margin-top: 60px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 60px auto 200px;
   //background: #00bd7e;
 }
 
@@ -86,6 +90,14 @@ export default {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* 主页页面主要内容容器样式 */
+.body-pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 设置各容器之间的间距 */
+}
 
-
+.body-content-item {
+  flex: 1 0 auto; /* 使容器自适应 */
+}
 </style>

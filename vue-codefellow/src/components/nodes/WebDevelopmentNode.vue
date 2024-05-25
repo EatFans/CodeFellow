@@ -71,4 +71,11 @@ export default {
   color: #1c1010;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+.node-content {
+  width: 100%;
+  height: 200px;
+  margin-top: 5px;
+  background: red;
+}
 </style>

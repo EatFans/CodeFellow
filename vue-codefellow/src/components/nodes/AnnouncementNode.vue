@@ -1,7 +1,7 @@
 <!-- 论坛版块节点 -->
 <template>
   <div class="forum-node-container">
-    <!-- 标题栏 -->
+    <!-- 新闻标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
         <h1 class="node-title">公告与新闻</h1>
@@ -70,5 +70,12 @@ export default {
   font-weight: 300;
   color: #1c1010;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.node-content {
+  width: 100%;
+  margin-top: 5px;
+  height: 200px;
+  background: red;
 }
 </style>

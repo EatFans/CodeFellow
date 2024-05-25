@@ -1,6 +1,6 @@
 <!-- 版块节点列表组件 -->
 <template>
-  <div class="forum-node-list-container">
+  <div class="forum-node-list-content">
     <AnnouncementNode />
     <LanguagesNode class="node"/>
     <WebDevelopment class="node"/>
@@ -36,13 +36,9 @@ export default {
 </script>
 
 <style scoped>
-.forum-node-list-container {
+.forum-node-list-content {
   width: auto;
-  height: 1900px;
-  margin-top: 10px;
+  height: auto;
 }
 
-.node {
-  margin-top: 10px;
-}
 </style>

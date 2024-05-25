@@ -1,6 +1,6 @@
 <!-- 推荐栏目组件 -->
 <template>
-  <div class="recommended-section-container">
+  <div class="recommended-section-content">
     <!-- 主要轮播图 -->
     <div class="carousel-main-content">
       <h3>主要图片轮播图（待未完工）</h3>
@@ -33,7 +33,7 @@
 /* 底部轮播图 */
 .carousel-footer-content {
   width: auto;
-  height: 140px;
+  height: 160px;
 
   margin-top: 10px;
 

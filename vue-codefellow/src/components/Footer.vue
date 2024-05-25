@@ -32,8 +32,8 @@ export default {
   position: relative;
   bottom: 0;
   left: 0;
-  height: 250px;
+  height: 200px;
   width: 100%;
-  background-color: #000000;  
+  background-color: var(--footer-bar-color);
 }
 </style>
