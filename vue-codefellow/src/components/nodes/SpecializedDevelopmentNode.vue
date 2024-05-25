@@ -4,13 +4,21 @@
     <!-- 标题栏 -->
     <div class="node-bar">
       <div class="node-bar-content">
-        <h1 class="node-title">特定领域开发</h1>
+        <div class="node-title">
+          <h1>特定领域开发</h1>
+        </div>
+
+        <div class="node-list-button">
+          <button @click="onShowNodeButtonClick">
+            <i :class="isShowNode ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
+          </button>
+        </div>
       </div>
       <div class="border-bottom"></div>
     </div>
 
     <!-- 节点展开后容器 -->
-    <div class="node-content">
+    <div v-show="isShowNode" class="node-content">
       <!-- 新闻资讯 -->
 
       <!-- 公告 -->
@@ -27,11 +35,17 @@ import "@/assets/theme.css"
 export default {
   data()  {
     return {
-
+      isShowNode: true
     }
   },
   methods: {
-
+    onShowNodeButtonClick(){
+      if (this.isShowNode){
+        this.isShowNode = false;
+      } else {
+        this.isShowNode = true;
+      }
+    }
   }
 }
 
@@ -62,7 +76,7 @@ export default {
 }
 
 /* 节点标题字体样式 */
-.node-title {
+.node-title h1{
   position: absolute;
   left: 10px;
   bottom: 10px;
@@ -72,10 +86,37 @@ export default {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* 节点按钮框 */
+.node-list-button {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+.node-list-button button {
+  width: 25px;
+  height: 22px;
+
+  border: none;
+  border-radius: 5px;
+}
+
+.node-list-button button:hover {
+  background: #b7b8bd;
+}
+
+.node-list-button i {
+  font-size: 1.5em;
+}
+
+
+
 .node-content {
   width: 100%;
-  height: 200px;
   margin-top: 5px;
-  background: red;
+  height: 200px;
+  background: transparent;
 }
 </style>

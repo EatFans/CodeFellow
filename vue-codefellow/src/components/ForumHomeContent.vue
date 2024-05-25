@@ -10,8 +10,8 @@
         <h1 class="title-value">推荐列表</h1>
       </div>
       <div class="forum-home-body-header-list-button">
-        <button>
-          展
+        <button @click="onBodyHeaderListButtonClick">
+          <i class='bx bx-dots-vertical-rounded'></i>
         </button>
       </div>
     </div>
@@ -22,19 +22,19 @@
       <div class="body-content">
         <div class="body-pageContent">
           <!-- 推荐 轮播图+推荐帖子 -->
-          <RecommendedSection class="body-content-item" />
+          <RecommendedSection />
 
           <!-- 论坛版块节点 -->
-          <ForumNodeList class="body-content-item"/>
+          <ForumNodeList />
 
           <!-- 友情链接 -->
-          <FriendLinks class="body-content-item"/>
+          <FriendLinks />
 
 
         </div>
 
         <!-- 主体页面中的侧边栏 -->
-        <div v-if="isOpenListBar" class="body-sidebar">
+        <div v-show="isOpenListBar" class="body-sidebar">
 
           <!-- 广告框 -->
           <div class="body-sidebar-advertise-container">
@@ -76,7 +76,16 @@ export default {
     }
   },
   methods:{
-
+    /**
+     * 当主体头部右边侧边栏显示按钮被点击
+     */
+    onBodyHeaderListButtonClick() {
+      if (this.isOpenListBar){
+        this.isOpenListBar = false;
+      } else {
+        this.isOpenListBar = true;
+      }
+    }
   }
 
 }
@@ -126,12 +135,24 @@ export default {
   margin-left: auto;
 }
 
+/* 头部右边侧边栏显示按钮样式 */
 .forum-home-body-header-list-button button {
   position: absolute;
   right: 0;
-  bottom: 2px;
   width: 25px;
   height: 40px;
+
+  border: none;
+  border-radius: 8px;
+}
+
+/* 头部右边侧边栏显示按钮被覆盖样式 */
+.forum-home-body-header-list-button button:hover {
+  background: #b7b8bd;
+}
+
+.forum-home-body-header-list-button i {
+  font-size: 1.4em;
 }
 
 /* 主体部分样式 */
@@ -147,10 +168,6 @@ export default {
   gap: 20px; /* 设置各容器之间的间距 */
 }
 
-.body-content-item {
-  flex: 1 0 auto; /* 使容器自适应 */
-}
-
 
 /* 主体侧边栏容器样式 */
 .body-sidebar {
@@ -160,6 +177,7 @@ export default {
   margin-left: 15px;
   background: #00bd7e;
   right: 0;
+  transition: all 0.3s ease; /* 添加过渡效果 */
 }
 
 /* 侧边栏广告容器样式 */
@@ -174,4 +192,5 @@ export default {
   background: deeppink;
   margin-top: 40px;
 }
+
 </style>
