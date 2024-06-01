@@ -1,4 +1,4 @@
-<!-- 论坛主页主体 -->
+<!-- 论坛主页 -->
 <template>
   <div class="forum-home-content-container">
     <!-- 通知栏 -->
@@ -38,12 +38,12 @@
 
           <!-- 广告框 -->
           <div class="body-sidebar-advertise-container">
-            <p>广告联盟广告框</p>
+            <p>广告框</p>
           </div>
 
           <!-- 签到框 -->
           <div class="body-sidebar-checkin-container">
-            <p>签到</p>
+            <CheckinBox />
           </div>
 
         </div>
@@ -54,7 +54,6 @@
     </div>
 
 
-    <!-- 广告位 -->
   </div>
 </template>
 
@@ -62,13 +61,15 @@
 import NoticesContainer from "@/components/NoticesContainer.vue"
 import RecommendedSection from "@/components/RecommendedSection.vue"
 import ForumNodeList from "@/components/ForumNodeList.vue"
-import FriendLinks from "@/components/FriendLinks.vue"
+import FriendLinks from "@/components/home/FriendLinks.vue"
+import CheckinBox from "@/components/home/CheckinBox.vue"
 export default {
   components:{
     NoticesContainer,
     RecommendedSection,
     ForumNodeList,
-    FriendLinks
+    FriendLinks,
+    CheckinBox
   },
   data(){
     return {
@@ -175,21 +176,19 @@ export default {
 
   width: 250px;
   margin-left: 15px;
-  background: #00bd7e;
+  //background: #00bd7e;
   right: 0;
   transition: all 0.3s ease; /* 添加过渡效果 */
 }
 
 /* 侧边栏广告容器样式 */
 .body-sidebar-advertise-container{
-  height: 250px;
+  height: 200px;
   background: forestgreen;
 }
 
 /* 侧边栏签到容器样式 */
 .body-sidebar-checkin-container {
-  height: 300px;
-  background: deeppink;
   margin-top: 40px;
 }
 

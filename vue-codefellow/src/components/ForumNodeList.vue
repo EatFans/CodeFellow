@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import GeneralDiscussionNode from "@/components/nodes/GeneralDiscussionNode.vue";
-import ProgrammingTechnologiesNode from "@/components/nodes/ProgrammingTechnologiesNode.vue";
-import DevToolsPracticesNode from "@/components/nodes/DevToolsPracticesNode.vue";
-import SpecializedDevelopmentNode from "@/components/nodes/SpecializedDevelopmentNode.vue";
-import ProjectCareerNode from "@/components/nodes/ProjectCareerNode.vue";
-import LearningResourcesNode from "@/components/nodes/LearningResourcesNode.vue";
-import TechQACommunityNode from "@/components/nodes/TechQACommunityNode.vue";
+import GeneralDiscussionNode from "@/components/home/nodes/GeneralDiscussionNode.vue";
+import ProgrammingTechnologiesNode from "@/components/home/nodes/ProgrammingTechnologiesNode.vue";
+import DevToolsPracticesNode from "@/components/home/nodes/DevToolsPracticesNode.vue";
+import SpecializedDevelopmentNode from "@/components/home/nodes/SpecializedDevelopmentNode.vue";
+import ProjectCareerNode from "@/components/home/nodes/ProjectCareerNode.vue";
+import LearningResourcesNode from "@/components/home/nodes/LearningResourcesNode.vue";
+import TechQACommunityNode from "@/components/home/nodes/TechQACommunityNode.vue";
 export default {
   components:{
     GeneralDiscussionNode,

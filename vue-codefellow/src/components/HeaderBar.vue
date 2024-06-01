@@ -3,9 +3,9 @@
   <div class="header-bar">
 
     <!-- 菜单按钮 -->
-    <div class="header-menu-button" @click="onMenuClick">
-      <i class='bx bx-menu' style='color:#b7b8bd'></i>
-    </div>
+    <button class="header-menu-button" @click="onMenuClick">
+      <i class='bx bx-menu' style=''></i>
+    </button>
 
     <!-- Logo -->
     <div class="header-logo-img">
@@ -101,11 +101,7 @@ export default {
      */
     onMenuClick(){
       //TODO: 测试
-      if (this.isLogin){
-        console.log("用户已经登录");
-      } else {
-        console.log("用户未登录");
-      }
+      alert("fdafda")
     },
 
     toggleElement() {
@@ -147,7 +143,12 @@ export default {
   margin-left: 20px;
   font-size: 30px;
 
+  color:#b7b8bd;
   background: transparent;
+}
+
+.header-menu-button:hover {
+  color: #fff;
 }
 
 .header-menu-button i {

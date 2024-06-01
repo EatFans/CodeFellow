@@ -3,7 +3,6 @@
 </template>
 
 <script setup>
-import HeaderBar from "@/components/HeaderBar.vue";
 import ForumHome from "@/views/ForumHome.vue";
 </script>
 

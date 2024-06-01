@@ -8,7 +8,7 @@
 <script>
 import HeaderBar from "@/components/HeaderBar.vue";
 import Footer from "@/components/Footer.vue";
-import ForumHomeContent from "@/components/ForumHomeContent.vue";
+import ForumHomeContent from "@/views/ForumHomeContent.vue";
 
 export default {
   components: {
