@@ -1,14 +1,9 @@
 <template>
-  <HeaderBar />
-  <div class="main">
-    <router-view></router-view>
-  </div>
-  <Footer />
+  <router-view></router-view>
 </template>
 
 <script setup>
-import HeaderBar from "@/components/HeaderBar.vue";
-import Footer from "@/components/Footer.vue";
+
 </script>
 
 <style>

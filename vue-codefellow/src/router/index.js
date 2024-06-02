@@ -1,7 +1,7 @@
 import { createRouter,createWebHistory } from "vue-router";
 
-import ForumHomeContent from "@/views/ForumHomeContent.vue";
-import Test from "@/views/Test.vue"
+import ForumHome from "@/views/ForumHome.vue";
+import EggPage1 from "@/views/EggPage1.vue"
 
 // 创建路由
 const router = createRouter({
@@ -9,11 +9,12 @@ const router = createRouter({
     routes:[
         {
             path:"/",
-            component: ForumHomeContent
+            component: ForumHome
         },
         {
-            path:"/test",
-            component:Test
+            // 菜单页面
+            path:"/admin",
+            component:EggPage1
         }
     ]
 });
