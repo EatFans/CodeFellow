@@ -19,12 +19,17 @@
 
     <!-- 节点展开后容器 -->
     <div v-show="isShowNode" class="node-content">
-      <!-- 新闻资讯 -->
+      <!-- 社区公告与反馈 -->
+      <div class="news-feedback-container">
 
-      <!-- 公告 -->
+      </div>
+      <!-- 新手报到与交流 -->
+      <div class="communication-container">
 
-      <!-- 开发讨论 -->
+      </div>
+      <div class="test-item">
 
+      </div>
     </div>
   </div>
 </template>
@@ -116,7 +121,26 @@ export default {
 .node-content {
   width: 100%;
   margin-top: 5px;
-  height: 200px;
+  min-height: 200px;
   background: transparent;
+
+  display: flex;
+  //grid-template-columns: 1fr 1fr; /* 每行两个item */
 }
+
+/* 社区公告与反馈容器 */
+.news-feedback-container {
+  height: 140px;
+  width: 400px;
+  flex: 1;
+  background: gold;
+}
+
+.communication-container {
+  height: 140px;
+  width: 400px;
+  flex: 1;
+  background: deeppink;
+}
+
 </style>

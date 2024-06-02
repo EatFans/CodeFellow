@@ -60,7 +60,7 @@
 <script>
 import NoticesContainer from "@/components/NoticesContainer.vue"
 import RecommendedSection from "@/components/RecommendedSection.vue"
-import ForumNodeList from "@/components/ForumNodeList.vue"
+import ForumNodeList from "@/components/home/ForumNodeList.vue"
 import FriendLinks from "@/components/home/FriendLinks.vue"
 import CheckinBox from "@/components/home/CheckinBox.vue"
 export default {

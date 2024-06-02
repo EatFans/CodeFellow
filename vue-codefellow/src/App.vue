@@ -1,9 +1,14 @@
 <template>
-  <ForumHome />
+  <HeaderBar />
+  <div class="main">
+    <router-view></router-view>
+  </div>
+  <Footer />
 </template>
 
 <script setup>
-import ForumHome from "@/views/ForumHome.vue";
+import HeaderBar from "@/components/HeaderBar.vue";
+import Footer from "@/components/Footer.vue";
 </script>
 
 <style>
