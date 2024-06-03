@@ -4,7 +4,6 @@ import ForumHome from "@/views/ForumHome.vue";
 import NewFeedback from "@/views/NewFeedback.vue"
 
 import EggPage1 from "@/views/EggPage1.vue"
-import AdminAuth from "@/views/AdminAuth.vue";
 
 // 创建路由
 const router = createRouter({
@@ -27,10 +26,6 @@ const router = createRouter({
             // 为爱发电捐献页面
             path:"/donate",
             component: ForumHome
-        },
-        {
-            path:"/94af9f02-de89-44bf-87b7-e6d764018299",
-            component: AdminAuth
         },
         {
             // admin彩蛋页面

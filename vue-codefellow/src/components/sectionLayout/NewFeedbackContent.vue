@@ -5,9 +5,7 @@
     <NoticesContainer />
 
     <!-- 顶部A类广告栏 -->
-    <div class="header-advertisement-A-container">
-
-    </div>
+    <div class="header-advertisement-A-container"></div>
 
     <!-- 头部内容 -->
     <div class="body-header-content">
@@ -22,13 +20,27 @@
       </div>
 
       <!-- 版块信息与自述 -->
-
+      <div class="body-header-section-info"></div>
     </div>
 
     <!-- 主体内容 -->
     <div class="body-content">
-      <!--  分页组件 -->
-      <div class="pagination-container">
+      <div class="body-pageContent">
+        <!-- 置顶帖子区域 -->
+        <div class="pinned-post-container">
+          <ContentTitle title="置顶帖子" />
+
+        </div>
+        <!-- 普通帖子区域 -->
+        <div class="post-container">
+          <ContentTitle title="普通帖子" />
+
+
+        </div>
+      </div>
+
+      <!-- 主体右侧侧边栏 -->
+      <div v-show="isOpenListBar" class="body-sidebar">
 
       </div>
     </div>
@@ -42,19 +54,23 @@
 import '@/assets/theme.css'
 import NoticesContainer from "@/components/NoticesContainer.vue";
 import PageTitle from "@/components/PageTitle.vue";
+import ContentTitle from "@/components/ContentTitle.vue";
+
 export default {
   components:{
     NoticesContainer,
-    PageTitle
+    PageTitle,
+    ContentTitle
   },
   data(){
     return {
-      pageTitle: "社区公告与反馈"
+      pageTitle: "社区公告与反馈",
+      isOpenListBar: true
     }
   },
   methods:{
     onBodyHeaderListButtonClick(){
-      //TODO
+      this.isOpenListBar = !this.isOpenListBar;
     }
   }
 }
@@ -64,13 +80,12 @@ export default {
 .new-feedback-content-container {
   max-width: 1200px;
   margin: 60px auto 100px;
+  height: auto;
 }
 
 /* 主体头部 */
 .body-header-content {
   width: 100%;
-  height: 300px;
-  //background: #00bd7e;
 }
 
 /* 主体头部标题盒样式 */
@@ -78,7 +93,6 @@ export default {
   height: 47px;
   width: 100%;
   margin-top: 20px;
-
   display: flex;
 }
 
@@ -87,7 +101,6 @@ export default {
   position: relative;
   width: 40px;
   height: 40px;
-
   margin-left: auto;
 }
 
@@ -97,7 +110,6 @@ export default {
   right: 0;
   width: 25px;
   height: 40px;
-
   border: none;
   border-radius: 8px;
   background: transparent;
@@ -112,11 +124,43 @@ export default {
   font-size: 1.4em;
 }
 
+/* 版块信息与自述容器样式 */
+.body-header-section-info {
+  background: #fff;
+  height: 200px;
+  border-radius: 0.7rem;
+  box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25), 0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+}
+
 .body-content {
-  height: 2000px;
   width: 100%;
-  background: #7db92e;
-  margin-top: 20px;
+  margin-top: 50px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+
+.body-pageContent {
+  min-height: 2000px;
+  flex: 4;
+}
+
+/* 置顶帖子区域样式 */
+.pinned-post-container {
+  margin-bottom: 10px;
+}
+
+/* 普通帖子区域样式 */
+.post-container {
+  margin-top: 10px;
+}
+
+/* 主体容器右侧侧边栏样式 */
+.body-sidebar {
+  flex: 1;
+  background: #00bd7e;
+  right: 0;
 }
 
 .decorative-plates {

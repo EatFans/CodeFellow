@@ -6,9 +6,7 @@
 
     <!-- 论坛主页主体头部 -->
     <div class="forum-home-body-header">
-      <div class="forum-home-body-header-title">
-        <h1 class="title-value">推荐列表</h1>
-      </div>
+      <PageTitle title="论坛主页" />
       <div class="forum-home-body-header-list-button">
         <button @click="onBodyHeaderListButtonClick">
           <i class='bx bx-dots-vertical-rounded'></i>
@@ -21,7 +19,7 @@
       <!-- 主页页面主要内容 -->
       <div class="body-content">
         <div class="body-pageContent">
-          <!-- 推荐 轮播图+推荐帖子 -->
+          <!-- 推荐 推荐帖子 -->
           <RecommendedSection />
 
           <!-- 论坛版块节点 -->
@@ -59,13 +57,15 @@ import RecommendedSection from "@/components/home/RecommendedSection.vue"
 import ForumNodeList from "@/components/home/ForumNodeList.vue"
 import FriendLinks from "@/components/home/FriendLinks.vue"
 import CheckinBox from "@/components/home/CheckinBox.vue"
+import PageTitle from "@/components/PageTitle.vue";
 export default {
   components:{
     NoticesContainer,
     RecommendedSection,
     ForumNodeList,
     FriendLinks,
-    CheckinBox
+    CheckinBox,
+    PageTitle
   },
   data(){
     return {
@@ -77,11 +77,7 @@ export default {
      * 当主体头部右边侧边栏显示按钮被点击
      */
     onBodyHeaderListButtonClick() {
-      if (this.isOpenListBar){
-        this.isOpenListBar = false;
-      } else {
-        this.isOpenListBar = true;
-      }
+      this.isOpenListBar = !this.isOpenListBar;
     }
   }
 
@@ -104,23 +100,6 @@ export default {
   margin-top: 20px;
 
   display: flex;
-}
-
-/* 论坛主页主体头部标题盒样式 */
-.forum-home-body-header-title {
-  position: relative; /* 设置为相对定位，以便子元素绝对定位相对于它 */
-  height: 100%;
-  width: 200px;
-}
-
-/* 标题文字样式 */
-.title-value {
-  position: absolute;
-  bottom: 10px;
-  font-size: 23px;
-  font-weight: 300; /* 较细的字体权重 */
-  color: #1c1010; /* 较柔和的文本颜色 */
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* 论坛主页主体头部右边侧边栏显示按钮盒子样式 */
