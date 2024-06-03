@@ -13,10 +13,7 @@
     <div class="body-header-content">
       <!-- 主体头部标题盒 -->
       <div class="body-header-title-box">
-        <div class="body-header-title">
-          <div class="title-decoration"></div>
-          <h1 class="title-value">社区公告与反馈</h1>
-        </div>
+        <PageTitle :title="pageTitle" />
         <div class="body-header-list-button">
           <button @click="onBodyHeaderListButtonClick">
             <i class='bx bx-dots-vertical-rounded'></i>
@@ -30,22 +27,35 @@
 
     <!-- 主体内容 -->
     <div class="body-content">
+      <!--  分页组件 -->
+      <div class="pagination-container">
 
+      </div>
     </div>
 
     <!-- 底部装饰板 -->
-    <div class="decorative-plates">
-
-    </div>
+    <div class="decorative-plates"></div>
   </div>
 </template>
 
 <script>
 import '@/assets/theme.css'
 import NoticesContainer from "@/components/NoticesContainer.vue";
+import PageTitle from "@/components/PageTitle.vue";
 export default {
   components:{
-    NoticesContainer
+    NoticesContainer,
+    PageTitle
+  },
+  data(){
+    return {
+      pageTitle: "社区公告与反馈"
+    }
+  },
+  methods:{
+    onBodyHeaderListButtonClick(){
+      //TODO
+    }
   }
 }
 </script>
@@ -60,7 +70,7 @@ export default {
 .body-header-content {
   width: 100%;
   height: 300px;
-  background: #00bd7e;
+  //background: #00bd7e;
 }
 
 /* 主体头部标题盒样式 */
@@ -70,32 +80,6 @@ export default {
   margin-top: 20px;
 
   display: flex;
-}
-
-/* 主体头部标题盒样式 */
-.body-header-title {
-  position: relative; /* 设置为相对定位，以便子元素绝对定位相对于它 */
-  height: 100%;
-  width: 200px;
-}
-
-/* 标题装饰块 */
-.title-decoration {
-  position: absolute;
-  width: 5px;
-  height: 100%;
-  background: var(--ui-color);
-}
-
-/* 标题文字样式 */
-.title-value {
-  position: absolute;
-  bottom: 10px;
-  left: 15px; /* 标题距离标题装饰块左边 10px */
-  font-size: 23px;
-  font-weight: 300; /* 较细的字体权重 */
-  color: #1c1010; /* 较柔和的文本颜色 */
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* 主体头部右边侧边栏显示按钮盒子样式 */
@@ -116,6 +100,7 @@ export default {
 
   border: none;
   border-radius: 8px;
+  background: transparent;
 }
 
 /* 头部右边侧边栏显示按钮被覆盖样式 */

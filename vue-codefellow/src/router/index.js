@@ -20,7 +20,7 @@ const router = createRouter({
         },
         {
             // 社区公告与反馈 页面
-            path:"/news-feedback",
+            path:"/forum/news-feedback",
             component: NewFeedback
         },
         {
