@@ -9,7 +9,7 @@
       </button>
 
       <!-- 左侧导航栏 -->
-      <LeftNav v-show="isShowLeftNav"/>
+      <LeftNav v-show="isShowLeftNav && screenWidth > 1500"/>
     </div>
 
     <!-- Logo -->
@@ -18,7 +18,7 @@
     </div>
 
     <!-- 搜索框 -->
-    <div class="search-box" id="search-box" >
+    <div class="search-box" id="search-box" v-show="screenWidth > 1200">
       <i class='bx bx-search-alt' style='color:#999999' ></i>
       <label>
         <input  type="text" id="search-input" placeholder="搜索..." @click="toggleSearchDropContentElement"/>
@@ -77,6 +77,7 @@ export default {
     return {
       isShowSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
       isShowLeftNav: true,  // 是否显示左侧导航栏
+      screenWidth: window.innerWidth, // 初始屏幕宽度
 
       isLogin: false,  // 是否登录
       user: {
@@ -86,10 +87,17 @@ export default {
     }
   },
   created() {
-
+    // 监听窗口大小变化
+    window.addEventListener('resize', this.updateScreenWidth);
+  },
+  destroyed() {
+    // 移除窗口大小变化监听器
+    window.removeEventListener('resize', this.updateScreenWidth);
   },
   methods: {
-
+    updateScreenWidth() {
+      this.screenWidth = window.innerWidth;
+    },
     /**
      * 当头部登录按钮被点击
      */

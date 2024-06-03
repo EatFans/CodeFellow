@@ -8,7 +8,7 @@
       <h1>想正式加入本论坛开发管理团队吗？</h1>
       <img src="/imges/emo2.jpg" style="width: 100px; height: 100px">
       <h1>下方就是申请按钮</h1>
-      <router-link to="/" class="apply-button">申请加入</router-link>
+      <a href="https://www.bilibili.com/video/BV1hq4y1s7VH/?buvid=XYB4E32B3AB6F9280472BAFA9A7E797ACF813&is_story_h5=false&mid=QzMlMq78pA%2BhDmMPJ36NHA%3D%3D&p=1&plat_id=116&share_from=ugc&share_plat=android&share_session_id=670aa997-cf38-480c-93f8-d9fd3c220761&share_tag=s_i&unique_k=Q4QtzbS&up_id=1717676259&vd_source=a095afd7e18ee1ff147d19f0c7860a4e" target="_blank" class="apply-button">申请加入</a>
     </div>
   </div>
 </template>
