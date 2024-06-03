@@ -6,8 +6,9 @@
       <h1>你怎么敢找管理员控制台的哇!</h1>
       <img src="/imges/emo1.jpg">
       <h1>想正式加入本论坛开发管理团队吗？</h1>
+      <img src="/imges/emo2.jpg" style="width: 100px; height: 100px">
       <h1>下方就是申请按钮</h1>
-      <router-link to="" class="apply-button">申请加入</router-link>
+      <router-link to="/" class="apply-button">申请加入</router-link>
     </div>
   </div>
 </template>

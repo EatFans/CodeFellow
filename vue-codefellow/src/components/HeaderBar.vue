@@ -3,9 +3,14 @@
   <div class="header-bar">
 
     <!-- 菜单按钮 -->
-    <button class="header-menu-button" @click="onMenuClick">
-      <i class='bx bx-menu' style=''></i>
-    </button>
+    <div class="menu-box">
+      <button class="header-menu-button" @click="onMenuClick">
+        <i class='bx bx-menu' style=''></i>
+      </button>
+
+      <!-- 左侧导航栏 -->
+      <LeftNav v-show="isShowLeftNav"/>
+    </div>
 
     <!-- Logo -->
     <div class="header-logo-img">
@@ -16,10 +21,10 @@
     <div class="search-box" id="search-box" >
       <i class='bx bx-search-alt' style='color:#999999' ></i>
       <label>
-        <input  type="text" id="search-input" placeholder="搜索..." @click="toggleElement"/>
+        <input  type="text" id="search-input" placeholder="搜索..." @click="toggleSearchDropContentElement"/>
       </label>
       <!-- 搜索下拉框 -->
-      <div v-show="showSearchDropdownContent" class="search-dropdown-content" id="search-dropdown-content">
+      <div v-show="isShowSearchDropdownContent" class="search-dropdown-content" id="search-dropdown-content">
 
       </div>
     </div>
@@ -63,11 +68,16 @@
 
 <script>
 import '@/assets/theme.css'
-
+import LeftNav from "@/components/LeftNav.vue"
 export default {
+  components:{
+    LeftNav
+  },
   data() {
     return {
-      showSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
+      isShowSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
+      isShowLeftNav: true,  // 是否显示左侧导航栏
+
       isLogin: false,  // 是否登录
       user: {
         name: "EatFan",
@@ -75,12 +85,8 @@ export default {
       }
     }
   },
+  created() {
 
-  mounted() {
-    const loginToken = this.getCookie("token");
-    if (loginToken){
-      this.isLogin = true;
-    }
   },
   methods: {
 
@@ -100,12 +106,11 @@ export default {
      * 当头部菜单被点击
      */
     onMenuClick(){
-      //TODO: 测试
-      alert("fdafda")
+      this.isShowLeftNav = !this.isShowLeftNav;
     },
 
-    toggleElement() {
-      this.showSearchDropdownContent = !this.showSearchDropdownContent; // 切换元素显示状态
+    toggleSearchDropContentElement() {
+      this.isShowSearchDropdownContent = !this.isShowSearchDropdownContent; // 切换元素显示状态
 
     },
     getCookie(keyName){

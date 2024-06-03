@@ -30,7 +30,6 @@
           <!-- 友情链接 -->
           <FriendLinks />
 
-
         </div>
 
         <!-- 主体页面中的侧边栏 -->
@@ -38,7 +37,7 @@
 
           <!-- 广告框 -->
           <div class="body-sidebar-advertise-container">
-            <p>广告框</p>
+            <p>广告招租</p>
           </div>
 
           <!-- 签到框 -->
@@ -97,7 +96,7 @@ export default {
 .forum-home-content-container {
   height: auto;
   max-width: 1200px;
-  margin: 60px auto 200px;
+  margin: 60px auto 100px;
   //background: #00bd7e;
 }
 
@@ -184,7 +183,6 @@ export default {
 /* 侧边栏广告容器样式 */
 .body-sidebar-advertise-container{
   height: 200px;
-  background: forestgreen;
 }
 
 /* 侧边栏签到容器样式 */
