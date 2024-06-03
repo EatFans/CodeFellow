@@ -31,5 +31,6 @@ export default {
   height: 3000px;
   max-width: 1200px;
   margin: 60px auto 100px;
+  background: #7db92e;
 }
 </style>

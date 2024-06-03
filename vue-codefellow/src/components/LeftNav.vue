@@ -113,22 +113,22 @@ export default {
 }
 
 /* 为每个导航标签添加延迟，实现依次出现的效果 */
-.nav-item:nth-child(1) {
+.left-nav-item:nth-child(1) {
   animation-delay: 0.1s;
 }
-.nav-item:nth-child(2) {
+.left-nav-item:nth-child(2) {
   animation-delay: 0.2s;
 }
-.nav-item:nth-child(3) {
+.left-nav-item:nth-child(3) {
   animation-delay: 0.3s;
 }
-.nav-item:nth-child(4) {
+.left-nav-item:nth-child(4) {
   animation-delay: 0.4s;
 }
-.nav-item:nth-child(5) {
+.left-nav-item:nth-child(5) {
   animation-delay: 0.5s;
 }
-.nav-item:nth-child(6) {
+.left-nav-item:nth-child(6) {
   animation-delay: 0.6s;
 }
 </style>
