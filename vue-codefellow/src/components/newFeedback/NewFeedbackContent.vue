@@ -26,16 +26,9 @@
     <!-- 主体内容 -->
     <div class="body-content">
       <div class="body-pageContent">
-        <!-- 置顶帖子区域 -->
-        <div class="pinned-post-container">
-          <ContentTitle title="置顶帖子" />
-
-        </div>
-        <!-- 普通帖子区域 -->
-        <div class="post-container">
-          <ContentTitle title="普通帖子" />
-
-
+        <!-- 显示帖子区域 -->
+        <div class="post-list-container">
+          <NewFeedbackPostList />
         </div>
       </div>
 
@@ -56,11 +49,14 @@ import NoticesContainer from "@/components/NoticesContainer.vue";
 import PageTitle from "@/components/PageTitle.vue";
 import ContentTitle from "@/components/ContentTitle.vue";
 
+import NewFeedbackPostList from "@/components/newFeedback/NewFeedbackPostList.vue";
+
 export default {
   components:{
     NoticesContainer,
     PageTitle,
-    ContentTitle
+    ContentTitle,
+    NewFeedbackPostList
   },
   data(){
     return {
@@ -144,16 +140,12 @@ export default {
 .body-pageContent {
   min-height: 2000px;
   flex: 4;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 置顶帖子区域样式 */
-.pinned-post-container {
-  margin-bottom: 10px;
-}
-
-/* 普通帖子区域样式 */
-.post-container {
-  margin-top: 10px;
+.post-list-container {
+  margin-top: ;
 }
 
 /* 主体容器右侧侧边栏样式 */
@@ -161,7 +153,11 @@ export default {
   flex: 1;
   background: #00bd7e;
   right: 0;
-}
+  //display: none;
+
+  width: 250px;
+  margin-left: 15px;
+  }
 
 .decorative-plates {
   width: 100%;

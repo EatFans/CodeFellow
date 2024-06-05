@@ -20,7 +20,7 @@
       <div class="body-content">
         <div class="body-pageContent">
           <!-- 推荐 推荐帖子 -->
-          <RecommendedSection />
+<!--          <RecommendedSection />-->
 
           <!-- 论坛版块节点 -->
           <ForumNodeList />

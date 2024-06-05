@@ -8,7 +8,7 @@
 <script>
 import HeaderBar from "@/components/HeaderBar.vue";
 import Footer from "@/components/Footer.vue";
-import NewFeedbackContent from "@/components/sectionLayout/NewFeedbackContent.vue"
+import NewFeedbackContent from "@/components/newFeedback/NewFeedbackContent.vue"
 export default {
   components: {
     HeaderBar,
