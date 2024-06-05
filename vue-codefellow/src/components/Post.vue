@@ -6,6 +6,9 @@
       <div class="post-author-avatar-container">
         <img :src="postAuthorAvatar" alt="" class="post-author-avatar">
       </div>
+      <div class="post-author-content">
+
+      </div>
     </div>
 
     <!-- 帖子信息容器 -->
@@ -67,8 +70,8 @@ export default {
       postAuthorAvatar: 'https://avatars.githubusercontent.com/u/122099628?v=4',
       postAuthorName: 'EatFan',
       postReadme: '帖子测试介绍文案fdafhdjkafhd就很烦的卡号发可达四十风华贷记卡发货的发货的急啊卡复活打客服回答科技开发哈桑风很大开发的哈客服回答是开放的哈佛的的发哈的看法哈桑独守空房大数据开发大叔控发动机啊看看凤凰大厦客服回答水库日u额放大开发的哈设计开发等哈尽快发大货开发和大家看法和打客服等哈艰苦奋斗和开发和',
-      postLikeAmount: 1,
-      postDislikeAmount: 0,
+      postLikeAmount: 999,
+      postDislikeAmount: 999,
       postData: '2024/6/5'
     }
   }
@@ -104,6 +107,11 @@ export default {
   width: 64px;
 
   border-radius: 50%;
+}
+
+.post-author-content  {
+  width: 100%;
+  border: 1px solid red;
 }
 
 .post-info-container {
@@ -157,7 +165,7 @@ export default {
 }
 
 .post-info-stats-like, .post-info-stats-dislike, .post-info-stats-data {
-  width: 60px;
+  width: 80px;
   height: 100%;
   margin-left: 5px;
   margin-top: 5px;
