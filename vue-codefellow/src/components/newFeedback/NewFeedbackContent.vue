@@ -52,6 +52,7 @@ import ContentTitle from "@/components/ContentTitle.vue";
 import NewFeedbackPostList from "@/components/newFeedback/NewFeedbackPostList.vue";
 
 export default {
+  name: 'NewFeedbackContent',
   components:{
     NoticesContainer,
     PageTitle,

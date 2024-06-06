@@ -24,7 +24,7 @@ export default {
 /* 主体头部标题盒样式 */
 .body-header-title {
   position: relative; /* 设置为相对定位，以便子元素绝对定位相对于它 */
-  height: 100%;
+  height: 47px;
   width: 200px;
 }
 

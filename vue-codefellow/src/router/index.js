@@ -2,8 +2,9 @@ import { createRouter,createWebHistory } from "vue-router";
 
 import ForumHome from "@/views/ForumHome.vue";
 import NewFeedback from "@/views/NewFeedback.vue"
-
+import DonatePage from "@/views/DonatePage.vue";
 import EggPage1 from "@/views/EggPage1.vue"
+import Test from "@/views/Test.vue";
 
 // 创建路由
 const router = createRouter({
@@ -25,13 +26,17 @@ const router = createRouter({
         {
             // 为爱发电捐献页面
             path:"/donate",
-            component: ForumHome
+            component: DonatePage
         },
         {
             // admin彩蛋页面
             path:"/admin",
             component:EggPage1
         },
+        {
+            path: "/test",
+            component: Test
+        }
     ]
 });
 

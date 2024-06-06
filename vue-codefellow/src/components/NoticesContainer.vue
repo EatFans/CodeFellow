@@ -23,6 +23,7 @@
 import '@/assets/theme.css'
 
 export default {
+  name: 'NoticesContainer',
   data(){
     return {
       // TODO:测试
