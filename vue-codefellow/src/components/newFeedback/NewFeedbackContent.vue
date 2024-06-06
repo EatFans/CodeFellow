@@ -146,7 +146,7 @@ export default {
 }
 
 .post-list-container {
-  margin-top: ;
+  margin-top: 5px;
 }
 
 /* 主体容器右侧侧边栏样式 */
