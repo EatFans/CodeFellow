@@ -9,7 +9,7 @@
       </button>
 
       <!-- 左侧导航栏 -->
-      <LeftNav v-show="isShowLeftNav && screenWidth > 1500"/>
+      <LeftNav v-show="isShowLeftNav && screenWidth > 1500" />
     </div>
 
     <!-- Logo -->
@@ -64,13 +64,17 @@
     </div>
 
   </div>
+
+  <AuthDialog v-show="dialogVisible" :auth-type="authDialogType"  @update:visible="dialogVisible  = $event"/>
 </template>
 
 <script>
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
+import AuthDialog from "@/components/AuthDialog.vue";
 export default {
   components:{
+    AuthDialog,
     LeftNav
   },
   data() {
@@ -78,6 +82,9 @@ export default {
       isShowSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
       isShowLeftNav: true,  // 是否显示左侧导航栏
       screenWidth: window.innerWidth, // 初始屏幕宽度
+
+      dialogVisible: false, // 是否显示验证弹窗
+      authDialogType: '',  // 验证弹窗类型
 
       isLogin: false,  // 是否登录
       user: {
@@ -102,13 +109,15 @@ export default {
      * 当头部登录按钮被点击
      */
     onLoginButtonClick(){
-      //TODO: 头部按钮点击后处理
+      this.authDialogType = 'login';
+      this.dialogVisible = !this.dialogVisible;
     },
     /**
      * 当头部注册按钮被点击
      */
     onRegisterButtonClick(){
-      //TODO:头部注册按钮被点击后处理
+      this.authDialogType = 'register';
+      this.dialogVisible = !this.dialogVisible;
     },
     /**
      * 当头部菜单被点击

@@ -10,4 +10,8 @@
   margin: 0;
   padding: 0;
 }
+
+.no-scroll {
+  overflow: hidden !important;
+}
 </style>
