@@ -17,10 +17,11 @@
 <script>
 
 export default {
+  name: 'LeftNav',
   data(){
     return {
       currentLeftNavColor: 0,
-      leftNavColors: [false, false, false, false, false, false,false],
+      leftNavColors: [false, false, false, false, false, false,false,false],
       leftNavItems: [
         { icon: 'bx bxs-home-alt-2', text: '首页', link: '/forum' },
         { icon: 'bx bxs-conversation', text: '社区中心', link: '/forum/news-feedback' },
@@ -28,6 +29,7 @@ export default {
         { icon: 'bx bxs-folder', text: '项目中心', link: '#'},
         { icon: 'bx bxs-bar-chart-alt-2', text: '排行榜', link: '#' },
         { icon: 'bx bxs-heart', text: '为爱发电', link: '/donate' },
+        { icon: 'bx bxs-widget', text: '工具', link: '#'},
         { icon: 'bx bxl-wikipedia', text: '文档', link: '#' }
       ]
     }
@@ -64,9 +66,7 @@ export default {
 /* 导航 */
 .left-nav-content {
   position: absolute;
-
   width: 240px;
-
   margin-top: 40px;
 }
 
