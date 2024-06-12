@@ -1,48 +1,48 @@
-<!-- 登录注册弹窗组件 -->
+<!-- 弹窗组件 -->
 <template>
-  <div v-show="visible" class="auth-dialog-overlay-container">
-    <div class="auth-dialog-overlay-content" >
-      <div class="auth-dialog-overlay-header">
-        <h3 class="title-value">{{ getTitleValue() }}</h3>
-        <button class="close-button" @click="closeDialog">
-          <i class='bx bx-x'></i>
-        </button>
-      </div>
+  <div v-show="visible" class="login-dialog-overlay-container">
+    <div class="login-dialog-overlay-content" >
 
-      <div class="auth-dialog-overlay-body">
-        <div class="login-box-container">
-          <div class="other-sign-in-box">
-            <p>其他登录</p>
-            <button class="github-login" @click="">
-              <i class='bx bxl-github' ></i>
-              <p>GitHub</p>
-            </button>
-            <button class="qq-login" @click="">
+      <!-- 登录内容 -->
+      <div class="login-dialog-overlay-body">
+        <div class="login-dialog-overlay-header">
+          <h3 class="title-value">登录</h3>
+          <button class="close-button" @click="closeDialog">
+            <i class='bx bx-x'></i>
+          </button>
+        </div>
 
-              <p>QQ</p>
-            </button>
-          </div>
-
-          <!-- 登录盒子 -->
-          <div class="sign-in-box">
-            <form >
-              <div class="form-group">
-                <label for="username">用户名 <span>* </span></label>
-                <input type="text" id="username" v-model="signInUserName" />
+        <div class="login-dialog-overlay-body-content">
+          <div class="login-box">
+            <form action="#">
+              <div class="login-form-input-item">
+                <label for="login-amount">账户 <span>*</span></label>
+                <input type="text" id="login-amount" name="amount" :value="amount">
               </div>
-              <div class="form-group">
-                <label for="password">密码 <span>* </span></label>
-                <input type="password" id="password" v-model="signInPassword" />
+
+              <div class="login-form-input-item">
+                <label for="login-password">密码 <span>*</span></label>
+                <input type="password" id="login-password" name="password" :value="password">
+              </div>
+
+              <div class="login-form-item">
+                <div class="login-remember">
+                  <input type="checkbox" id="remember" name="remember" checked>
+                  <label for="remember">自动登录</label>
+                </div>
+                <div class="login-help">
+                  <a href="#" >立即注册</a>
+                  <a href="#">忘记密码</a>
+                </div>
               </div>
             </form>
           </div>
 
-          <!-- 注册盒子 -->
-          <div class="register-box">
-
-          </div>
+          <!-- 其他登录 -->
         </div>
       </div>
+
+
     </div>
   </div>
 </template>
@@ -58,19 +58,11 @@ export default {
       type: Boolean,
       default: false
     },
-    // 弹窗类型
-    authType: {
-      type: String,
-      required: true,
-      validator(value) {
-        return ['login', 'register',''].includes(value);
-      }
-    }
   },
   data(){
     return {
-      signInUserName: '',
-      signInPassword: '',
+      amount: '',
+      password: '',
     }
   },
   methods: {
@@ -80,25 +72,6 @@ export default {
       this.titleValue = '';
     },
 
-    // 获取弹窗标题
-    getTitleValue(){
-      let titleValue;
-
-      switch (this.authType.toLowerCase()){
-        case 'login':
-          titleValue = '登录'
-          break;
-        case 'register':
-          titleValue = '注册';
-          break;
-        default:
-          titleValue = '';
-          break;
-
-      }
-
-      return titleValue;
-    }
   },
 
 
@@ -106,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.auth-dialog-overlay-container {
+.login-dialog-overlay-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -119,14 +92,14 @@ export default {
   align-items: center; /* 垂直居中 */
 }
 
-.auth-dialog-overlay-content {
-  width: 700px;
+.login-dialog-overlay-content {
+  width: 400px;
   background: #fff;
   border-radius: 0.7rem;
   box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25), 0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
 }
 
-.auth-dialog-overlay-header {
+.login-dialog-overlay-header{
   width: 100%;
   height: 40px;
   //border: 1px solid #2174f1;
@@ -156,8 +129,9 @@ export default {
   color: #b7b8bd;
 }
 
-.auth-dialog-overlay-body {
+.login-dialog-overlay-body-content {
   width: 100%;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -165,77 +139,80 @@ export default {
   border: 2px solid #1c1010;
 }
 
-.login-box-container {
-  width: 480px;
-  height: 100%;
-
-
-}
-
-.other-sign-in-box {
-  width: 100%;
-  height: 60px;
+.login-box {
+  width: 320px;
+  height: 200px;
+  border: 1px solid #7db92e;
 
   display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  border: 1px solid #1c1010;
+  justify-content: center;
 }
 
-.other-sign-in-box p {
-  margin-right: 10px;
+.login-form-input-item {
+  width: 254px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.login-form-input-item label {
   font-size: 14px;
+  margin-left: 3px;
 }
 
-.github-login {
-  height: 35px;
-  width: auto;
-  border-radius: 8px;
-  background: #666666;
-  border: none;
+.login-form-input-item label span {
+  color: red;
+}
+
+.login-form-input-item input {
+  width: 254px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid #b0aaaa;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.login-form-input-item input:focus {
+  outline: 1px solid #2174f1;
+}
+
+.login-form-item {
+  width: 254px;
+  margin-top: 10px;
+
   display: flex;
   flex-direction: row;
-  align-items: center;
-
+  //border: 1px solid red;
 }
 
-.qq-login {
-  height: 35px;
-  width: auto;
-  margin-left: 10px;
-  border-radius: 8px;
-  background: #2aa2de;
-  border: none;
+.login-remember {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
-.github-login i , .qq-login i{
-  margin-left: 10px;
-  margin-right: 5px;
-  font-size: 1.5em;
+.login-remember label {
+  font-size: 12px;
+}
+
+.login-help {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.login-help a {
+  margin-left: 5px;
+  font-size: 12px ;
+}
+
+.login-help a:hover {
+  color: gold;
 }
 
 .github-login p, .qq-login p {
   margin-right: 10px;
   color: #fff;
 }
-
-.sign-in-box {
-  width: 100%;
-  height: 400px;
-  border: 1px solid #384764;
-}
-
-.form-group label span{
-  color: red;
-}
-
-.login-dialog-content {
-
-}
-
 
 </style>

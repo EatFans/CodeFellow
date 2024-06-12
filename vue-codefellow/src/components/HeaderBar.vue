@@ -65,7 +65,7 @@
 
   </div>
 
-  <AuthDialog v-show="dialogVisible" :auth-type="authDialogType"  @update:visible="dialogVisible  = $event"/>
+  <AuthDialog v-show="dialogVisible" @update:visible="dialogVisible  = $event"/>
 </template>
 
 <script>
@@ -84,7 +84,6 @@ export default {
       screenWidth: window.innerWidth, // 初始屏幕宽度
 
       dialogVisible: false, // 是否显示验证弹窗
-      authDialogType: '',  // 验证弹窗类型
 
       isLogin: false,  // 是否登录
       user: {
@@ -109,15 +108,13 @@ export default {
      * 当头部登录按钮被点击
      */
     onLoginButtonClick(){
-      this.authDialogType = 'login';
       this.dialogVisible = !this.dialogVisible;
     },
     /**
      * 当头部注册按钮被点击
      */
     onRegisterButtonClick(){
-      this.authDialogType = 'register';
-      this.dialogVisible = !this.dialogVisible;
+
     },
     /**
      * 当头部菜单被点击
