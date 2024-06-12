@@ -35,6 +35,10 @@
                   <a href="#">忘记密码</a>
                 </div>
               </div>
+
+              <div class="login-button-item">
+                <input type="button" value="登录">
+              </div>
             </form>
           </div>
 
@@ -165,7 +169,7 @@ export default {
 }
 
 .login-form-input-item input {
-  width: 254px;
+  width: 100%;
   height: 20px;
   border-radius: 4px;
   border: 1px solid #b0aaaa;
@@ -178,7 +182,7 @@ export default {
 }
 
 .login-form-item {
-  width: 254px;
+  width: 100%;
   margin-top: 10px;
 
   display: flex;
@@ -208,6 +212,19 @@ export default {
 
 .login-help a:hover {
   color: gold;
+}
+
+.login-button-item {
+  margin-top: 5px;
+}
+
+.login-button-item input {
+  width: 264px;
+  height: 30px;
+  border-radius: 4px;
+  border:none;
+  background: #7db92e;
+  color: #fff;
 }
 
 .github-login p, .qq-login p {
