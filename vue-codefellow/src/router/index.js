@@ -15,6 +15,11 @@ const router = createRouter({
             component: ForumHome
         },
         {
+            // 注册页面
+            path:"/register",
+            component: ForumHome
+        },
+        {
             path:"/forum",
             component: ForumHome
         },
