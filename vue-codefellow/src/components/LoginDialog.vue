@@ -1,4 +1,4 @@
-<!-- 弹窗组件 -->
+<!-- 登录弹窗组件 -->
 <template>
   <div v-show="visible" class="login-dialog-overlay-container">
     <div class="login-dialog-overlay-content" >
@@ -19,12 +19,10 @@
                 <label for="login-amount">账户 <span>*</span></label>
                 <input type="text" id="login-amount" name="amount" :value="amount">
               </div>
-
               <div class="login-form-input-item">
                 <label for="login-password">密码 <span>*</span></label>
                 <input type="password" id="login-password" name="password" :value="password">
               </div>
-
               <div class="login-form-item">
                 <div class="login-remember">
                   <input type="checkbox" id="remember" name="remember" checked>
@@ -35,7 +33,6 @@
                   <a href="#">忘记密码</a>
                 </div>
               </div>
-
               <div class="login-button-item">
                 <input type="button" value="登录">
               </div>
@@ -43,6 +40,13 @@
           </div>
 
           <!-- 其他登录 -->
+          <div class="other-login-box">
+            <div class="other-login-box-boundary-item"></div>
+
+            <div class="other-login-box-content">
+              <p>其他登录</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -135,21 +139,22 @@ export default {
 
 .login-dialog-overlay-body-content {
   width: 100%;
-  height: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  border: 2px solid #1c1010;
+  //border: 2px solid #1c1010;
 }
 
 .login-box {
   width: 320px;
   height: 200px;
-  border: 1px solid #7db92e;
-
   display: flex;
   justify-content: center;
+
+  //border: 1px solid #7db92e;
+
 }
 
 .login-form-input-item {
@@ -227,9 +232,35 @@ export default {
   color: #fff;
 }
 
-.github-login p, .qq-login p {
-  margin-right: 10px;
-  color: #fff;
+.other-login-box {
+  width: 100%;
+  height: 90px;
+
+  display: flex;
+  flex-direction: column;
+
+}
+
+.other-login-box-boundary-item {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--ui-color);
+  border-radius: 4px;
+}
+
+.other-login-box-content {
+  margin-top: 20px;
+
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.other-login-box-content p {
+  font-size: 12px;
 }
 
 </style>

@@ -71,7 +71,7 @@
 <script>
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
-import AuthDialog from "@/components/AuthDialog.vue";
+import AuthDialog from "@/components/LoginDialog.vue";
 export default {
   components:{
     AuthDialog,
