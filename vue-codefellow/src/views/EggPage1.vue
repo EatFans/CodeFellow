@@ -14,7 +14,9 @@
 </template>
 
 <script>
-
+export default {
+  name: 'EggPage1'
+}
 </script>
 
 <style scoped>

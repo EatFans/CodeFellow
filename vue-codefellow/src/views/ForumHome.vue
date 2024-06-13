@@ -11,6 +11,7 @@ import Footer from "@/components/Footer.vue";
 import ForumHomeContent from "@/components/home/ForumHomeContent.vue";
 
 export default {
+  name:'ForumHome',
   components: {
     HeaderBar,
     Footer,
@@ -19,7 +20,6 @@ export default {
 }
 
 </script>
-
 <style scoped>
 
 </style>

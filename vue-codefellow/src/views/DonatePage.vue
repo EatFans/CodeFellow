@@ -10,6 +10,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import Footer from "@/components/Footer.vue";
 import DonateContent from "@/components/donate/DonateContent.vue";
 export default {
+  name: 'DonatePage',
   components: {
     HeaderBar,
     Footer,

@@ -24,12 +24,18 @@
                 <input type="password" id="login-password" name="password" :value="password">
               </div>
               <div class="login-form-item">
+                <div class="login-negotiate">
+                  <input type="checkbox" id="negotiate" name="negotiate" >
+                  <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
+                </div>
+              </div>
+              <div class="login-form-item">
                 <div class="login-remember">
-                  <input type="checkbox" id="remember" name="remember" checked>
+                  <input type="checkbox" id="remember" name="remember" >
                   <label for="remember">自动登录</label>
                 </div>
                 <div class="login-help">
-                  <a href="#" >立即注册</a>
+                  <a href="/register" >立即注册</a>
                   <a href="#">忘记密码</a>
                 </div>
               </div>
@@ -93,7 +99,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* rgba(红, 绿, 蓝, 透明度) */
+  background-color: rgba(0, 0, 0, 0.4); /* rgba(红, 绿, 蓝, 透明度) */
   z-index: 1000;
   display: flex;
   justify-content: center; /* 水平居中 */
@@ -149,7 +155,7 @@ export default {
 
 .login-box {
   width: 320px;
-  height: 200px;
+  height: 220px;
   display: flex;
   justify-content: center;
 
@@ -201,6 +207,7 @@ export default {
 }
 
 .login-remember label {
+  margin-left: 3px;
   font-size: 12px;
 }
 
@@ -217,6 +224,15 @@ export default {
 
 .login-help a:hover {
   color: gold;
+}
+
+.login-negotiate label {
+  margin-left: 3px;
+  font-size: 12px;
+}
+
+.login-negotiate label a {
+  text-decoration: none;
 }
 
 .login-button-item {

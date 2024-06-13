@@ -10,6 +10,7 @@ import HeaderBar from "@/components/HeaderBar.vue";
 import Footer from "@/components/Footer.vue";
 import NewFeedbackContent from "@/components/newFeedback/NewFeedbackContent.vue"
 export default {
+  name: 'NewFeedback',
   components: {
     HeaderBar,
     Footer,

@@ -5,6 +5,7 @@ import NewFeedback from "@/views/NewFeedback.vue"
 import DonatePage from "@/views/DonatePage.vue";
 import EggPage1 from "@/views/EggPage1.vue"
 import Test from "@/views/Test.vue";
+import RegisterPage from "@/views/RegisterPage.vue";
 
 // 创建路由
 const router = createRouter({
@@ -17,9 +18,10 @@ const router = createRouter({
         {
             // 注册页面
             path:"/register",
-            component: ForumHome
+            component: RegisterPage
         },
         {
+            // 论坛主页
             path:"/forum",
             component: ForumHome
         },
