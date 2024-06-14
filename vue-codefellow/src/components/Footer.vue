@@ -26,6 +26,7 @@ import '@/assets/theme.css';
 
 
 export default {
+  name: 'Footer',
   computed: {
     // 从 Vuex 中获取当前主题状态
 
