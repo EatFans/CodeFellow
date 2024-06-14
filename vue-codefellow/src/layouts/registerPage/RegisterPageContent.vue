@@ -57,6 +57,19 @@
               <input type="text" id="register-problem-verification" name="problemVerification">
             </div>
 
+            <div class="register-form-check-item-box">
+              <div class="register-form-check-item">
+                <input type="checkbox" id="negotiate" name="negotiate" >
+                <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
+              </div>
+
+              <div class="register-form-check-item">
+                <input type="checkbox" id="rules" name="rules" >
+                <label for="rules">我自愿遵守本论坛 <a href="#">用户行为规范</a> </label>
+              </div>
+            </div>
+
+
             <div class="register-form-button-item">
               <input type="button" value="注册">
             </div>
@@ -187,5 +200,24 @@ export default {
   background: #7db92e;
   color: #fff;
 
+}
+
+.register-form-check-item-box {
+  margin-top: 10px;
+}
+
+.register-form-check-item {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+}
+
+.register-form-check-item label {
+  margin-left: 3px;
+  font-size: 12px;
+}
+
+.register-form-check-item label a {
+  text-decoration: none;
 }
 </style>
