@@ -53,10 +53,10 @@
 
 <script>
 import NoticesContainer from "@/components/NoticesContainer.vue"
-import RecommendedSection from "@/components/home/RecommendedSection.vue"
-import ForumNodeList from "@/components/home/ForumNodeList.vue"
-import FriendLinks from "@/components/home/FriendLinks.vue"
-import CheckinBox from "@/components/home/CheckinBox.vue"
+import RecommendedSection from "@/layouts/home/RecommendedSection.vue"
+import ForumNodeList from "@/layouts/home/ForumNodeList.vue"
+import FriendLinks from "@/layouts/home/FriendLinks.vue"
+import CheckinBox from "@/layouts/home/CheckinBox.vue"
 import PageTitle from "@/components/PageTitle.vue";
 export default {
   components:{

@@ -8,7 +8,7 @@
 <script>
 import HeaderBar from "@/components/HeaderBar.vue";
 import Footer from "@/components/Footer.vue";
-import DonateContent from "@/components/donate/DonateContent.vue";
+import DonateContent from "@/layouts/donate/DonateContent.vue";
 export default {
   name: 'DonatePage',
   components: {

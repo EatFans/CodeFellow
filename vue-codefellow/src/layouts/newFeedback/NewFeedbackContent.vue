@@ -49,7 +49,7 @@ import NoticesContainer from "@/components/NoticesContainer.vue";
 import PageTitle from "@/components/PageTitle.vue";
 import ContentTitle from "@/components/ContentTitle.vue";
 
-import NewFeedbackPostList from "@/components/newFeedback/NewFeedbackPostList.vue";
+import NewFeedbackPostList from "@/layouts/newFeedback/NewFeedbackPostList.vue";
 
 export default {
   name: 'NewFeedbackContent',
