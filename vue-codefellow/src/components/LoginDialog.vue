@@ -65,7 +65,7 @@
 import Label from "@/components/Label.vue";
 
 export default {
-  name: 'AuthDialog',
+  name: 'LoginDialog',
   components: {Label},
   props: {
     visible: {

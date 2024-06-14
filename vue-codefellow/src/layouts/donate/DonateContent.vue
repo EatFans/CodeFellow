@@ -56,14 +56,6 @@ export default {
   display: flex;
 }
 
-/* 主体头部右边侧边栏显示按钮盒子样式 */
-.body-header-list-button {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  margin-left: auto;
-}
-
 /* 头部右边侧边栏显示按钮样式 */
 .body-header-list-button button {
   position: absolute;

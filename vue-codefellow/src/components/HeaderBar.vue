@@ -65,16 +65,16 @@
 
   </div>
 
-  <AuthDialog v-show="dialogVisible" @update:visible="dialogVisible  = $event"/>
+  <LoginDialog v-show="dialogVisible" @update:visible="dialogVisible  = $event"/>
 </template>
 
 <script>
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
-import AuthDialog from "@/components/LoginDialog.vue";
+import LoginDialog from "@/components/LoginDialog.vue";
 export default {
   components:{
-    AuthDialog,
+    LoginDialog,
     LeftNav
   },
   data() {
@@ -114,7 +114,7 @@ export default {
      * 当头部注册按钮被点击
      */
     onRegisterButtonClick(){
-
+      location.href = "/register";
     },
     /**
      * 当头部菜单被点击
