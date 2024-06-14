@@ -12,40 +12,40 @@
             <div class="register-form-input-item">
               <label for="register-amount">账户 <span>*</span></label>
               <div class="input-box">
-                <input type="text" id="register-amount" name="amount" >
+                <input type="text" id="register-amount" name="amount" v-model="amount">
               </div>
               <p class="item-readme">这将作为你的账号用于登录</p>
             </div>
 
             <div class="register-form-input-item">
               <label for="register-password">密码 <span>*</span></label>
-              <input type="password" id="register-password" name="password" >
+              <input type="password" id="register-password" name="password" v-model="password">
             </div>
 
             <div class="register-form-input-item">
               <label for="register-password-sure">确定密码 <span>*</span></label>
-              <input type="password" id="register-password-sure" name="password-sure">
+              <input type="password" id="register-password-sure" name="password-sure" v-model="passwordSure">
             </div>
 
             <div class="register-form-input-item">
               <label for="register-username">用户名 <span>*</span></label>
-              <input type="text" id="register-username" name="username">
+              <input type="text" id="register-username" name="username" v-model="username">
               <p class="item-readme">这将作为你在本论坛显示的名称。选择任意你喜欢的名称吧！</p>
             </div>
 
             <div class="register-form-input-item">
               <label for="register-email">邮箱 <span>*</span></label>
-              <input type="email" id="register-email" name="email" >
+              <input type="email" id="register-email" name="email" v-model="email">
             </div>
 
             <div class="register-form-input-item">
               <label for="register-phoneNumber">手机号 <span>*</span></label>
-              <input type="tel" id="register-phoneNumber" name="phoneNumber" >
+              <input type="tel" id="register-phoneNumber" name="phoneNumber" v-model="phoneNumber">
             </div>
 
             <div class="register-form-input-item">
               <label for="register-referrer">推荐人 </label>
-              <input type="text" id="register-referrer" name="referrer">
+              <input type="text" id="register-referrer" name="referrer" v-model="referrer">
               <p class="item-readme">你的推荐人的用户名称。（选填）</p>
             </div>
 
@@ -54,7 +54,7 @@
                 <label for="register-problem-verification">验证：</label>
                 <p>请问本论坛英文名叫什么？</p>
               </div>
-              <input type="text" id="register-problem-verification" name="problemVerification">
+              <input type="text" id="register-problem-verification" name="problemVerification" v-model="problemVerification">
             </div>
 
             <div class="register-form-check-item-box">
@@ -71,7 +71,7 @@
 
 
             <div class="register-form-button-item">
-              <input type="button" value="注册">
+              <input type="button" value="注册" @click="test">
             </div>
           </form>
         </div>
@@ -93,6 +93,30 @@ export default {
     Label,
     PageTitle,
     NoticesContainer
+  },
+  data(){
+    return {
+      amount: '',
+      password: '',
+      passwordSure: '',
+      username: '',
+      email: '',
+      phoneNumber: '',
+      referrer: '',
+      problemVerification: ''
+    }
+  },
+  methods:{
+    test(){
+      console.log(this.amount);
+      console.log(this.password);
+      console.log(this.passwordSure);
+      console.log(this.username);
+      console.log(this.email);
+      console.log(this.phoneNumber);
+      console.log(this.referrer);
+      console.log(this.problemVerification);
+    }
   }
 }
 </script>
@@ -131,12 +155,6 @@ export default {
   justify-content: center;
 
   //background: #cc4242;
-}
-
-.register-box {
-  margin-top: 10px;
-
-  //background: #2174f1;
 }
 
 .register-form-input-item {
@@ -189,7 +207,7 @@ export default {
 .register-form-button-item {
   width: 364px;
   height: 30px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .register-form-button-item input {
@@ -203,7 +221,7 @@ export default {
 }
 
 .register-form-check-item-box {
-  margin-top: 10px;
+  margin-top:10px
 }
 
 .register-form-check-item {
