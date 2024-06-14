@@ -56,6 +56,10 @@
               </div>
               <input type="text" id="register-problem-verification" name="problemVerification">
             </div>
+
+            <div class="register-form-button-item">
+              <input type="button" value="注册">
+            </div>
           </form>
         </div>
 
@@ -167,5 +171,21 @@ export default {
   font-size: 14px;
   margin-left: 5px;
   color: #2174f1;
+}
+
+.register-form-button-item {
+  width: 364px;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.register-form-button-item input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 4px;
+  background: #7db92e;
+  color: #fff;
+
 }
 </style>
