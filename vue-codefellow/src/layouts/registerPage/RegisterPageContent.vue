@@ -13,13 +13,27 @@
               <label for="register-amount">账户 <span>*</span></label>
               <div class="input-box">
                 <input type="text" id="register-amount" name="amount" v-model="amount">
+
               </div>
               <p class="item-readme">这将作为你的账号用于登录</p>
             </div>
 
             <div class="register-form-input-item">
               <label for="register-password">密码 <span>*</span></label>
-              <input type="password" id="register-password" name="password" v-model="password">
+              <input type="password" id="register-password" name="password" v-model="password" v-on:input="togglePasswordDetectorBoxDisplay" @blur="togglePasswordDetectorBoxNotDisplay">
+
+            </div>
+            <!-- 密码检测窗口 -->
+            <div v-show="passwordDetectorVisible" class="password-detector-box">
+              <div class="password-detector-item">
+                <p>至少八个字符</p>
+              </div>
+              <div class="password-detector-item">
+                <p>至少有一个字母</p>
+              </div>
+              <div class="password-detector-item">
+                <p>至少有一个大写字母</p>
+              </div>
             </div>
 
             <div class="register-form-input-item">
@@ -59,12 +73,12 @@
 
             <div class="register-form-check-item-box">
               <div class="register-form-check-item">
-                <input type="checkbox" id="negotiate" name="negotiate" >
+                <input type="checkbox" id="negotiate" name="negotiate" v-model="negotiate">
                 <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
               </div>
 
               <div class="register-form-check-item">
-                <input type="checkbox" id="rules" name="rules" >
+                <input type="checkbox" id="rules" name="rules" v-model="rules">
                 <label for="rules">我自愿遵守本论坛 <a href="#">用户行为规范</a> </label>
               </div>
             </div>
@@ -103,7 +117,13 @@ export default {
       email: '',
       phoneNumber: '',
       referrer: '',
-      problemVerification: ''
+      problemVerification: '',
+
+      negotiate: '',
+      rules: '',
+
+      // 密码检测窗口标识
+      passwordDetectorVisible: false
     }
   },
   methods:{
@@ -116,12 +136,30 @@ export default {
       console.log(this.phoneNumber);
       console.log(this.referrer);
       console.log(this.problemVerification);
+      console.log(this.negotiate);
+      console.log(this.rules);
+    },
+    togglePasswordDetectorBoxDisplay(){
+      this.passwordDetectorVisible = true;
+    },
+    togglePasswordDetectorBoxNotDisplay(){
+      this.passwordDetectorVisible = false;
     }
+
   }
 }
 </script>
 
 <style scoped>
+.password-detector-box{
+  display: flex;
+  flex-direction: column;
+}
+
+.password-detector-item p{
+  font-size: 14px;
+}
+
 .register-page-content-container {
   max-width: 1200px;
   margin: 80px auto 80px;
@@ -237,5 +275,18 @@ export default {
 
 .register-form-check-item label a {
   text-decoration: none;
+}
+
+.password-detector-box {
+  width: 250px;
+  height: 200px;
+  background: #fff;
+  margin-top: 3px;
+  margin-left: 110px;
+  z-index: 1;
+  position: absolute;
+  border-radius: 0.7rem;
+  box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25), 0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+  //border: 1px solid black;
 }
 </style>
