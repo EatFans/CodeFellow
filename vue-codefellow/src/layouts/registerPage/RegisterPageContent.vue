@@ -23,7 +23,7 @@
               <input type="password" id="register-password" name="password" v-model="password" v-on:input="togglePasswordDetectorBoxDisplay" @blur="togglePasswordDetectorBoxNotDisplay">
 
             </div>
-            <!-- 密码检测窗口 -->
+            <!-- TODO: 密码检测窗口  -->
             <div v-show="passwordDetectorVisible" class="password-detector-box">
               <div class="password-detector-item">
                 <p>至少八个字符</p>
