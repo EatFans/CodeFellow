@@ -15,6 +15,11 @@ public class AuthController {
 
     @GetMapping("/register")
     public String registerUser(){
+        // 检测是否已经注册了该用户
+
+        // 将用户数据添加到数据库中
+
+        // 返回成功注册
         return "注册用户接口";
     }
 }
