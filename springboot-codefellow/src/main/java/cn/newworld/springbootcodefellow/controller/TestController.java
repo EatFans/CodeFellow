@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.controller;
 
+import cn.newworld.springbootcodefellow.service.intf.TestService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    private UserService userService;
+    private TestService testService;
 
     @GetMapping("/{name}")
     public String getName(@PathVariable String name){
@@ -24,6 +25,6 @@ public class TestController {
 
     @GetMapping("/hello")
     public String getHello(){
-        return userService.hello();
+        return testService.hello();
     }
 }

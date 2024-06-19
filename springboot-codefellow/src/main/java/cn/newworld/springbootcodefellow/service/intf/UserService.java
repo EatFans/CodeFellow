@@ -7,6 +7,6 @@ import cn.newworld.springbootcodefellow.model.entity.User;
  * author: EatFan
  */
 public interface UserService {
-    String hello();
-    String test();
+    Boolean isAccountExists(String account);
+
 }

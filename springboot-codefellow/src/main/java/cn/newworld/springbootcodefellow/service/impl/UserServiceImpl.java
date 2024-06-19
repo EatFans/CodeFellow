@@ -6,12 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
     @Override
-    public String hello(){
-        return "Hello World";
-    }
-
-    @Override
-    public String test(){
-        return "test";
+    public Boolean isAccountExists(String account) {
+        // Test 测试
+        return account.equalsIgnoreCase("eatfan0921");
     }
 }
