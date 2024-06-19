@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.controller;
 
+import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,6 @@ public class AuthController {
         // 将该用户的信息创建保存到数据库
 
         User user = new User();
-        return ResponseEntity.ok(new ApiResponse("success","用户注册成功！",requestBodyUser));
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！",requestBodyUser));
     }
 }
