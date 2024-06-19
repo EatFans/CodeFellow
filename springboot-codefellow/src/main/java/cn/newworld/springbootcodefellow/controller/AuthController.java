@@ -32,9 +32,13 @@ public class AuthController {
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户账号已经存在！无法注册！"));
         }
         //TODO: 检查用户名是否存在，存在就不注册
-
+        if ( true ){
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户名已经被使用！"));
+        }
         //TODO: 检查用户邮箱是否存在，存在就不注册
-
+        if ( true ){
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！"));
+        }
         //TODO: 给用户生成UUID
 
         //TODO: 给用户设置账号状态、验证情况（false）、注册时间
