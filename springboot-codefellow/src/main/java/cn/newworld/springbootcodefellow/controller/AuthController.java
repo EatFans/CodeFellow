@@ -1,25 +1,26 @@
 package cn.newworld.springbootcodefellow.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
+import cn.newworld.springbootcodefellow.model.entity.User;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * 验证相关API接口
  * author: EatFan
  */
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
 
-    @GetMapping("/register")
-    public String registerUser(){
-        // 检测是否已经注册了该用户
+    @PostMapping    ("/register")
+    public ResponseEntity<?> registerUser(@RequestBody User requestBodyUser){
+        // 检测该用户是否已经注册
 
-        // 将用户数据添加到数据库中
+        // 将该用户的信息创建保存到数据库
 
-        // 返回成功注册
-        return "注册用户接口";
+        User user = new User();
+        return ResponseEntity.ok(new ApiResponse("success","用户注册成功！",requestBodyUser));
     }
 }

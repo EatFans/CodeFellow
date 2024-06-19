@@ -1,7 +1,10 @@
 package cn.newworld.springbootcodefellow.model.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class User {
     private String uuid;    // 用户的UUID
     private String account;  // 用户的账号
