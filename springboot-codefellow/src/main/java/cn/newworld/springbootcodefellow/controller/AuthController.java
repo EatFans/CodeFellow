@@ -3,6 +3,7 @@ package cn.newworld.springbootcodefellow.controller;
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.entity.User;
+import cn.newworld.springbootcodefellow.service.intf.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
 
     /**
      * 注册新用户
