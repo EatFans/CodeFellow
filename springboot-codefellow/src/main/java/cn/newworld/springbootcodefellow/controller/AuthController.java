@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 
 /**
  * Auth验证相关API接口
@@ -44,7 +46,12 @@ public class AuthController {
         String userUUID = UUIDGenerator.generateUUID(user.getAccount());
         user.setUuid(userUUID);
 
-        //TODO: 给用户设置账号状态、验证情况（false）、注册时间
+        //TODO: 给用户设置账号状态
+        user.setIsVerification(false);
+        user.setRegistrationTime(new Date());
+
+        // TODO: 注册成功保存用户数据到数据库中然后再响应
+
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
     }
 }
