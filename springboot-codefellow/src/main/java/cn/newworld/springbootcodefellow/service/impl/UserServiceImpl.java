@@ -48,4 +48,10 @@ public class UserServiceImpl implements UserService {
         User userByEmail = userMapper.findUserByEmail(email);
         return userByEmail != null;
     }
+
+
+    @Override
+    public void create(User user) {
+
+    }
 }

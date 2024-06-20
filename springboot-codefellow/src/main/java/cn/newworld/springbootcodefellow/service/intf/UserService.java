@@ -1,6 +1,8 @@
 package cn.newworld.springbootcodefellow.service.intf;
 
 
+import cn.newworld.springbootcodefellow.model.entity.User;
+
 /**
  * 用户业务接口
  * author: EatFan
@@ -26,4 +28,6 @@ public interface UserService {
      * @return 如果用户邮箱存在就返回true，否则返回false
      */
     Boolean isEmailExists(String email);
+
+    void create(User user);
 }

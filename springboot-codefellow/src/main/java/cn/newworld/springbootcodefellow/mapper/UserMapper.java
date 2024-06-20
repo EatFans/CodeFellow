@@ -26,6 +26,8 @@ public interface UserMapper {
      */
     User findUserByEmail(String email);
 
+    //TODO: 待写
+    int insertUser(User user);
 
     // 测试
     void putUserTest(User user);
