@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.newworld.springbootcodefellow.mapper.UserMapper">
+
+    <!-- 通过用户账号找到该用户信息 -->
+    <select id="findUserByAccount" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE account = #{account}
+    </select>
+
+    <!-- 通过用户名找到该用户 -->
+    <select id="findUserByUsername" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE username = #{username}
+    </select>
+
+    <!-- 通过用户邮箱找到该用户 -->
+    <select id="findUserByEmail" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE email = #{email}
+    </select>
+
+    <!-- 向user表插入一条用户数据 -->
+    <insert id="putUserTest" parameterType="cn.newworld.springbootcodefellow.model.entity.User">
+        INSERT INTO user (uuid, account, password, username, email, status, is_verification ,registration_time)
+        VALUES (#{uuid}, #{account}, #{password} ,#{username}, #{email},  #{status}, #{isVerification},#{registrationTime})
+    </insert>
+
+</mapper>

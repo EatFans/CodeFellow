@@ -4,6 +4,7 @@ import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
+import cn.newworld.springbootcodefellow.util.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,8 @@ public class AuthController {
         if (userService.isEmailExists(user.getEmail())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！"));
         }
-        //TODO: 给用户生成UUID
+        String userUUID = UUIDGenerator.generateUUID(user.getAccount());
+        user.setUuid(userUUID);
 
         //TODO: 给用户设置账号状态、验证情况（false）、注册时间
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
