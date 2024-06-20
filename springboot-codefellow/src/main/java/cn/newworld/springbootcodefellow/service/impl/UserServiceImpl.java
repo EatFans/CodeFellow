@@ -26,4 +26,26 @@ public class UserServiceImpl implements UserService {
         User userByAccount = userMapper.findUserByAccount(account);
         return userByAccount != null;
     }
+
+    /**
+     * 检查用户名是否已经存在
+     * @param username 用户名
+     * @return 如果用户名存在就返回true，否则就返回false
+     */
+    @Override
+    public Boolean isUsernameExists(String username){
+        User userByUsername = userMapper.findUserByUsername(username);
+        return userByUsername != null;
+    }
+
+    /**
+     * 检查用户邮箱是否已经存在
+     * @param email 用户邮箱
+     * @return 如果用户邮箱存在就返回true，否则返回false
+     */
+    @Override
+    public Boolean isEmailExists(String email) {
+        User userByEmail = userMapper.findUserByEmail(email);
+        return userByEmail != null;
+    }
 }

@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public AuthController(UserService userService){
+        this.userService = userService;
+    }
 
     /**
      * 注册新用户
@@ -27,16 +31,13 @@ public class AuthController {
      */
     @PostMapping("/register")
     public ResponseEntity<?> registerNewUser(@RequestBody User user){
-        //TODO: 检测用户账号是否存在，存在就不注册
         if (userService.isAccountExists(user.getAccount())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户账号已经存在！无法注册！"));
         }
-        //TODO: 检查用户名是否存在，存在就不注册
-        if ( false ){
+        if (userService.isUsernameExists(user.getUsername())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户名已经被使用！"));
         }
-        //TODO: 检查用户邮箱是否存在，存在就不注册
-        if ( false ){
+        if (userService.isEmailExists(user.getEmail())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！"));
         }
         //TODO: 给用户生成UUID
