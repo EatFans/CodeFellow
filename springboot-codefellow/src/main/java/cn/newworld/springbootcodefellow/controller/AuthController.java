@@ -6,6 +6,7 @@ import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
 import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
+import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,10 +26,12 @@ import java.util.Date;
 public class AuthController {
 
     private final UserService userService;
+    private final PasswordEncryptor passwordEncryptor;
 
     @Autowired
-    public AuthController(UserService userService){
+    public AuthController(UserService userService,PasswordEncryptor passwordEncryptor){
         this.userService = userService;
+        this.passwordEncryptor = passwordEncryptor;
     }
 
     /**
@@ -65,7 +68,7 @@ public class AuthController {
         String userUUID = UUIDGenerator.generateUUID(registerRequest.getAccount());
         user.setUuid(userUUID);  // 给该用户创建一个uuid
         user.setAccount(registerRequest.getAccount());
-        user.setPassword(registerRequest.getPassword());
+        user.setPassword(passwordEncryptor.encodePassword(registerRequest.getPassword()));
         user.setUsername(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
         user.setPhoneNumber(registerRequest.getPhoneNumber());
@@ -91,10 +94,15 @@ public class AuthController {
         }
 
         User user = userService.getUerByAccount(loginRequest.getAccount());
+        if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword())){
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"账号或密码错误！"));
+        }
 
         //TODO: 通过登录请求中的数据，获取到该用户数据，核对账号和密码是否匹配
 
         //TODO: 检查用户账号状态是否允许登录
+
+        //TODO: 更新用户登录时间
 
         //TODO: 登录成功后颁发cookie 保持登录
         Cookie test = new Cookie("test", "123456");
