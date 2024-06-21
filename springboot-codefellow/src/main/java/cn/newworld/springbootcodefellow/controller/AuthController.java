@@ -81,11 +81,15 @@ public class AuthController {
         return user;
     }
 
-    @GetMapping("/activate")
-    public String activateAccount(@RequestParam("uuid") String uuid,@RequestParam("username") String username){
-        //TODO: 激活验证账号处理
+    @GetMapping("/verify")
+    public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username){
+        Boolean isVerified = userService.verifyUserAccount(uuid, account, username);
+        if (isVerified){
+            return "验证成功！";
+        } else {
+            return "验证失败！";
+        }
 
-        return uuid + "  " + username;
     }
 
     @PostMapping("/login")
@@ -100,6 +104,10 @@ public class AuthController {
         if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"账号或密码错误！"));
         }
+
+        // 检查账号是否进行验证
+        if (!user.getIsVerification())
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未激活验证！"));
 
         // 检查账号状态是否允许登录
         switch (user.getStatus()){
@@ -117,7 +125,6 @@ public class AuthController {
             default:
                 break;
         }
-
 
         //TODO: 更新用户登录时间
 

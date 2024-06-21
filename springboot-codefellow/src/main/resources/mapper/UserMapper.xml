@@ -31,6 +31,24 @@
         SELECT * FROM user WHERE uuid = #{uuid}
     </select>
 
+    <!-- 通过用户uuid、账号、用户名找到该用户 -->
+    <select id="findUserByUuidAndAccountAndUsername" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
+    </select>
+    
+    <!-- 更新用户账号状态 -->
+    <update id="updateStatus" parameterType="java.lang.String">
+        UPDATE user
+        SET status = #{status}
+        WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
+    </update>
+
+    <!-- 更新用户账号验证情况 -->
+    <update id="updateVerification" parameterType="map">
+        UPDATE user
+        SET isVerification = #{verification}
+        WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
+    </update>
 
     <!-- 向user表插入一条用户数据 -->
     <insert id="putUserTest" parameterType="cn.newworld.springbootcodefellow.model.entity.User">

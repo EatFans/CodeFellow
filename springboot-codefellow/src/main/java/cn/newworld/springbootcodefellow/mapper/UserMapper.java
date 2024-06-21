@@ -40,6 +40,35 @@ public interface UserMapper {
      */
     User findUserByUUID(String uuid);
 
+    /**
+     * 通过用户uuid、账号、用户名找到该用用户
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 如果查询到了就返回该用户User对象，否则就返回null
+     */
+    User findUserByUuidAndAccountAndUsername(String uuid,String account,String username);
+
+    /**
+     * 更新用户账号状态
+     * @param uuid 被更新的用户uuid
+     * @param account 被更新的用户账号
+     * @param username 被更新的用户名
+     * @param status 更新后的账号状态
+     * @return 如果更新成功就返回true，否则就返回false
+     */
+    boolean updateStatus(String uuid, String account, String username,String status);
+
+    /**
+     * 更新用户账号验证情况
+     * @param uuid 被更新的用户uuid
+     * @param account 被更新的用户账号
+     * @param username 被更新的用户名
+     * @param verification 更新后的账号验证情况
+     * @return 如果更新成功就返回true，否则就返回false
+     */
+    boolean updateVerification(String uuid,String account,String username,boolean verification);
+
     // 测试
     void putUserTest(User user);
 }

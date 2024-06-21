@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.service.impl;
 
+import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.mapper.UserMapper;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
@@ -88,5 +89,28 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUerByAccount(String account) {
         return userMapper.findUserByAccount(account);
+    }
+
+    /**
+     * 验证激活用户账号
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 如果通过uuid、账号、用户名都验证成功，
+     */
+    @Override
+    public Boolean verifyUserAccount(String uuid, String account, String username) {
+        User user = userMapper.findUserByUuidAndAccountAndUsername(uuid, account, username);
+        // 检查用户是否存在
+        if (user != null){
+            // 检查用户是否已经验证过了
+            if (!user.getIsVerification()){
+                // 更新用户账号状态和验证情况
+                boolean statusFlag = userMapper.updateStatus(uuid, account, username, AccountStatus.ACTIVE);
+                boolean verificationFlag = userMapper.updateVerification(uuid, account, username, true);
+                return statusFlag && verificationFlag;
+            }
+        }
+        return false;
     }
 }

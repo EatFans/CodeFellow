@@ -49,4 +49,13 @@ public interface UserService {
      * @return 如果获取到了就返回user对象，否则就返回null
      */
     User getUerByAccount(String account);
+
+    /**
+     * 验证激活用户账号
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 如果通过uuid、账号、用户名都验证成功，
+     */
+    Boolean verifyUserAccount(String uuid,String account, String username);
 }
