@@ -69,6 +69,5 @@ public interface UserMapper {
      */
     boolean updateVerification(String uuid,String account,String username,boolean verification);
 
-    // 测试
-    void putUserTest(User user);
+
 }

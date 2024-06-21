@@ -50,10 +50,5 @@
         WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
     </update>
 
-    <!-- 向user表插入一条用户数据 -->
-    <insert id="putUserTest" parameterType="cn.newworld.springbootcodefellow.model.entity.User">
-        INSERT INTO user (uuid, account, password, username, email, status, isVerification ,registrationTime)
-        VALUES (#{uuid}, #{account}, #{password} ,#{username}, #{email},  #{status}, #{isVerification},#{registrationTime})
-    </insert>
 
 </mapper>

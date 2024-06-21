@@ -28,6 +28,5 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void putUserTest(User user) {
-        userMapper.putUserTest(user);
     }
 }

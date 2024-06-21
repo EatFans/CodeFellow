@@ -85,9 +85,9 @@ public class AuthController {
     public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username){
         Boolean isVerified = userService.verifyUserAccount(uuid, account, username);
         if (isVerified){
-            return "验证成功！";
+            return "验证成功！";     // TODO: 验证成功页面
         } else {
-            return "验证失败！";
+            return "验证失败！";     // TODO: 验证失败页面
         }
 
     }
