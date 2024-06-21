@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.controller;
 
+import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+
 
 
 /**
@@ -93,14 +95,29 @@ public class AuthController {
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
         }
 
+        // 检查账号密码是否匹配
         User user = userService.getUerByAccount(loginRequest.getAccount());
         if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"账号或密码错误！"));
         }
 
-        //TODO: 通过登录请求中的数据，获取到该用户数据，核对账号和密码是否匹配
+        // 检查账号状态是否允许登录
+        switch (user.getStatus()){
+            case AccountStatus.DISABLED:
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于禁用状态！"));
+            case AccountStatus.PENDING:
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未激活验证！"));
+            case AccountStatus.LOCKED:
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于锁定状态！"));
+            case AccountStatus.SUSPENDED:
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于暂停使用状态！"));
+            case AccountStatus.BANNED:
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于封禁状态！"));
 
-        //TODO: 检查用户账号状态是否允许登录
+            default:
+                break;
+        }
+
 
         //TODO: 更新用户登录时间
 
