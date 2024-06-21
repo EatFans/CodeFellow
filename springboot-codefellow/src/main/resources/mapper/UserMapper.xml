@@ -49,6 +49,12 @@
         SET isVerification = #{verification}
         WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
     </update>
-
+    
+    <!-- 更新用户登录时间 -->
+    <update id="updateLoginTime" parameterType="map">
+        UPDATE user
+        SET lastLoginTime = #{newTime}
+        WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
+    </update>
 
 </mapper>

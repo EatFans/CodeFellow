@@ -58,4 +58,11 @@ public interface UserService {
      * @return 如果通过uuid、账号、用户名都验证成功，
      */
     Boolean verifyUserAccount(String uuid,String account, String username);
+
+    /**
+     * 更新用户登录时间
+     * @param user 被更新的用户
+     * @return 如果成功更新用户登录时间就返回true，否则就返回false
+     */
+    Boolean updateUserLoginTime(User user);
 }

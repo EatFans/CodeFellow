@@ -3,6 +3,8 @@ package cn.newworld.springbootcodefellow.mapper;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
+
 @Mapper
 public interface UserMapper {
     /**
@@ -69,5 +71,13 @@ public interface UserMapper {
      */
     boolean updateVerification(String uuid,String account,String username,boolean verification);
 
-
+    /**
+     *  更新登录时间
+     * @param uuid 被更新的用户uuid
+     * @param account 被更新的用户账号
+     * @param username 被更新的用户名
+     * @param newTime 更新后最新的时间
+     * @return 如果更新成功就返回true，否则就返回false
+     */
+    boolean updateLoginTime(String uuid, String account, String username, Date newTime);
 }

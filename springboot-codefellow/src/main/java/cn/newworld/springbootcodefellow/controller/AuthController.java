@@ -85,9 +85,9 @@ public class AuthController {
     public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username){
         Boolean isVerified = userService.verifyUserAccount(uuid, account, username);
         if (isVerified){
-            return "验证成功！";     // TODO: 验证成功页面
+            return "账号验证激活成功！";
         } else {
-            return "验证失败！";     // TODO: 验证失败页面
+            return "账号验证激活失败！";
         }
 
     }
@@ -126,7 +126,8 @@ public class AuthController {
                 break;
         }
 
-        //TODO: 更新用户登录时间
+        if (!userService.updateUserLoginTime(user))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录时间更新错误！"));
 
         //TODO: 登录成功后颁发cookie 保持登录
         Cookie test = new Cookie("test", "123456");
@@ -135,3 +136,4 @@ public class AuthController {
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！", user));
     }
 }
+

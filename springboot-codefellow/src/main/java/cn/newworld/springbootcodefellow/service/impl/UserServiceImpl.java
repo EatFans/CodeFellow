@@ -7,6 +7,8 @@ import cn.newworld.springbootcodefellow.service.intf.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * 用户业务实现类
  * author: EatFan
@@ -112,5 +114,15 @@ public class UserServiceImpl implements UserService {
             }
         }
         return false;
+    }
+
+    /**
+     * 更新用户登录时间
+     * @param user 被更新的用户
+     * @return 如果成功更新用户登录时间就返回true，否则就返回false
+     */
+    @Override
+    public Boolean updateUserLoginTime(User user) {
+        return userMapper.updateLoginTime(user.getUuid(), user.getAccount(), user.getUsername(), new Date());
     }
 }
