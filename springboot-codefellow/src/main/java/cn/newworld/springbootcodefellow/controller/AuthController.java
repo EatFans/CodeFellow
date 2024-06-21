@@ -6,6 +6,7 @@ import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
 import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
 import cn.newworld.springbootcodefellow.model.entity.User;
+import cn.newworld.springbootcodefellow.service.intf.EmailService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
@@ -29,11 +30,13 @@ public class AuthController {
 
     private final UserService userService;
     private final PasswordEncryptor passwordEncryptor;
+    private final EmailService emailService;
 
     @Autowired
-    public AuthController(UserService userService,PasswordEncryptor passwordEncryptor){
+    public AuthController(UserService userService,PasswordEncryptor passwordEncryptor,EmailService emailService){
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
+        this.emailService = emailService;
     }
 
     /**
@@ -134,6 +137,13 @@ public class AuthController {
         response.addCookie(test);
 
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！", user));
+    }
+
+
+    @PostMapping("/test")
+    public ResponseEntity<?> test(){
+        emailService.sendSimpleEmail("eatfan0921@163.com","测试标题","大护法开放活动就卡复活的卡河附近的卡死");
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"邮件已经发送"));
     }
 }
 
