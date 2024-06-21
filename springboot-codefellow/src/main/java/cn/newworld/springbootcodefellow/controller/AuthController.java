@@ -44,22 +44,54 @@ public class AuthController {
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户名已经被使用！"));
         if (userService.isEmailExists(registerRequest.getEmail()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！"));
-        String userUUID = UUIDGenerator.generateUUID(registerRequest.getAccount());
+
+        User user = createNewUser(registerRequest);
+        if (!userService.create(user))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法将数据保存进数据库中..."));
+
+        //TODO: 邮箱发送激活验证账号超链接
+
+
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
+    }
+
+    /**
+     * 创建一个新用户对象
+     * @param registerRequest 请求体内容
+     * @return 返回一个创建初始化完成user对象
+     */
+    private User createNewUser(RegisterRequest registerRequest){
         User user = new User();
+        String userUUID = UUIDGenerator.generateUUID(registerRequest.getAccount());
         user.setUuid(userUUID);  // 给该用户创建一个uuid
         user.setAccount(registerRequest.getAccount());
         user.setPassword(registerRequest.getPassword());
         user.setUsername(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
         user.setPhoneNumber(registerRequest.getPhoneNumber());
+        String recommender = registerRequest.getRecommender();
+        if (recommender != null)
+            user.setRecommender(recommender);
         user.setRegistrationTime(new Date());  // 设置注册时间（以服务器时间为标准）
-        // TODO: 注册成功保存用户数据到数据库中然后再响应
+        return user;
+    }
 
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
+    @GetMapping("/activate")
+    public String activateAccount(@RequestParam("uuid") String uuid,@RequestParam("username") String username){
+        //TODO: 激活验证账号处理
+
+        return uuid + "  " + username;
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
+        // 检查该账号是否存在
+        if (!userService.isAccountExists(loginRequest.getAccount())){
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
+        }
+
+        User user = userService.getUerByAccount(loginRequest.getAccount());
+
         //TODO: 通过登录请求中的数据，获取到该用户数据，核对账号和密码是否匹配
 
         //TODO: 检查用户账号状态是否允许登录
@@ -68,6 +100,6 @@ public class AuthController {
         Cookie test = new Cookie("test", "123456");
         response.addCookie(test);
 
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！"));
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！", user));
     }
 }

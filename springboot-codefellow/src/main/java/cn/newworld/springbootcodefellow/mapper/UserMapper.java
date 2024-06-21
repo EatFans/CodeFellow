@@ -26,8 +26,19 @@ public interface UserMapper {
      */
     User findUserByEmail(String email);
 
-    //TODO: 待写
+    /**
+     * 向用户表插入一条用户数据
+     * @param user 用户
+     * @return 如果插入成功就返回数值大于0，小于等于0就是未插入成功
+     */
     int insertUser(User user);
+
+    /**
+     * 通过用户uuid找到该用户
+     * @param uuid 用户uuid
+     * @return 如果查询到了就返回该用户User对象，否则就返回null
+     */
+    User findUserByUUID(String uuid);
 
     // 测试
     void putUserTest(User user);

@@ -18,9 +18,23 @@
         SELECT * FROM user WHERE email = #{email}
     </select>
 
+    <!-- 向用户表中插入一条用户数据 -->
+    <insert id="insertUser" parameterType="cn.newworld.springbootcodefellow.model.entity.User">
+        INSERT INTO user (uuid, account, password, username, email, phoneNumber, registrationTime
+            <if test="recommender != null">, recommender</if>)
+        VALUES (#{uuid}, #{account}, #{password}, #{username}, #{email}, #{phoneNumber}, #{registrationTime}
+            <if test="recommender != null">, #{recommender}</if>)
+    </insert>
+
+    <!-- 通过用户uuid找到该用户 -->
+    <select id="findUserByUUID" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE uuid = #{uuid}
+    </select>
+
+
     <!-- 向user表插入一条用户数据 -->
     <insert id="putUserTest" parameterType="cn.newworld.springbootcodefellow.model.entity.User">
-        INSERT INTO user (uuid, account, password, username, email, status, is_verification ,registration_time)
+        INSERT INTO user (uuid, account, password, username, email, status, isVerification ,registrationTime)
         VALUES (#{uuid}, #{account}, #{password} ,#{username}, #{email},  #{status}, #{isVerification},#{registrationTime})
     </insert>
 

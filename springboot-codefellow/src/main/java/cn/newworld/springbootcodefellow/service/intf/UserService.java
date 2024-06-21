@@ -29,5 +29,24 @@ public interface UserService {
      */
     Boolean isEmailExists(String email);
 
-    void create(User user);
+    /**
+     * 创建用户
+     * @param user 用户数据对象
+     * @return 如果创建成功就返回true，否则就返回false
+     */
+    Boolean create(User user);
+
+    /**
+     * 通过uuid来获取用户user对象
+     * @param uuid 用户uuid
+     * @return 如果获取到了就返回user对象，否则就返回null
+     */
+    User getUserByUUID(String uuid);
+
+    /**
+     * 通过用户账号来获取该用户user对象
+     * @param account 用户账号
+     * @return 如果获取到了就返回user对象，否则就返回null
+     */
+    User getUerByAccount(String account);
 }

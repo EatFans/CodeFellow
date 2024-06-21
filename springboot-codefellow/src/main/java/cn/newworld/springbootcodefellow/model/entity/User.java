@@ -12,6 +12,7 @@ public class User {
     private String username;    // 用户的名称
     private String email;       // 用户的邮箱
     private String phoneNumber; // 用户的手机号
+    private String recommender; // 推荐人
     private String status;  // 用户账号的状态
     private Boolean isVerification; // 账号是否已经通过验证
     private Date registrationTime;  // 注册的时间
