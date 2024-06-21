@@ -5,6 +5,7 @@ import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
 import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
+import cn.newworld.springbootcodefellow.model.dto.TestData;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.EmailService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
@@ -141,8 +142,8 @@ public class AuthController {
 
 
     @PostMapping("/test")
-    public ResponseEntity<?> test(){
-        emailService.sendSimpleEmail("eatfan0921@163.com","测试标题","大护法开放活动就卡复活的卡河附近的卡死");
+    public ResponseEntity<?> test(@RequestBody TestData testData){
+        emailService.sendSimpleEmail(testData.getTo(),testData.getTitle(),testData.getContent());
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"邮件已经发送"));
     }
 }
