@@ -83,6 +83,13 @@ public class AuthController {
         return user;
     }
 
+    /**
+     * 用户账号验证接口
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 如果账号验证成功就返回
+     */
     @GetMapping("/verify")
     public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username){
         Boolean isVerified = userService.verifyUserAccount(uuid, account, username);
@@ -96,22 +103,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
-        // 检查该账号是否存在
-        if (!userService.isAccountExists(loginRequest.getAccount())){
+        if (!userService.isAccountExists(loginRequest.getAccount()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
-        }
-
-        // 检查账号密码是否匹配
         User user = userService.getUerByAccount(loginRequest.getAccount());
-        if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword())){
+        if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"账号或密码错误！"));
-        }
-
-        // 检查账号是否进行验证
         if (!user.getIsVerification())
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未激活验证！"));
-
-        // 检查账号状态是否允许登录
         switch (user.getStatus()){
             case AccountStatus.DISABLED:
                 return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于禁用状态！"));
@@ -123,17 +121,16 @@ public class AuthController {
                 return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于暂停使用状态！"));
             case AccountStatus.BANNED:
                 return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于封禁状态！"));
-
             default:
                 break;
         }
-
         if (!userService.updateUserLoginTime(user))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录时间更新错误！"));
 
         //TODO: 登录成功后颁发cookie 保持登录
-        Cookie test = new Cookie("test", "123456");
-        response.addCookie(test);
+        Cookie tokenCookie = new Cookie("token", "123456");
+        tokenCookie.setMaxAge(24 * 60 * 60);
+        response.addCookie(tokenCookie);
 
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！", user));
     }
