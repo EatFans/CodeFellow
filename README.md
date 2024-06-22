@@ -4,21 +4,21 @@
 <br>
 <br>
 <div align="center" style="margin-top: 60px;">
-  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java" style="margin: 3px;">
-  <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white" alt="Maven" style="margin: 3px;">
-  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="Vue.js" style="margin: 3px;">
-  <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot" style="margin: 3px;">
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" style="margin: 3px;">
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" style="margin: 3px;">
-  <img src="https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white" alt="MyBatis" style="margin: 3px;">
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java" style="margin: 5px;">
+  <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white" alt="Maven" style="margin: 5px;">
+  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="Vue.js" style="margin: 5px;">
+  <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot" style="margin: 5px;">
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" style="margin: 5px;">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" style="margin: 5px;">
+  <img src="https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white" alt="MyBatis" style="margin: 5px;">
 </div>
 
 <div align="center" style="margin-top: 20px;">
-  <img src="https://img.shields.io/github/issues/eatfans/CodeFellow.svg" alt="GitHub issues" style="margin: 3px;">
-  <img src="https://img.shields.io/github/stars/eatfans/CodeFellow.svg" alt="GitHub stars" style="margin: 3px;">
-  <img src="https://img.shields.io/github/forks/eatfans/CodeFellow.svg" alt="GitHub forks" style="margin: 3px;">
-  <img src="https://img.shields.io/github/contributors/eatfans/CodeFellow.svg" alt="Contributors" style="margin: 3px;">
-  <img src="https://img.shields.io/github/last-commit/eatfans/CodeFellow.svg" alt="Last Commit" style="margin: 3px;">
+  <img src="https://img.shields.io/github/issues/eatfans/CodeFellow.svg" alt="GitHub issues" style="margin: 5px;">
+  <img src="https://img.shields.io/github/stars/eatfans/CodeFellow.svg" alt="GitHub stars" style="margin: 5px;">
+  <img src="https://img.shields.io/github/forks/eatfans/CodeFellow.svg" alt="GitHub forks" style="margin: 5px;">
+  <img src="https://img.shields.io/github/contributors/eatfans/CodeFellow.svg" alt="Contributors" style="margin: 5px;">
+  <img src="https://img.shields.io/github/last-commit/eatfans/CodeFellow.svg" alt="Last Commit" style="margin: 5px;">
 </div>
 <br>
 <br>
