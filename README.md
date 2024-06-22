@@ -2,7 +2,6 @@
 <br>
 <br>
 <br>
-<br>
 <div align="center" style="margin-top: 60px;">
   <a href="https://www.java.com/">
     <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java">
@@ -49,7 +48,7 @@
 <br>
 <br>
 <br>
-
+<br>
 
 <div style="margin-top: 40px;">
 
