@@ -27,7 +27,6 @@
   </a>
 </div>
 <br>
-<br>
 <div align="center" style="margin-top: 20px;">
   <a href="https://github.com/eatfans/CodeFellow/issues">
     <img src="https://img.shields.io/github/issues/eatfans/CodeFellow.svg" alt="GitHub issues">
