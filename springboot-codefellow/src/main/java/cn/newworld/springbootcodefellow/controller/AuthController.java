@@ -5,20 +5,21 @@ import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
 import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
+import cn.newworld.springbootcodefellow.model.dto.TokenResponse;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.EmailService;
 import cn.newworld.springbootcodefellow.service.intf.RedisService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
+import cn.newworld.springbootcodefellow.util.TokenEncryptor;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -37,12 +38,19 @@ public class AuthController {
 
     private final RedisService redisService;
 
+    private final TokenEncryptor tokenEncryptor;
+
     @Autowired
-    public AuthController(UserService userService, PasswordEncryptor passwordEncryptor, EmailService emailService, RedisService redisService) {
+    public AuthController(UserService userService,
+                          PasswordEncryptor passwordEncryptor,
+                          EmailService emailService,
+                          RedisService redisService,
+                          TokenEncryptor tokenEncryptor) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;
         this.redisService = redisService;
+        this.tokenEncryptor = tokenEncryptor;
     }
 
 
@@ -134,13 +142,20 @@ public class AuthController {
         if (!userService.updateUserLoginTime(user))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录时间更新错误！"));
 
-        //TODO: 登录成功后颁发cookie 保持登录
-        Cookie tokenCookie = new Cookie("token", "123456");
-        tokenCookie.setMaxAge(24 * 60 * 60);
-        response.addCookie(tokenCookie);
+        // 生成会话令牌（token）
+        String token = tokenEncryptor.generateToken(user.getUuid());
+        // 根据 rememberMe 决定令牌有效时间
+        if (loginRequest.getRememberMe()){
+            redisService.set(user.getUuid(),token,14,TimeUnit.DAYS);
+            return ResponseEntity.ok(new TokenResponse(token,14,TimeUnit.DAYS));
+        } else {
+            redisService.set(user.getUuid(),token,12,TimeUnit.HOURS);
+            return ResponseEntity.ok(new TokenResponse(token,12,TimeUnit.HOURS));
+        }
 
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！", user));
     }
+
+
 
     @GetMapping("/test")
     public ResponseEntity<?> test(@RequestParam("key") String key){
@@ -148,6 +163,15 @@ public class AuthController {
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"key："+key+" 不存在redis中"));
         Object value = redisService.get(key);
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"这个key的value值为："+value));
+    }
+
+    @GetMapping("/test1")
+    public ResponseEntity<?> test2(@RequestParam("token") String token,@RequestParam("uuid") String uuid){
+        boolean flag = tokenEncryptor.matches(uuid, token);
+        if (flag)
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"token与uuid匹配成功,这个token的uuid值为："+uuid));
+        else
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"token与uuid匹配失败"));
     }
 }
 

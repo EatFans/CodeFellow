@@ -63,15 +63,10 @@ public class EmailServiceImpl implements EmailService {
             Path path = Paths.get(resource.getURI());
             String htmlContent = Files.readString(path);
 
-            // 用户uuid
             String uuid = user.getUuid();
-            // 用户名
             String username = user.getUsername();
-            // 账户
             String account = user.getAccount();
-            // 邮箱
             String email = user.getEmail();
-            // 账号验证激活超链接
             String verifyLink = "http://localhost:8080/auth/verify?uuid="+uuid+"&account="+account+"&username="+username;
 
             htmlContent = String.format(htmlContent,username,account,email,verifyLink);
