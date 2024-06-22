@@ -13,7 +13,6 @@ import cn.newworld.springbootcodefellow.service.intf.UserService;
 import cn.newworld.springbootcodefellow.util.TokenEncryptor;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -116,8 +115,13 @@ public class AuthController {
 
     }
 
+    /**
+     * 用户登录接口
+     * @param loginRequest 登录请求传输的数据对象
+     * @return 登录成功就返回token令牌，否则返回登录错误信息
+     */
     @PostMapping("/login")
-    public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
+    public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest){
         if (!userService.isAccountExists(loginRequest.getAccount()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
         User user = userService.getUerByAccount(loginRequest.getAccount());
@@ -154,6 +158,49 @@ public class AuthController {
         }
 
     }
+
+    /**
+     * TODO:忘记密码接口
+     * @return 返回
+     */
+    @PostMapping("/forget-password")
+    public ResponseEntity<?> forgetPassword(){
+        // 检查用户是否在验证码未失效前请求过忘记密码接口，避免重复发送验证码
+
+        // 检查用户账号是否存在
+
+        // 核对用户账号、邮箱、手机号、用户名是否在同一个用户上
+
+        // 获取该用户，得到uuid，加密生成一个临时忘记密码操作令牌
+
+        // 随机生成一个忘记密码的6位数验证码
+
+        // 令牌-验证码 形式临时存储到Redis中，失效时长半小时
+
+
+        // 发送验证码到用户邮箱中
+        return null;
+    }
+
+    /**
+     * TODO: 重置密码接口
+     * @return 返回
+     */
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(){
+        // 从请求中获取验证码
+
+        // 通过验证码，在Redis中获取忘记密码操作令牌
+
+        // 解密操作令牌得到用户uuid信息
+
+        // 通过用户uuid信息去在数据库中修改该用户密码
+
+        return null;
+    }
+
+
+
 
 
 
