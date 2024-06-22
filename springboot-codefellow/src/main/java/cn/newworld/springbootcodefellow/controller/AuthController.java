@@ -7,6 +7,7 @@ import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
 import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.EmailService;
+import cn.newworld.springbootcodefellow.service.intf.RedisService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
@@ -29,15 +30,21 @@ import java.util.Date;
 public class AuthController {
 
     private final UserService userService;
+
     private final PasswordEncryptor passwordEncryptor;
+
     private final EmailService emailService;
 
+    private final RedisService redisService;
+
     @Autowired
-    public AuthController(UserService userService,PasswordEncryptor passwordEncryptor,EmailService emailService){
+    public AuthController(UserService userService, PasswordEncryptor passwordEncryptor, EmailService emailService, RedisService redisService) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;
+        this.redisService = redisService;
     }
+
 
     /**
      * 注册新用户
@@ -135,6 +142,12 @@ public class AuthController {
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！", user));
     }
 
-
+    @GetMapping("/test")
+    public ResponseEntity<?> test(@RequestParam("key") String key){
+        if (!redisService.exists(key))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"key："+key+" 不存在redis中"));
+        Object value = redisService.get(key);
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"这个key的value值为："+value));
+    }
 }
 
