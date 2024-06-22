@@ -78,7 +78,7 @@
   <tr>
     <td align="center" style="padding: 10px;">
       <a href="https://github.com/eatfans">
-        <img src="https://avatars.githubusercontent.com/u/122099628?s=400&u=3d10845f14b751dd240fee9001dfb5a8edc0a800&v=4" width="64px;" style="border-radius: 50%; border: none;" alt="eatfans"/>
+        <img src="https://avatars.githubusercontent.com/u/122099628?s=400&u=3d10845f14b751dd240fee9001dfb5a8edc0a800&v=4" width="64px" style="border-radius: 50%; border: none;" alt="eatfans"/>
         <br />
         <sub><b>EatFan (项目负责人/开发者)</b></sub>
       </a>
