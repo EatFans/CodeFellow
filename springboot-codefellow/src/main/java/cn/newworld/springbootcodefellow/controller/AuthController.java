@@ -5,7 +5,6 @@ import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
 import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
 import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
-import cn.newworld.springbootcodefellow.model.dto.TestData;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.EmailService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
@@ -58,8 +57,7 @@ public class AuthController {
         if (!userService.create(user))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法将数据保存进数据库中..."));
 
-        //TODO: 邮箱发送激活验证账号超链接
-
+        emailService.sendVerifyEmail(user);
 
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
     }
@@ -141,10 +139,5 @@ public class AuthController {
     }
 
 
-    @PostMapping("/test")
-    public ResponseEntity<?> test(@RequestBody TestData testData){
-        emailService.sendSimpleEmail(testData.getTo(),testData.getTitle(),testData.getContent());
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"邮件已经发送"));
-    }
 }
 
