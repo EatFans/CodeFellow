@@ -4,55 +4,21 @@
 <br>
 <br>
 <div align="center" style="margin-top: 60px;">
-  <a href="https://www.java.com/" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java">
-  </a>
-  &nbsp;
-  <a href="https://maven.apache.org/" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white" alt="Maven">
-  </a>
-  &nbsp;
-  <a href="https://vuejs.org/" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="Vue.js">
-  </a>
-  &nbsp;
-  <a href="https://spring.io/projects/spring-boot" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot">
-  </a>
-  &nbsp;
-  <a href="https://redis.io/"  style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis">
-  </a>
-  &nbsp;
-  <a href="https://www.mysql.com/" style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
-  </a>
-  &nbsp;
-  <a href="https://mybatis.org/"  style="text-decoration: none;">
-    <img src="https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white" alt="MyBatis">
-  </a>
+  ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+  ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)
+  ![Vue.js](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+  ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+  ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+  ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+  ![MyBatis](https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white)
 </div>
 
 <div align="center" style="margin-top: 20px;">
-  <a href="https://github.com/eatfans/CodeFellow/issues" style="text-decoration: none;">
-    <img src="https://img.shields.io/github/issues/eatfans/CodeFellow.svg" alt="GitHub issues">
-  </a>
-  &nbsp;
-  <a href="https://github.com/eatfans/CodeFellow/stargazers" style="text-decoration: none;">
-    <img src="https://img.shields.io/github/stars/eatfans/CodeFellow.svg" alt="GitHub stars">
-  </a>
-  &nbsp;
-  <a href="https://github.com/eatfans/CodeFellow/network" style="text-decoration: none;">
-    <img src="https://img.shields.io/github/forks/eatfans/CodeFellow.svg" alt="GitHub forks">
-  </a>
-  &nbsp;
-  <a href="https://github.com/eatfans/CodeFellow/graphs/contributors"  style="text-decoration: none;">
-    <img src="https://img.shields.io/github/contributors/eatfans/CodeFellow.svg" alt="Contributors">
-  </a>
-  &nbsp;
-  <a href="https://github.com/eatfans/CodeFellow/commits/master" style="text-decoration: none;">
-    <img src="https://img.shields.io/github/last-commit/eatfans/CodeFellow.svg" alt="Last Commit">
-  </a>
+  ![GitHub issues](https://img.shields.io/github/issues/eatfans/CodeFellow.svg)
+  ![GitHub stars](https://img.shields.io/github/stars/eatfans/CodeFellow.svg)
+  ![GitHub forks](https://img.shields.io/github/forks/eatfans/CodeFellow.svg)
+  ![Contributors](https://img.shields.io/github/contributors/eatfans/CodeFellow.svg)
+  ![Last Commit](https://img.shields.io/github/last-commit/eatfans/CodeFellow.svg)
 </div>
 <br>
 <br>
