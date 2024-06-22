@@ -25,7 +25,7 @@
     <img src="https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white" alt="MyBatis">
   </a>
 </div>
-<br>
+
 <div align="center" style="margin-top: 20px;">
   <a href="https://github.com/eatfans/CodeFellow/issues">
     <img src="https://img.shields.io/github/issues/eatfans/CodeFellow.svg" alt="GitHub issues">
