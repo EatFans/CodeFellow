@@ -1,23 +1,51 @@
 # CodeFellow 代码研究员项目开发
 
-[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
-[![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
-[![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)](https://vuejs.org/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![MyBatis](https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white)](https://mybatis.org/)
+<div align="center" style="margin-top: 60px;">
+  <a href="https://www.java.com/">
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white" alt="Java">
+  </a>
+  <a href="https://maven.apache.org/">
+    <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white" alt="Maven">
+  </a>
+  <a href="https://vuejs.org/">
+    <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D" alt="Vue.js">
+  </a>
+  <a href="https://spring.io/projects/spring-boot">
+    <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot">
+  </a>
+  <a href="https://redis.io/">
+    <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis">
+  </a>
+  <a href="https://www.mysql.com/">
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+  </a>
+  <a href="https://mybatis.org/">
+    <img src="https://img.shields.io/badge/MyBatis-003B57?style=for-the-badge&logo=mybatis&logoColor=white" alt="MyBatis">
+  </a>
+</div>
 
-[![GitHub issues](https://img.shields.io/github/issues/eatfans/CodeFellow.svg)](https://github.com/eatfans/CodeFellow/issues)
-[![GitHub stars](https://img.shields.io/github/stars/eatfans/CodeFellow.svg)](https://github.com/eatfans/CodeFellow/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/eatfans/CodeFellow.svg)](https://github.com/eatfans/CodeFellow/network)
-[![Contributors](https://img.shields.io/github/contributors/eatfans/CodeFellow.svg)](https://github.com/eatfans/CodeFellow/graphs/contributors)
-[![Last Commit](https://img.shields.io/github/last-commit/eatfans/CodeFellow.svg)](https://github.com/eatfans/CodeFellow/commits/master)
+<div align="center" style="margin-top: 20px;">
+  <a href="https://github.com/eatfans/CodeFellow/issues">
+    <img src="https://img.shields.io/github/issues/eatfans/CodeFellow.svg" alt="GitHub issues">
+  </a>
+  <a href="https://github.com/eatfans/CodeFellow/stargazers">
+    <img src="https://img.shields.io/github/stars/eatfans/CodeFellow.svg" alt="GitHub stars">
+  </a>
+  <a href="https://github.com/eatfans/CodeFellow/network">
+    <img src="https://img.shields.io/github/forks/eatfans/CodeFellow.svg" alt="GitHub forks">
+  </a>
+  <a href="https://github.com/eatfans/CodeFellow/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/eatfans/CodeFellow.svg" alt="Contributors">
+  </a>
+  <a href="https://github.com/eatfans/CodeFellow/commits/master">
+    <img src="https://img.shields.io/github/last-commit/eatfans/CodeFellow.svg" alt="Last Commit">
+  </a>
+</div>
 
+<div style="margin-top: 150px;">
 
-
-CodeFellow论坛 是一个基于 Maven、SpringBoot、MySQL、MyBatis、Redis 和 Vue 开发的开源论坛博客系统。
-它采用了前后端分离的架构，用户端与管理员端功能分离，旨在提供一个简洁、高效的社区平台，满足用户分享知识和交流的需求。
+**CodeFellow论坛 是一个基于 Maven、SpringBoot、MySQL、MyBatis、Redis 和 Vue 开发的开源论坛博客系统。
+它采用了前后端分离的架构，用户端与管理员端功能分离，旨在提供一个简洁、高效的社区平台，满足用户分享知识和交流的需求。**
 ********
 
 ### 项目特点
@@ -58,3 +86,6 @@ CodeFellow论坛 是一个基于 Maven、SpringBoot、MySQL、MyBatis、Redis �
 
 ## 许可证
 本项目采用MIT 许可证 
+
+
+</div>
