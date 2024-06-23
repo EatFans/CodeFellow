@@ -139,6 +139,9 @@ export default {
       console.log(this.negotiate);
       console.log(this.rules);
     },
+    register(){
+      
+    },
     togglePasswordDetectorBoxDisplay(){
       this.passwordDetectorVisible = true;
     },

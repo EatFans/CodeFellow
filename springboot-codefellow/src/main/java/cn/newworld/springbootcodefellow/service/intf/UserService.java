@@ -48,7 +48,7 @@ public interface UserService {
      * @param account 用户账号
      * @return 如果获取到了就返回user对象，否则就返回null
      */
-    User getUerByAccount(String account);
+    User getUserByAccount(String account);
 
     /**
      * 验证激活用户账号

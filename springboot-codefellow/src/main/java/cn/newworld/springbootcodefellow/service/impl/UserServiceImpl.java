@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果获取到了就返回user对象，否则就返回null
      */
     @Override
-    public User getUerByAccount(String account) {
+    public User getUserByAccount(String account) {
         return userMapper.findUserByAccount(account);
     }
 

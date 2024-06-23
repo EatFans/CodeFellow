@@ -2,10 +2,7 @@ package cn.newworld.springbootcodefellow.controller;
 
 import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
-import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
-import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
-import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
-import cn.newworld.springbootcodefellow.model.dto.TokenResponse;
+import cn.newworld.springbootcodefellow.model.dto.*;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.EmailService;
 import cn.newworld.springbootcodefellow.service.intf.RedisService;
@@ -124,7 +121,7 @@ public class AuthController {
     public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest){
         if (!userService.isAccountExists(loginRequest.getAccount()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
-        User user = userService.getUerByAccount(loginRequest.getAccount());
+        User user = userService.getUserByAccount(loginRequest.getAccount());
         if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"账号或密码错误！"));
         if (!user.getIsVerification())
@@ -164,22 +161,36 @@ public class AuthController {
      * @return 返回
      */
     @PostMapping("/forget-password")
-    public ResponseEntity<?> forgetPassword(){
+    public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request){
+        String account = request.getAccount();
+        String email = request.getEmail();
+        String phoneNumber = request.getPhoneNumber();
+
+        String redisKey = "forget-password|" + account;
         // 检查用户是否在验证码未失效前请求过忘记密码接口，避免重复发送验证码
+        if (redisService.exists(redisKey))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "验证码已发送，请稍后再试！"));
 
         // 检查用户账号是否存在
+        if (!userService.isAccountExists(account))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"此账号不存在平台中！"));
 
-        // 核对用户账号、邮箱、手机号、用户名是否在同一个用户上
+        User user = userService.getUserByAccount(account);
+        if (user == null )
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "The user is null"));
 
-        // 获取该用户，得到uuid，加密生成一个临时忘记密码操作令牌
+        // 核对用户账号、邮箱、手机号是否在同一个用户上
+        if (!user.getEmail().equalsIgnoreCase(email))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "邮箱与账号不匹配"));
+        if (!user.getPhoneNumber().equalsIgnoreCase(phoneNumber))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "手机号与账号不匹配"));
 
         // 随机生成一个忘记密码的6位数验证码
 
-        // 令牌-验证码 形式临时存储到Redis中，失效时长半小时
-
+        // 临时存储到Redis中，失效时长半小时
 
         // 发送验证码到用户邮箱中
-        return null;
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS, "验证码已经发送至邮箱"));
     }
 
     /**
