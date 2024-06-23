@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果用户账号存在就返回true，否则返回false
      */
     @Override
-    public Boolean isAccountExists(String account) {
+    public boolean isAccountExists(String account) {
         User userByAccount = userMapper.findUserByAccount(account);
         return userByAccount != null;
     }
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果用户名存在就返回true，否则就返回false
      */
     @Override
-    public Boolean isUsernameExists(String username){
+    public boolean isUsernameExists(String username){
         User userByUsername = userMapper.findUserByUsername(username);
         return userByUsername != null;
     }
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果用户邮箱存在就返回true，否则返回false
      */
     @Override
-    public Boolean isEmailExists(String email) {
+    public boolean isEmailExists(String email) {
         User userByEmail = userMapper.findUserByEmail(email);
         return userByEmail != null;
     }
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果创建成功就返回true，创建失败就返回false
      */
     @Override
-    public Boolean create(User user) {
+    public boolean create(User user) {
         try {
             int rowsAffected = userMapper.insertUser(user);
             return rowsAffected > 0;
@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果通过uuid、账号、用户名都验证成功，
      */
     @Override
-    public Boolean verifyUserAccount(String uuid, String account, String username) {
+    public boolean verifyUserAccount(String uuid, String account, String username) {
         User user = userMapper.findUserByUuidAndAccountAndUsername(uuid, account, username);
         // 检查用户是否存在
         if (user != null){
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
      * @return 如果成功更新用户登录时间就返回true，否则就返回false
      */
     @Override
-    public Boolean updateUserLoginTime(User user) {
+    public boolean updateUserLoginTime(User user) {
         return userMapper.updateLoginTime(user.getUuid(), user.getAccount(), user.getUsername(), new Date());
     }
 }

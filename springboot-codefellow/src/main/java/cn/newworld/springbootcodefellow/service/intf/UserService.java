@@ -13,28 +13,28 @@ public interface UserService {
      * @param account 用户账号
      * @return 如果用户账号存在就返回true，否则返回false
      */
-    Boolean isAccountExists(String account);
+    boolean isAccountExists(String account);
 
     /**
      * 检查用户名是否已经存在
      * @param username 用户名
      * @return 如果用户名存在就返回true，否则返回false
      */
-    Boolean isUsernameExists(String username);
+    boolean isUsernameExists(String username);
 
     /**
      * 检查用户邮箱是否已经存在
      * @param email 用户邮箱
      * @return 如果用户邮箱存在就返回true，否则返回false
      */
-    Boolean isEmailExists(String email);
+    boolean isEmailExists(String email);
 
     /**
      * 创建用户
      * @param user 用户数据对象
      * @return 如果创建成功就返回true，否则就返回false
      */
-    Boolean create(User user);
+    boolean create(User user);
 
     /**
      * 通过uuid来获取用户user对象
@@ -57,14 +57,13 @@ public interface UserService {
      * @param username 用户名
      * @return 如果通过uuid、账号、用户名都验证成功，
      */
-    Boolean verifyUserAccount(String uuid,String account, String username);
+    boolean verifyUserAccount(String uuid,String account, String username);
 
     /**
      * 更新用户登录时间
      * @param user 被更新的用户
      * @return 如果成功更新用户登录时间就返回true，否则就返回false
      */
-    Boolean updateUserLoginTime(User user);
-
+    boolean updateUserLoginTime(User user);
 
 }

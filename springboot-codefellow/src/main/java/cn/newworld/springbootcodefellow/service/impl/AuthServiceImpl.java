@@ -47,7 +47,11 @@ public class AuthServiceImpl implements AuthService {
         this.tokenEncryptor = tokenEncryptor;
     }
 
-
+    /**
+     * 注册一个新用户
+     * @param registerRequest 注册请求数据
+     * @return 响应最终结果
+     */
     @Override
     public ResponseEntity<?> registerNewUser(RegisterRequest registerRequest) {
         if (userService.isAccountExists(registerRequest.getAccount()))
@@ -87,7 +91,13 @@ public class AuthServiceImpl implements AuthService {
         return user;
     }
 
-
+    /**
+     * 激活验证用户账号
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 返回
+     */
     @Override
     public String activateAccount(String uuid, String account, String username) {
         Boolean isVerified = userService.verifyUserAccount(uuid, account, username);
@@ -98,7 +108,11 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
-
+    /**
+     * 用户登录
+     * @param loginRequest 登录请求数据
+     * @return 返回处理完成响应体
+     */
     @Override
     public ResponseEntity<?> userLoginIn(LoginRequest loginRequest) {
         if (!userService.isAccountExists(loginRequest.getAccount()))
@@ -137,6 +151,11 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
+    /**
+     * 用户忘记密码逻辑
+     * @param request 忘记密码请求数据
+     * @return 返回最终响应实体
+     */
     @Override
     public ResponseEntity<?> forgetPassword(ForgetPasswordRequest request) {
         String account = request.getAccount();
@@ -171,7 +190,11 @@ public class AuthServiceImpl implements AuthService {
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS, "验证码已经发送至邮箱"));
     }
 
-    // TODO: 重置密码业务逻辑
+    /**
+     * TODO: 重置密码业务逻辑
+     * @param request 重置密码请求数据
+     * @return 返回响应实体
+     */
     @Override
     public ResponseEntity<?> resetPassword(ResetPasswordRequest request) {
         // 从请求中获取验证码
@@ -185,15 +208,27 @@ public class AuthServiceImpl implements AuthService {
 
 
         // 解密操作令牌得到用户账号信息
-
+        String account = decryptForgetPasswordToken(token);
 
         // 通过用户账号信息去在数据库中修改该用户密码
+        User user = userService.getUserByAccount(account);
+
+        // 更新用户密码
 
         // 完成重置密码请求后直接删除存储在Redis中的验证码
 
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"密码修改成功"));
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"密码修改成功! 用户账号为："+account));
     }
 
+    /**
+     * 解密忘记密码操作令牌获取用户账号信息
+     * @param token 忘记密码操作令牌
+     * @return 返回用户账号
+     */
+    private String decryptForgetPasswordToken(String token){
+        String[] split = token.split("~");
+        return split.length > 1 ? split[1] : null;
+    }
 
     @Override
     public ResponseEntity<?> test(String key) {
