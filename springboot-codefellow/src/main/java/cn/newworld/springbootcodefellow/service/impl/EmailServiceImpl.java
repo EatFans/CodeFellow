@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 @Service
 public class EmailServiceImpl implements EmailService {
     private final JavaMailSender mailSender;
+
     @Value("${spring.mail.username}")
     private String from;
 
@@ -72,6 +73,29 @@ public class EmailServiceImpl implements EmailService {
             htmlContent = String.format(htmlContent,username,account,email,verifyLink);
 
             sendHtmlEmail(user.getEmail(),"验证您的 CodeFellow 账号电子邮箱，以激活您的账号", htmlContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 发送验证码邮件给用户
+     * @param user 被发送的用户
+     * @param code 验证码
+     */
+    @Override
+    public void sendCodeEmail(User user,String code){
+        try{
+            ClassPathResource resource = new ClassPathResource("email/code.html");
+            Path path = Paths.get(resource.getURI());
+            String htmlContent = Files.readString(path);
+
+            String username = user.getUsername();
+            String account = user.getAccount();
+
+            htmlContent = String.format(htmlContent,username,account,code);
+
+            sendHtmlEmail(user.getEmail(),"CodeFellow 论坛忘记密码验证码",htmlContent);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -157,7 +157,7 @@ public class AuthController {
     }
 
     /**
-     * TODO:忘记密码接口
+     * 忘记密码接口
      * @return 返回
      */
     @PostMapping("/forget-password")
@@ -166,7 +166,7 @@ public class AuthController {
         String email = request.getEmail();
         String phoneNumber = request.getPhoneNumber();
 
-        String redisKey = "forget-password|" + account;
+        String redisKey = "forget-password~" + account;
         // 检查用户是否在验证码未失效前请求过忘记密码接口，避免重复发送验证码
         if (redisService.exists(redisKey))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "验证码已发送，请稍后再试！"));
@@ -186,10 +186,11 @@ public class AuthController {
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "手机号与账号不匹配"));
 
         // 随机生成一个忘记密码的6位数验证码
-
+        String code = String.valueOf((int) ((Math.random() * 9 + 1) * Math.pow(10, 5)));
         // 临时存储到Redis中，失效时长半小时
-
+        redisService.set(redisKey,code,30,TimeUnit.MINUTES);
         // 发送验证码到用户邮箱中
+        emailService.sendCodeEmail(user,code);
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS, "验证码已经发送至邮箱"));
     }
 

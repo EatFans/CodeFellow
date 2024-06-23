@@ -13,5 +13,13 @@ public interface EmailService {
      * @param user 被发送的用户
      */
     void sendVerifyEmail(User user);
+
+    /**
+     * 发送验证码邮件给用户
+     * @param user 被发送的用户
+     * @param code 验证码
+     */
+    void sendCodeEmail(User user,String code);
+
 }
 
