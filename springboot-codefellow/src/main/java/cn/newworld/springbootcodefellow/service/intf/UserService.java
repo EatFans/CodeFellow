@@ -65,4 +65,6 @@ public interface UserService {
      * @return 如果成功更新用户登录时间就返回true，否则就返回false
      */
     Boolean updateUserLoginTime(User user);
+
+
 }
