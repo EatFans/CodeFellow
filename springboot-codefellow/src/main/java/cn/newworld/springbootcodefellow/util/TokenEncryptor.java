@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.util;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class TokenEncryptor {
+    @Value("${token.encryption.key}")
+    private String TOKEN_ENCRYPTION_KEY;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -29,7 +32,8 @@ public class TokenEncryptor {
      * @return 加密后的token。
      */
     public String generateToken(String uuid) {
-        return passwordEncoder.encode(uuid);
+        String string = TOKEN_ENCRYPTION_KEY + uuid;
+        return passwordEncoder.encode(string);
     }
 
     /**
@@ -40,6 +44,7 @@ public class TokenEncryptor {
      * @return 如果匹配返回true，否则返回false。
      */
     public boolean matches(String uuid, String token) {
-        return passwordEncoder.matches(uuid, token);
+        String string = TOKEN_ENCRYPTION_KEY + uuid;
+        return passwordEncoder.matches(string, token);
     }
 }

@@ -199,16 +199,25 @@ public class AuthController {
      * @return 返回
      */
     @PostMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(){
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request){
         // 从请求中获取验证码
+        String code = request.getCode();
 
         // 通过验证码，在Redis中获取忘记密码操作令牌
+        String token = redisService.getKey(code);
 
-        // 解密操作令牌得到用户uuid信息
+        if (token == null){
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"验证码错误"));
+        }
 
-        // 通过用户uuid信息去在数据库中修改该用户密码
+        // 解密操作令牌得到用户账号信息
 
-        return null;
+
+        // 通过用户账号信息去在数据库中修改该用户密码
+
+        // 完成重置密码请求后直接删除存储在Redis中的验证码
+
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"密码修改成功"));
     }
 
 
