@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -86,5 +87,25 @@ public class RedisServiceImpl implements RedisService {
     public long getExpire(String key, TimeUnit unit){
         Long expire = redisTemplate.getExpire(key, unit);
         return (expire != null) ? expire : -1;
+    }
+
+    /**
+     * 通过值在Redis中找到键key
+     * @param value 值
+     * @return 返回key键字符串
+     */
+    @Override
+    public String getKey(Object value) {
+        Set<String> keys = redisTemplate.keys("*");
+        if (keys != null){
+            for (String key : keys){
+                Object storedValue = redisTemplate.opsForValue().get(key);
+                if (storedValue != null){
+                    if (storedValue.equals(value))
+                        return key;
+                }
+            }
+        }
+        return null;
     }
 }

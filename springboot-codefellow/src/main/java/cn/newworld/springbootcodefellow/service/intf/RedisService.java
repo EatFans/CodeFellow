@@ -53,4 +53,11 @@ public interface RedisService {
      * @return 返回键的剩余过期时间，如果键不存在或没有设置过期时间则返回-1
      */
     long getExpire(String key, TimeUnit unit);
+
+    /**
+     * 通过值在Redis中找到键key
+     * @param value 值
+     * @return 返回key键字符串
+     */
+    String getKey(Object value);
 }

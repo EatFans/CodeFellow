@@ -225,12 +225,9 @@ public class AuthController {
     }
 
     @GetMapping("/test1")
-    public ResponseEntity<?> test2(@RequestParam("token") String token,@RequestParam("uuid") String uuid){
-        boolean flag = tokenEncryptor.matches(uuid, token);
-        if (flag)
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"token与uuid匹配成功,这个token的uuid值为："+uuid));
-        else
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"token与uuid匹配失败"));
+    public ResponseEntity<?> test2(@RequestParam("value") String value){
+        String key = redisService.getKey(value);
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"Redis中value="+value+" 对应的key键为："+key));
     }
 }
 
