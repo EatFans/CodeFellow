@@ -100,7 +100,7 @@ public class AuthServiceImpl implements AuthService {
      */
     @Override
     public String activateAccount(String uuid, String account, String username) {
-        Boolean isVerified = userService.verifyUserAccount(uuid, account, username);
+        boolean isVerified = userService.verifyUserAccount(uuid, account, username);
         if (isVerified){
             return "账号验证激活成功！";
         } else {
@@ -205,7 +205,6 @@ public class AuthServiceImpl implements AuthService {
 
         if (token == null)
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"验证码错误"));
-
 
         // 解密操作令牌得到用户账号信息
         String account = decryptForgetPasswordToken(token);
