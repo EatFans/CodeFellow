@@ -4,6 +4,7 @@ import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.mapper.UserMapper;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
+import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,13 @@ import java.util.Date;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+    private final PasswordEncryptor passwordEncryptor;
 
     @Autowired
-    public UserServiceImpl(UserMapper userMapper){
+    public UserServiceImpl(UserMapper userMapper,
+                           PasswordEncryptor passwordEncryptor){
         this.userMapper = userMapper;
+        this.passwordEncryptor = passwordEncryptor;
     }
 
     /**
@@ -124,5 +128,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updateUserLoginTime(User user) {
         return userMapper.updateLoginTime(user.getUuid(), user.getAccount(), user.getUsername(), new Date());
+    }
+
+    /**
+     * 更新用户密码
+     * @param user 被更新的用户
+     * @param password 更新后的密码
+     * @return 如果更新成功就返回true，否则就返回false
+     */
+    @Override
+    public boolean updateUserPassword(User user,String password) {
+        String encodePassword = passwordEncryptor.encodePassword(password);
+        return userMapper.updatePassword(user.getUuid(),user.getAccount(),user.getUsername(),encodePassword);
     }
 }

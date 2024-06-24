@@ -66,4 +66,11 @@ public interface UserService {
      */
     boolean updateUserLoginTime(User user);
 
+    /**
+     * 更新用户密码
+     * @param user 被更新的用户
+     * @param password 更新后的密码
+     * @return 如果更新成功就返回true，否则就返回false
+     */
+    boolean updateUserPassword(User user,String password);
 }

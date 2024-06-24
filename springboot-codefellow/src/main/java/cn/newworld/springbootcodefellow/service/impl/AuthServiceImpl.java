@@ -191,7 +191,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
-     * TODO: 重置密码业务逻辑
+     * 重置密码业务逻辑
      * @param request 重置密码请求数据
      * @return 返回响应实体
      */
@@ -214,8 +214,12 @@ public class AuthServiceImpl implements AuthService {
         User user = userService.getUserByAccount(account);
 
         // 更新用户密码
+        if (!userService.updateUserPassword(user,request.getPassword()))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"更新用户密码错误"));
 
         // 完成重置密码请求后直接删除存储在Redis中的验证码
+        if (!redisService.delete(token))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"删除临时验证码失败"));
 
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"密码修改成功! 用户账号为："+account));
     }

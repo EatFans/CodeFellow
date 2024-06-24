@@ -57,4 +57,10 @@
         WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
     </update>
 
+    <!-- 更新用户密码 -->
+    <update id="updatePassword" parameterType="java.lang.String">
+        UPDATE user
+        SET password = #{password}
+        WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
+    </update>
 </mapper>

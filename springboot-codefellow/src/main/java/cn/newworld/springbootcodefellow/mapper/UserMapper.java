@@ -80,4 +80,14 @@ public interface UserMapper {
      * @return 如果更新成功就返回true，否则就返回false
      */
     boolean updateLoginTime(String uuid, String account, String username, Date newTime);
+
+    /**
+     * 更新密码
+     * @param uuid 被更新的用户uuid
+     * @param account 被更新的用户账号
+     * @param username 被更新的用户名
+     * @param password 更新后的密码
+     * @return 如果更新成功就返回true，否则就返回false
+     */
+    boolean updatePassword(String uuid, String account, String username, String password);
 }
