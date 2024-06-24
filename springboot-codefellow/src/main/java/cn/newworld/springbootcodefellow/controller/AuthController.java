@@ -74,6 +74,7 @@ public class AuthController {
         return authService.resetPassword(request);
     }
 
+    //TODO: 验证登录令牌接口
 
     @GetMapping("/test")
     public ResponseEntity<?> test(@RequestParam("key") String key){
