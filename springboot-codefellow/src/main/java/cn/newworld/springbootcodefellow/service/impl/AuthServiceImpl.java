@@ -199,27 +199,20 @@ public class AuthServiceImpl implements AuthService {
     public ResponseEntity<?> resetPassword(ResetPasswordRequest request) {
         // 从请求中获取验证码
         String code = request.getCode();
-
         // 通过验证码，在Redis中获取忘记密码操作令牌
         String token = redisService.getKey(code);
-
         if (token == null)
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"验证码错误"));
-
         // 解密操作令牌得到用户账号信息
         String account = decryptForgetPasswordToken(token);
-
         // 通过用户账号信息去在数据库中修改该用户密码
         User user = userService.getUserByAccount(account);
-
         // 更新用户密码
         if (!userService.updateUserPassword(user,request.getPassword()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"更新用户密码错误"));
-
         // 完成重置密码请求后直接删除存储在Redis中的验证码
         if (!redisService.delete(token))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"删除临时验证码失败"));
-
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"密码修改成功! 用户账号为："+account));
     }
 

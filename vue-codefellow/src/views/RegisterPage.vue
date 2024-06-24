@@ -16,7 +16,6 @@ export default {
     HeaderBar,
     Footer,
     RegisterPageContent
-
   }
 }
 </script>

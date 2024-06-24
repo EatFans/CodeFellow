@@ -85,7 +85,7 @@ export default {
 
       dialogVisible: false, // 是否显示验证弹窗
 
-      isLogin: false,  // 是否登录
+      isLogin: true,  // 是否登录
       user: {
         name: "EatFan",
         avatar: "https://avatars.githubusercontent.com/u/122099628?v=4"
