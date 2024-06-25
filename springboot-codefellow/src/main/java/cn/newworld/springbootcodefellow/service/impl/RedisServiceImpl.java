@@ -108,4 +108,15 @@ public class RedisServiceImpl implements RedisService {
         }
         return null;
     }
+
+    /**
+     * 检查指定的值是否存在于Redis中
+     * @param value 要检查的值
+     * @return 如果值存在则返回true，否则返回false
+     */
+    @Override
+    public boolean valueExists(Object value) {
+        String key = getKey(value);
+        return key != null;
+    }
 }

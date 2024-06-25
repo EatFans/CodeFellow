@@ -226,6 +226,32 @@ public class AuthServiceImpl implements AuthService {
         return split.length > 1 ? split[1] : null;
     }
 
+    /**
+     * 验证登录令牌接口
+     * @param request 请求传输数据体
+     * @return 返回请求完毕的响应数据体
+     */
+    @Override
+    public ResponseEntity<?> verifyLoginToken(LoginTokenRequest request) {
+        String token = request.getToken();
+
+        // 验证token是否已经过期
+        if (!isValidToken(token))
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录令牌已经失效"));
+        // 记录用户操作行为
+
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录令牌验证成功！"));
+    }
+
+    /**
+     * 检查token是否有效
+     * @param token 登录令牌
+     * @return 如果token有效就返回true，否则就返回false
+     */
+    private boolean isValidToken(String token){
+        return redisService.valueExists(token);
+    }
+
     @Override
     public ResponseEntity<?> test(String key) {
         if (!redisService.exists(key))

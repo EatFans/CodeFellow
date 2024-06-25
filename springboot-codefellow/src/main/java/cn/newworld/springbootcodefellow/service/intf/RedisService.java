@@ -60,4 +60,11 @@ public interface RedisService {
      * @return 返回key键字符串
      */
     String getKey(Object value);
+
+    /**
+     * 检查指定的值是否存在于Redis中
+     * @param value 要检查的值
+     * @return 如果值存在则返回true，否则返回false
+     */
+    boolean valueExists(Object value);
 }

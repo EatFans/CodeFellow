@@ -75,12 +75,13 @@ public class AuthController {
     }
 
     /**
-     * TODO: 验证登录令牌接口
-     * @return
+     * 验证登录令牌接口
+     * @param request 请求传输数据体
+     * @return 返回请求完毕的响应数据体
      */
     @PostMapping("/verify-login-token")
-    public ResponseEntity<?> verifyLoginToken(){
-        return null;
+    public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request){
+        return authService.verifyLoginToken(request);
     }
 
     @GetMapping("/test")

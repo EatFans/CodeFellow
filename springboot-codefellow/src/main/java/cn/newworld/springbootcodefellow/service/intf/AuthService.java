@@ -1,9 +1,6 @@
 package cn.newworld.springbootcodefellow.service.intf;
 
-import cn.newworld.springbootcodefellow.model.dto.ForgetPasswordRequest;
-import cn.newworld.springbootcodefellow.model.dto.LoginRequest;
-import cn.newworld.springbootcodefellow.model.dto.RegisterRequest;
-import cn.newworld.springbootcodefellow.model.dto.ResetPasswordRequest;
+import cn.newworld.springbootcodefellow.model.dto.*;
 import org.springframework.http.ResponseEntity;
 
 
@@ -21,6 +18,7 @@ public interface AuthService {
     ResponseEntity<?> forgetPassword(ForgetPasswordRequest request);
     ResponseEntity<?> resetPassword(ResetPasswordRequest request);
 
+    ResponseEntity<?> verifyLoginToken(LoginTokenRequest request);
 
     ResponseEntity<?> test(String key);
 }
