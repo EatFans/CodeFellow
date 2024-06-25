@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Date;
 
+/**
+ * 用户数据映射接口
+ */
 @Mapper
 public interface UserMapper {
     /**

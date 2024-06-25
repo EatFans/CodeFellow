@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.newworld.springbootcodefellow.mapper.UserActionLogMapper">
+    <!-- 向用户行为日志表插入一条用户行为日志 -->
+    <insert id="insertUserActionLog" parameterType="cn.newworld.springbootcodefellow.model.entity.UserActionLog">
+        INSERT INTO user_action_logs
+        (userUuid, username, action, ip, userAgent, details, status)
+        VALUES (#{userUuid},#{username},#{action},#{ip},#{userAgent},#{details},#{status})
+    </insert>
+</mapper>

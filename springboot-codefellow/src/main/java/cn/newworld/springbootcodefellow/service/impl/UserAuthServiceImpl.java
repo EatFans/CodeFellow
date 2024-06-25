@@ -11,6 +11,7 @@ import cn.newworld.springbootcodefellow.service.intf.UserService;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.TokenEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -53,9 +54,14 @@ public class UserAuthServiceImpl implements UserAuthService {
      * @return 响应最终结果
      */
     @Override
-    public ResponseEntity<?> registerNewUser(RegisterRequest registerRequest) {
-        if (userService.isAccountExists(registerRequest.getAccount()))
+    public ResponseEntity<?> registerNewUser(RegisterRequest registerRequest, HttpServletRequest httpServletRequest) {
+        // 获取客户端信息和IP地址
+        String userAgent = httpServletRequest.getHeader("User-Agent");
+        String clientIp = httpServletRequest.getRemoteAddr();
+
+        if (userService.isAccountExists(registerRequest.getAccount())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户账号已经存在！无法注册！"));
+        }
         if (userService.isUsernameExists(registerRequest.getUsername()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户名已经被使用！"));
         if (userService.isEmailExists(registerRequest.getEmail()))
@@ -99,7 +105,7 @@ public class UserAuthServiceImpl implements UserAuthService {
      * @return 返回
      */
     @Override
-    public String activateAccount(String uuid, String account, String username) {
+    public String activateAccount(String uuid, String account, String username, HttpServletRequest httpServletRequest) {
         boolean isVerified = userService.verifyUserAccount(uuid, account, username);
         if (isVerified){
             return "账号验证激活成功！";
@@ -114,7 +120,7 @@ public class UserAuthServiceImpl implements UserAuthService {
      * @return 返回处理完成响应体
      */
     @Override
-    public ResponseEntity<?> userLoginIn(LoginRequest loginRequest) {
+    public ResponseEntity<?> userLoginIn(LoginRequest loginRequest, HttpServletRequest httpServletRequest) {
         if (!userService.isAccountExists(loginRequest.getAccount()))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
         User user = userService.getUserByAccount(loginRequest.getAccount());
@@ -157,7 +163,7 @@ public class UserAuthServiceImpl implements UserAuthService {
      * @return 返回最终响应实体
      */
     @Override
-    public ResponseEntity<?> forgetPassword(ForgetPasswordRequest request) {
+    public ResponseEntity<?> forgetPassword(ForgetPasswordRequest request, HttpServletRequest httpServletRequest) {
         String account = request.getAccount();
         String email = request.getEmail();
         String phoneNumber = request.getPhoneNumber();
@@ -196,7 +202,7 @@ public class UserAuthServiceImpl implements UserAuthService {
      * @return 返回响应实体
      */
     @Override
-    public ResponseEntity<?> resetPassword(ResetPasswordRequest request) {
+    public ResponseEntity<?> resetPassword(ResetPasswordRequest request,HttpServletRequest httpServletRequest) {
         // 从请求中获取验证码
         String code = request.getCode();
         // 通过验证码，在Redis中获取忘记密码操作令牌
@@ -232,7 +238,7 @@ public class UserAuthServiceImpl implements UserAuthService {
      * @return 返回请求完毕的响应数据体
      */
     @Override
-    public ResponseEntity<?> verifyLoginToken(LoginTokenRequest request) {
+    public ResponseEntity<?> verifyLoginToken(LoginTokenRequest request,HttpServletRequest httpServletRequest) {
         String token = request.getToken();
 
         // 验证token是否已经过期

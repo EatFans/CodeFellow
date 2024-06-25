@@ -2,6 +2,7 @@ package cn.newworld.springbootcodefellow.controller;
 
 import cn.newworld.springbootcodefellow.model.dto.*;
 import cn.newworld.springbootcodefellow.service.intf.UserAuthService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,11 +27,12 @@ public class UserAuthController {
     /**
      * 注册新用户接口
      * @param registerRequest 请求中部分user json数据信息
+     * @param httpServletRequest Http请求中的数据
      * @return 返回Api请求对象
      */
     @PostMapping("/register")
-    public ResponseEntity<?> registerNewUser(@RequestBody RegisterRequest registerRequest){
-        return userAuthService.registerNewUser(registerRequest);
+    public ResponseEntity<?> registerNewUser(@RequestBody RegisterRequest registerRequest, HttpServletRequest httpServletRequest){
+        return userAuthService.registerNewUser(registerRequest,httpServletRequest);
     }
 
     /**
@@ -41,8 +43,8 @@ public class UserAuthController {
      * @return 如果账号验证成功就返回
      */
     @GetMapping("/verify")
-    public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username){
-        return userAuthService.activateAccount(uuid,account,username);
+    public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username, HttpServletRequest httpServletRequest){
+        return userAuthService.activateAccount(uuid,account,username,httpServletRequest);
 
     }
 
@@ -52,8 +54,8 @@ public class UserAuthController {
      * @return 登录成功就返回token令牌，否则返回登录错误信息
      */
     @PostMapping("/login")
-    public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest){
-        return userAuthService.userLoginIn(loginRequest);
+    public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest, HttpServletRequest httpServletRequest){
+        return userAuthService.userLoginIn(loginRequest,httpServletRequest);
     }
 
     /**
@@ -61,8 +63,8 @@ public class UserAuthController {
      * @return 返回
      */
     @PostMapping("/forget-password")
-    public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request){
-        return userAuthService.forgetPassword(request);
+    public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request,HttpServletRequest httpServletRequest){
+        return userAuthService.forgetPassword(request,httpServletRequest);
     }
 
     /**
@@ -70,8 +72,8 @@ public class UserAuthController {
      * @return 返回
      */
     @PostMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request){
-        return userAuthService.resetPassword(request);
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request,HttpServletRequest httpServletRequest){
+        return userAuthService.resetPassword(request,httpServletRequest);
     }
 
     /**
@@ -80,8 +82,8 @@ public class UserAuthController {
      * @return 返回请求完毕的响应数据体
      */
     @PostMapping("/verify-login-token")
-    public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request){
-        return userAuthService.verifyLoginToken(request);
+    public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request,HttpServletRequest httpServletRequest){
+        return userAuthService.verifyLoginToken(request,httpServletRequest);
     }
 
     @GetMapping("/test")

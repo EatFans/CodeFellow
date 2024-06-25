@@ -1,6 +1,7 @@
 package cn.newworld.springbootcodefellow.service.intf;
 
 import cn.newworld.springbootcodefellow.model.dto.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 
 
@@ -9,16 +10,16 @@ import org.springframework.http.ResponseEntity;
  * author: EatFan
  */
 public interface UserAuthService {
-    ResponseEntity<?> registerNewUser(RegisterRequest registerRequest);
+    ResponseEntity<?> registerNewUser(RegisterRequest registerRequest, HttpServletRequest httpServletRequest);
 
-    String activateAccount(String uuid, String account, String username);
+    String activateAccount(String uuid, String account, String username, HttpServletRequest httpServletRequest);
 
-    ResponseEntity<?> userLoginIn(LoginRequest loginRequest);
+    ResponseEntity<?> userLoginIn(LoginRequest loginRequest, HttpServletRequest httpServletRequest);
 
-    ResponseEntity<?> forgetPassword(ForgetPasswordRequest request);
-    ResponseEntity<?> resetPassword(ResetPasswordRequest request);
+    ResponseEntity<?> forgetPassword(ForgetPasswordRequest request,  HttpServletRequest httpServletRequest);
+    ResponseEntity<?> resetPassword(ResetPasswordRequest request, HttpServletRequest httpServletRequest);
 
-    ResponseEntity<?> verifyLoginToken(LoginTokenRequest request);
+    ResponseEntity<?> verifyLoginToken(LoginTokenRequest request,HttpServletRequest httpServletRequest);
 
     ResponseEntity<?> test(String key);
 }
