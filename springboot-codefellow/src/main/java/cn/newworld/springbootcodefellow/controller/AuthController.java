@@ -74,7 +74,14 @@ public class AuthController {
         return authService.resetPassword(request);
     }
 
-    //TODO: 验证登录令牌接口
+    /**
+     * TODO: 验证登录令牌接口
+     * @return
+     */
+    @PostMapping("/verify-login-token")
+    public ResponseEntity<?> verifyLoginToken(){
+        return null;
+    }
 
     @GetMapping("/test")
     public ResponseEntity<?> test(@RequestParam("key") String key){

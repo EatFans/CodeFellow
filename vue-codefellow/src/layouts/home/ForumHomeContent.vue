@@ -40,7 +40,12 @@
 
           <!-- 签到框 -->
           <div class="body-sidebar-checkin-container">
-            <CheckinBox />
+            <CheckzinBox />
+          </div>
+
+          <!-- 任务栏 -->
+          <div class="task-container">
+
           </div>
 
         </div>
@@ -163,7 +168,13 @@ export default {
 
 /* 侧边栏签到容器样式 */
 .body-sidebar-checkin-container {
-  margin-top: 40px;
+  margin-top: 20px;
+}
+
+.task-container {
+  border: 1px solid black;
+  margin-top: 20px;
+  height: 500px;
 }
 
 </style>

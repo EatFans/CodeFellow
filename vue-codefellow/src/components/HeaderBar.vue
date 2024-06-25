@@ -95,6 +95,15 @@ export default {
   created() {
     // 监听窗口大小变化
     window.addEventListener('resize', this.updateScreenWidth);
+
+    // 获取存在本地token
+    const token = localStorage.getItem('token');
+    // 检查本地token是否为空
+    if (token != null){
+      // TODO: 发送验证信息
+    } else{
+      this.isLogin = false;
+    }
   },
   destroyed() {
     // 移除窗口大小变化监听器

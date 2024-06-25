@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
   timeout: 10000 // 超时时间
 });
 
-const userApi = {
+const authAPI = {
   login(credentials) {
     return axiosInstance.post('/login', credentials);
   },
@@ -20,4 +20,4 @@ const userApi = {
   }
 };
 
-export default userApi;
+export default authAPI;

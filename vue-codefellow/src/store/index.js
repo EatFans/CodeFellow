@@ -4,7 +4,7 @@ import settings from "@/store/modules/settings.js";
 
 const store = createStore({
     modules: {
-        settings
+        settings,
     }
 });
 
