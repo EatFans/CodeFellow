@@ -248,8 +248,6 @@ public class UserAuthServiceImpl implements UserAuthService {
         // 验证token是否已经过期
         if (!isValidToken(token))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录令牌已经失效"));
-        // 记录用户操作行为
-
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录令牌验证成功！"));
     }
 
