@@ -8,5 +8,7 @@ import lombok.Data;
  */
 @Data
 public class UserProfile {
-
+    private int profileId;
+    private String UserUuid;
+    // TODO:
 }
