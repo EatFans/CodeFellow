@@ -5,10 +5,10 @@ import org.springframework.http.ResponseEntity;
 
 
 /**
- * Auth 验证业务接口类
+ * 用户Auth 验证业务接口类
  * author: EatFan
  */
-public interface AuthService {
+public interface UserAuthService {
     ResponseEntity<?> registerNewUser(RegisterRequest registerRequest);
 
     String activateAccount(String uuid, String account, String username);

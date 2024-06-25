@@ -1,7 +1,7 @@
 package cn.newworld.springbootcodefellow.controller;
 
 import cn.newworld.springbootcodefellow.model.dto.*;
-import cn.newworld.springbootcodefellow.service.intf.AuthService;
+import cn.newworld.springbootcodefellow.service.intf.UserAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class UserAuthController {
 
-    private final AuthService authService;
+    private final UserAuthService userAuthService;
 
     @Autowired
-    public AuthController(AuthService authService) {
-        this.authService = authService;
+    public UserAuthController(UserAuthService userAuthService) {
+        this.userAuthService = userAuthService;
     }
 
     /**
@@ -30,7 +30,7 @@ public class AuthController {
      */
     @PostMapping("/register")
     public ResponseEntity<?> registerNewUser(@RequestBody RegisterRequest registerRequest){
-        return authService.registerNewUser(registerRequest);
+        return userAuthService.registerNewUser(registerRequest);
     }
 
     /**
@@ -42,7 +42,7 @@ public class AuthController {
      */
     @GetMapping("/verify")
     public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username){
-        return authService.activateAccount(uuid,account,username);
+        return userAuthService.activateAccount(uuid,account,username);
 
     }
 
@@ -53,7 +53,7 @@ public class AuthController {
      */
     @PostMapping("/login")
     public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest){
-        return authService.userLoginIn(loginRequest);
+        return userAuthService.userLoginIn(loginRequest);
     }
 
     /**
@@ -62,7 +62,7 @@ public class AuthController {
      */
     @PostMapping("/forget-password")
     public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request){
-        return authService.forgetPassword(request);
+        return userAuthService.forgetPassword(request);
     }
 
     /**
@@ -71,7 +71,7 @@ public class AuthController {
      */
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request){
-        return authService.resetPassword(request);
+        return userAuthService.resetPassword(request);
     }
 
     /**
@@ -81,12 +81,12 @@ public class AuthController {
      */
     @PostMapping("/verify-login-token")
     public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request){
-        return authService.verifyLoginToken(request);
+        return userAuthService.verifyLoginToken(request);
     }
 
     @GetMapping("/test")
     public ResponseEntity<?> test(@RequestParam("key") String key){
-        return authService.test(key);
+        return userAuthService.test(key);
     }
 
 

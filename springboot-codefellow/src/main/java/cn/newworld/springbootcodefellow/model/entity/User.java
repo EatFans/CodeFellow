@@ -4,6 +4,10 @@ import lombok.Data;
 
 import java.util.Date;
 
+/**
+ * 用户数据实体对象类
+ * author: EatFan
+ */
 @Data
 public class User {
     private String uuid;    // 用户的UUID

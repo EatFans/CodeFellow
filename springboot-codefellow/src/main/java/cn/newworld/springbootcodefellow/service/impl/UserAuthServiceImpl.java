@@ -4,7 +4,7 @@ import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.*;
 import cn.newworld.springbootcodefellow.model.entity.User;
-import cn.newworld.springbootcodefellow.service.intf.AuthService;
+import cn.newworld.springbootcodefellow.service.intf.UserAuthService;
 import cn.newworld.springbootcodefellow.service.intf.EmailService;
 import cn.newworld.springbootcodefellow.service.intf.RedisService;
 import cn.newworld.springbootcodefellow.service.intf.UserService;
@@ -19,11 +19,11 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Auth 验证业务实现类
+ * 用户Auth 验证业务实现类
  * author: EatFan
  */
 @Service
-public class AuthServiceImpl implements AuthService {
+public class UserAuthServiceImpl implements UserAuthService {
     private final UserService userService;
 
     private final PasswordEncryptor passwordEncryptor;
@@ -35,11 +35,11 @@ public class AuthServiceImpl implements AuthService {
     private final TokenEncryptor tokenEncryptor;
 
     @Autowired
-    public AuthServiceImpl(UserService userService,
-                           PasswordEncryptor passwordEncryptor,
-                           EmailService emailService,
-                           RedisService redisService,
-                           TokenEncryptor tokenEncryptor) {
+    public UserAuthServiceImpl(UserService userService,
+                               PasswordEncryptor passwordEncryptor,
+                               EmailService emailService,
+                               RedisService redisService,
+                               TokenEncryptor tokenEncryptor) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;
@@ -227,7 +227,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     /**
-     * 验证登录令牌接口
+     * 验证登录令牌
      * @param request 请求传输数据体
      * @return 返回请求完毕的响应数据体
      */
