@@ -2,12 +2,10 @@ package cn.newworld.springbootcodefellow.service.impl;
 
 import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
+import cn.newworld.springbootcodefellow.constant.enums.UserAction;
 import cn.newworld.springbootcodefellow.model.dto.*;
 import cn.newworld.springbootcodefellow.model.entity.User;
-import cn.newworld.springbootcodefellow.service.intf.UserAuthService;
-import cn.newworld.springbootcodefellow.service.intf.EmailService;
-import cn.newworld.springbootcodefellow.service.intf.RedisService;
-import cn.newworld.springbootcodefellow.service.intf.UserService;
+import cn.newworld.springbootcodefellow.service.intf.*;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.TokenEncryptor;
 import cn.newworld.springbootcodefellow.util.UUIDGenerator;
@@ -35,17 +33,21 @@ public class UserAuthServiceImpl implements UserAuthService {
 
     private final TokenEncryptor tokenEncryptor;
 
+    private final UserActionLogService userActionLogService;
+
     @Autowired
     public UserAuthServiceImpl(UserService userService,
                                PasswordEncryptor passwordEncryptor,
                                EmailService emailService,
                                RedisService redisService,
-                               TokenEncryptor tokenEncryptor) {
+                               TokenEncryptor tokenEncryptor,
+                               UserActionLogService userActionLogService) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;
         this.redisService = redisService;
         this.tokenEncryptor = tokenEncryptor;
+        this.userActionLogService = userActionLogService;
     }
 
     /**
@@ -55,9 +57,6 @@ public class UserAuthServiceImpl implements UserAuthService {
      */
     @Override
     public ResponseEntity<?> registerNewUser(RegisterRequest registerRequest, HttpServletRequest httpServletRequest) {
-        // 获取客户端信息和IP地址
-        String userAgent = httpServletRequest.getHeader("User-Agent");
-        String clientIp = httpServletRequest.getRemoteAddr();
 
         if (userService.isAccountExists(registerRequest.getAccount())){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户账号已经存在！无法注册！"));
@@ -72,7 +71,7 @@ public class UserAuthServiceImpl implements UserAuthService {
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法将数据保存进数据库中..."));
 
         emailService.sendVerifyEmail(user);
-
+        userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(), UserAction.REGISTER,"用户注册完成，等待邮箱验证激活账号","Success",httpServletRequest);
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
     }
 
@@ -108,8 +107,10 @@ public class UserAuthServiceImpl implements UserAuthService {
     public String activateAccount(String uuid, String account, String username, HttpServletRequest httpServletRequest) {
         boolean isVerified = userService.verifyUserAccount(uuid, account, username);
         if (isVerified){
+            userActionLogService.saveUserActionLog(uuid,username,UserAction.ACTIVATE_ACCOUNT,"用户已经成功在邮箱中验证激活了账号！","Success",httpServletRequest);
             return "账号验证激活成功！";
         } else {
+            userActionLogService.saveUserActionLog(uuid,username,UserAction.ACTIVATE_ACCOUNT,"用户在验证激活账号时候失败！","Error",httpServletRequest);
             return "账号验证激活失败！";
         }
     }
@@ -150,9 +151,11 @@ public class UserAuthServiceImpl implements UserAuthService {
         // 根据 rememberMe 决定令牌有效时间
         if (loginRequest.getRememberMe()){
             redisService.set(user.getUuid(),token,14, TimeUnit.DAYS);
+            userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间14天","Success",httpServletRequest);
             return ResponseEntity.ok(new TokenResponse(token,14,TimeUnit.DAYS));
         } else {
             redisService.set(user.getUuid(),token,12,TimeUnit.HOURS);
+            userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间12小时","Success",httpServletRequest);
             return ResponseEntity.ok(new TokenResponse(token,12,TimeUnit.HOURS));
         }
     }
@@ -219,6 +222,7 @@ public class UserAuthServiceImpl implements UserAuthService {
         // 完成重置密码请求后直接删除存储在Redis中的验证码
         if (!redisService.delete(token))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"删除临时验证码失败"));
+        userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.RESET_PASSWORD,"用户重置了密码！","Success",httpServletRequest);
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"密码修改成功! 用户账号为："+account));
     }
 
