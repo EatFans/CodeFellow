@@ -100,7 +100,9 @@ export default {
     const token = localStorage.getItem('token');
     // 检查本地token是否为空
     if (token != null){
-      // TODO: 发送验证信息
+      // TODO: 发送验证信息验证token是否有效
+      // 如果token有效就标识用户是保持登录状态
+      // 获取用户数据；头像、名称、
     } else{
       this.isLogin = false;
     }
