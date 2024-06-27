@@ -8,7 +8,7 @@
     <div class="register-page-content-body">
       <div v-show="!isRegisterSuccess" class="register-box-container">
         <div class="register-box">
-          <form >
+          <form @submit.prevent="register">
             <div class="register-form-input-item" :class="{ 'input-error': error.account }">
               <div class="register-form-input-item-title">
                 <label for="register-amount">账户 <span>*</span></label>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="register-form-button-item">
-              <input type="button" value="注册" @click="registerButtonClick">
+              <input type="submit" value="注册" >
             </div>
           </form>
         </div>
@@ -110,7 +110,6 @@
 <script>
 import PageTitle from "@/components/PageTitle.vue";
 import authAPI from "@/api/AuthAPI";
-import { resolveComponent } from "vue";
 
 export default {
   name: 'RegisterPageContent',
@@ -125,14 +124,15 @@ export default {
         username: '',
         email: '',
         phoneNumber: '',
-        referrer: '', // 正确拼写
+        recommender: '', 
       },
       passwordSure: '',
       problemVerification: '',
       negotiate: false,
-      rules: false,
-      passwordDetectorVisible: false,
-      isRegisterSuccess: false,
+      rules: false,   
+      passwordDetectorVisible: false,  // 密码检查器是否显示
+      isRegisterSuccess: false, // 是否注册成功
+      // 错误数据对象
       error: {
         account: '',
         password: '',
@@ -140,12 +140,18 @@ export default {
         username: '',
         email: '',
         phoneNumber: '',
-        problemVerification: false, // 修正为布尔值
+        problemVerification: false,
+      },
+      // 请求响应数据对象
+      response: {
+        stauts: '',
+        message: '',
+        data: ''
       }
     };
   },
   methods: {
-    async registerButtonClick() {
+    async register() {
       let flag = true;
       if (!this.registerData.account) {
         this.error.account = '账号不能为空！';
