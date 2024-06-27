@@ -1,7 +1,7 @@
 // api/AuthAPI.js
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080/'; // 根据实际后端地址修改
+const baseURL = 'http://localhost:8080/auth'; // 根据实际后端地址修改
 
 const axiosInstance = axios.create({
   baseURL,
@@ -12,11 +12,8 @@ const authAPI = {
   login(credentials) {
     return axiosInstance.post('/login', credentials);
   },
-  getUserInfo() {
-    return axiosInstance.get('/userInfo');
-  },
-  logout() {
-    return axiosInstance.post('/logout');
+  register(registerData){
+    return axiosInstance.post('/register',registerData);
   }
 };
 

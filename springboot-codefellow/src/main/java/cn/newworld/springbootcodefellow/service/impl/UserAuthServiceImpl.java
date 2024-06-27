@@ -72,7 +72,7 @@ public class UserAuthServiceImpl implements UserAuthService {
 
         emailService.sendVerifyEmail(user);
         userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(), UserAction.REGISTER,"用户注册完成，等待邮箱验证激活账号","Success",httpServletRequest);
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",user));
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！"));
     }
 
     /**

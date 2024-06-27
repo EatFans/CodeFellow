@@ -6,28 +6,25 @@
     </div>
 
     <div class="register-page-content-body">
-      <div class="register-box-container">
+      <div v-show="!isRegisterSuccess" class="register-box-container">
         <div class="register-box">
-          <form action="">
-
-            <div class="register-form-input-item" :class="{ 'input-error': error.amount }">
+          <form >
+            <div class="register-form-input-item" :class="{ 'input-error': error.account }">
               <div class="register-form-input-item-title">
                 <label for="register-amount">账户 <span>*</span></label>
-                <p v-show="error.amount">{{ error.amount }}</p>
+                <p v-show="error.account">{{ error.account }}</p>
               </div>
               <div class="input-box">
-                <input type="text" id="register-amount" name="amount" v-model="registerData.amount">
+                <input type="text" id="register-amount" name="amount" v-model="registerData.account">
               </div>
               <p class="item-readme">这将作为你的账号用于登录</p>
             </div>
-
             <div class="register-form-input-item" :class="{ 'input-error': error.password }">
-              <div class="register-form-input-item-title" >
+              <div class="register-form-input-item-title">
                 <label for="register-password">密码 <span>*</span></label>
                 <p v-show="error.password">{{ error.password }}</p>
               </div>
-              <input type="password" id="register-password" name="password" v-model="registerData.password" v-on:input="togglePasswordDetectorBoxDisplay" @blur="togglePasswordDetectorBoxNotDisplay">
-
+              <input type="password" id="register-password" name="password" v-model="registerData.password" @input="togglePasswordDetectorBoxDisplay" @blur="togglePasswordDetectorBoxNotDisplay">
             </div>
             <!-- TODO: 密码检测窗口  -->
             <div v-show="passwordDetectorVisible" class="password-detector-box">
@@ -41,170 +38,191 @@
                 <p>至少有一个大写字母</p>
               </div>
             </div>
-
-            <div class="register-form-input-item" :class="{'input-error' : error.passwordSure}">
+            <div class="register-form-input-item" :class="{ 'input-error': error.passwordSure }">
               <div class="register-form-input-item-title">
                 <label for="register-password-sure">确定密码 <span>*</span></label>
                 <p v-show="error.passwordSure">{{ error.passwordSure }}</p>
               </div>
               <input type="password" id="register-password-sure" name="password-sure" v-model="passwordSure">
             </div>
-
-            <div class="register-form-input-item" :class="{'input-error' : error.username}">
+            <div class="register-form-input-item" :class="{ 'input-error': error.username }">
               <div class="register-form-input-item-title">
                 <label for="register-username">用户名 <span>*</span></label>
-                <p v-show="error.passwordSure">{{ error.username }}</p>
+                <p v-show="error.username">{{ error.username }}</p>
               </div>
               <input type="text" id="register-username" name="username" v-model="registerData.username">
               <p class="item-readme">这将作为你在本论坛显示的名称。选择任意你喜欢的名称吧！</p>
             </div>
-
-            <div class="register-form-input-item" :class="{'input-error' : error.email}">
+            <div class="register-form-input-item" :class="{ 'input-error': error.email }">
               <div class="register-form-input-item-title">
                 <label for="register-email">邮箱 <span>*</span></label>
                 <p v-show="error.email">{{ error.email }}</p>
               </div>
               <input type="email" id="register-email" name="email" v-model="registerData.email">
             </div>
-
-            <div class="register-form-input-item" :class="{'input-error' : error.phoneNumber}">
+            <div class="register-form-input-item" :class="{ 'input-error': error.phoneNumber }">
               <div class="register-form-input-item-title">
                 <label for="register-phoneNumber">手机号 <span>*</span></label>
                 <p v-show="error.phoneNumber">{{ error.phoneNumber }}</p>
               </div>
               <input type="tel" id="register-phoneNumber" name="phoneNumber" v-model="registerData.phoneNumber">
             </div>
-
             <div class="register-form-input-item">
               <label for="register-referrer">推荐人 </label>
               <input type="text" id="register-referrer" name="referrer" v-model="registerData.referrer">
               <p class="item-readme">你的推荐人的用户名称。（选填）</p>
             </div>
-
-            <div class="register-form-input-item">
+            <div class="register-form-input-item" :class="{ 'input-error': error.problemVerification }">
               <div class="label-box">
                 <label for="register-problem-verification">验证：</label>
                 <p>请问本论坛英文名叫什么？</p>
               </div>
               <input type="text" id="register-problem-verification" name="problemVerification" v-model="problemVerification">
+              <p v-show="error.problemVerification" class="item-readme">答案错误，请输入正确的答案。</p>
             </div>
-
             <div class="register-form-check-item-box">
               <div class="register-form-check-item">
                 <input type="checkbox" id="negotiate" name="negotiate" v-model="negotiate">
                 <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
               </div>
-
               <div class="register-form-check-item">
                 <input type="checkbox" id="rules" name="rules" v-model="rules">
                 <label for="rules">我自愿遵守本论坛 <a href="#">用户行为规范</a> </label>
               </div>
             </div>
-            
 
             <div class="register-form-button-item">
-              <input type="button" value="注册" @click="register">
+              <input type="button" value="注册" @click="registerButtonClick">
             </div>
           </form>
         </div>
+      </div>
 
+      <!-- 注册成功后显示的 -->
+      <div v-show="isRegisterSuccess" class="register-success-container">
+        <h1>注册成功！</h1>
+        <p>已经发送验证激活邮件发送至您的邮箱中！请前往邮箱进行验证激活！</p>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
 import PageTitle from "@/components/PageTitle.vue";
-import NoticesContainer from "@/components/NoticesContainer.vue";
-import Label from "@/components/Label.vue";
+import authAPI from "@/api/AuthAPI";
+import { resolveComponent } from "vue";
 
 export default {
   name: 'RegisterPageContent',
   components: {
-    Label,
     PageTitle,
-    NoticesContainer
   },
-  data(){
+  data() {
     return {
-      // 注册数据
       registerData: {
-        amount: '',
+        account: '',
         password: '',
         username: '',
         email: '',
         phoneNumber: '',
-        recommender: '',
+        referrer: '', // 正确拼写
       },
-
-      passwordSure: '', // 密码二次确定
-      problemVerification: '', // 问题验证
-      negotiate: '',  
-      rules: '',
-
-      // 密码检测窗口标识
+      passwordSure: '',
+      problemVerification: '',
+      negotiate: false,
+      rules: false,
       passwordDetectorVisible: false,
-
+      isRegisterSuccess: false,
       error: {
-        amount: '',
+        account: '',
         password: '',
         passwordSure: '',
         username: '',
         email: '',
         phoneNumber: '',
+        problemVerification: false, // 修正为布尔值
       }
-    }
+    };
   },
-  methods:{
-    // 注册函数
-    register(){
-      // 检查输入的账号是不是为空
-      if (!this.registerData.amount){
-        this.error.amount = '账号这里不能为空！！！';
+  methods: {
+    async registerButtonClick() {
+      let flag = true;
+      if (!this.registerData.account) {
+        this.error.account = '账号不能为空！';
+        flag = false;
       } else {
         this.error.amount = '';
       }
-      // 检查输入的密码是不是为空
-      if (!this.registerData.password){
-        this.error.password = '密码这里不能为空！！！';
+      if (!this.registerData.password) {
+        this.error.password = '密码不能为空！';
+        flag = false;
       } else {
         this.error.password = '';
       }
-      // 检查输入的二次确定密码是不是为空
-      if (!this.passwordSure){
-        this.error.passwordSure = '二次确定密码这里不能为空！！！';
+      if (!this.passwordSure) {
+        this.error.passwordSure = '请确认密码！';
+        flag = false;
       } else {
         this.error.passwordSure = '';
       }
-      // 检查输入的用户名是不是为空
-      if (!this.registerData.username){
-        this.error.username = '用户名这里不能为空！！！';
+      if (!this.registerData.username) {
+        this.error.username = '用户名不能为空！';
+        flag = false;
       } else {
         this.error.username = '';
       }
-      // 检查输入的邮箱是不是为空
-      if (!this.registerData.email){
-        this.error.email = '邮箱这里不能为空！！！';
+      if (!this.registerData.email) {
+        this.error.email = '邮箱不能为空！';
+        flag = false;
       } else {
         this.error.email = '';
       }
-      // 检查输入的手机号是不是为空
-      if (!this.registerData.phoneNumber){
-        this.error.phoneNumber = '手机号这里不能为空！！！';
+      if (!this.registerData.phoneNumber) {
+        this.error.phoneNumber = '手机号不能为空！';
+        flag = false;
       } else {
-        this.error.phoneNumber = ''
+        this.error.phoneNumber = '';
+      }
+      if (this.problemVerification.toLowerCase() !== 'codefellow') {
+        this.error.problemVerification = true;
+        flag = false;
+      } else {
+        this.error.problemVerification = false;
+      }
+      if (flag) {
+        try {
+          const response = await authAPI.register(this.registerData);
+          // 检查响应体数据，判断是否注册成功
+          const status = response.data.status;
+          const message = response.data.message;
+
+          console.log(status);
+          console.log(message);
+
+          if (status == "success"){
+            setTimeout(() => {
+            this.isRegisterSuccess = true;
+            }, 1500);
+          } else {
+            alert("注册失败！ 失败原因："+message);
+          }
+
+          
+        } catch (error) {
+          console.error('注册请求失败：', error);
+        }
       }
     },
-    togglePasswordDetectorBoxDisplay(){
+   
+
+    togglePasswordDetectorBoxDisplay() {
       this.passwordDetectorVisible = true;
     },
-    togglePasswordDetectorBoxNotDisplay(){
+    togglePasswordDetectorBoxNotDisplay() {
       this.passwordDetectorVisible = false;
     }
-
   }
-}
+};
 </script>
 
 <style scoped>
@@ -262,7 +280,7 @@ export default {
   display: flex;
   justify-content: center;
 
-  /* background: #cc4242; */
+  /* border: 1px solid black; */
 }
 
 
