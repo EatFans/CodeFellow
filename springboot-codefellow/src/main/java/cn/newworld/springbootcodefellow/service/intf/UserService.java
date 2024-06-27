@@ -73,4 +73,11 @@ public interface UserService {
      * @return 如果更新成功就返回true，否则就返回false
      */
     boolean updateUserPassword(User user,String password);
+
+    /**
+     * 检查手机号码是否存在
+     * @param phoneNumber 手机号码
+     * @return 如果存在就返回true，否则就返回false
+     */
+    boolean isPhoneNumberExists(String phoneNumber);
 }

@@ -18,6 +18,11 @@
         SELECT * FROM user WHERE email = #{email}
     </select>
 
+    <!-- 通过用户手机号找到该用户 -->
+    <select id="findUserByPhoneNumber" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE phoneNumber = #{phoneNumber}
+    </select>
+
     <!-- 向用户表中插入一条用户数据 -->
     <insert id="insertUser" parameterType="cn.newworld.springbootcodefellow.model.entity.User">
         INSERT INTO user (uuid, account, password, username, email, phoneNumber, registrationTime

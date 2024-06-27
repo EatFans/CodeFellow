@@ -71,6 +71,10 @@ public class UserAuthServiceImpl implements UserAuthService {
             registerErrorData.setEmail("该邮箱已经被使用！");
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！",registerErrorData));
         }
+        if (userService.isPhoneNumberExists(registerRequest.getPhoneNumber())){
+            registerErrorData.setPhoneNumber("该手机号已经被使用！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该手机号已经被使用！",registerErrorData));
+        }
 
         User user = createNewUser(registerRequest);
         if (!userService.create(user)){

@@ -141,4 +141,15 @@ public class UserServiceImpl implements UserService {
         String encodePassword = passwordEncryptor.encodePassword(password);
         return userMapper.updatePassword(user.getUuid(),user.getAccount(),user.getUsername(),encodePassword);
     }
+
+    /**
+     * 检查手机号是否已经存在
+     * @param phoneNumber 手机号码
+     * @return 如果存在就返回true，否则就返回false
+     */
+    @Override
+    public boolean isPhoneNumberExists(String phoneNumber) {
+        User user = userMapper.findUserByPhoneNumber(phoneNumber);
+        return user != null;
+    }
 }

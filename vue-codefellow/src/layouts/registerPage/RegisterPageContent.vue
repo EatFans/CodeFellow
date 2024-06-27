@@ -84,10 +84,12 @@
               <div class="register-form-check-item">
                 <input type="checkbox" id="negotiate" name="negotiate" v-model="negotiate">
                 <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
+                <p v-show="negotiateErrorMessageeVisible">请同意后进行注册！！！</p>
               </div>
               <div class="register-form-check-item">
                 <input type="checkbox" id="rules" name="rules" v-model="rules">
                 <label for="rules">我自愿遵守本论坛 <a href="#">用户行为规范</a> </label>
+                <p v-show="rulesErrorMessageVisible">请同意后进行注册！！！</p>
               </div>
             </div>
 
@@ -100,8 +102,14 @@
 
       <!-- 注册成功后显示的 -->
       <div v-show="isRegisterSuccess" class="register-success-container">
-        <h1>注册成功！</h1>
-        <p>已经发送验证激活邮件发送至您的邮箱中！请前往邮箱进行验证激活！</p>
+        <div class="register-success-title">
+          <h1>注册成功！</h1>
+        </div>
+        <div class="register-success-content">
+          <p>
+            用户您好！恭喜您注册成功！我们（NewWorldStudio团队）将发送一封邮件到您的邮箱进行账号验证！请前往邮箱进行完成账号验证激活！验证激活邮件过期时间为半小时，激活验证邮件过期激活验证失败无效，若激活验证邮件过期，请重新注册！
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -132,6 +140,8 @@ export default {
       rules: false,   
       passwordDetectorVisible: false,  // 密码检查器是否显示
       isRegisterSuccess: false, // 是否注册成功
+      negotiateErrorMessageeVisible: false,  // 条款错误文案是否显示
+      rulesErrorMessageVisible: false,    // 规则错误文案是否显示
       // 错误数据对象
       error: {
         account: '',
@@ -153,47 +163,68 @@ export default {
   methods: {
     async register() {
       let flag = true;
+      // 检查输入的账号是否为空
       if (!this.registerData.account) {
         this.error.account = '账号不能为空！';
         flag = false;
       } else {
         this.error.amount = '';
       }
+      // 检查输入的密码是否为空
       if (!this.registerData.password) {
         this.error.password = '密码不能为空！';
         flag = false;
       } else {
         this.error.password = '';
       }
+      // 检查输入的二次确定密码是否为空
       if (!this.passwordSure) {
         this.error.passwordSure = '请确认密码！';
         flag = false;
       } else {
         this.error.passwordSure = '';
       }
+      // 检查输入的用户名是否为空
       if (!this.registerData.username) {
         this.error.username = '用户名不能为空！';
         flag = false;
       } else {
         this.error.username = '';
       }
+      // 检查输入的邮箱是否为空
       if (!this.registerData.email) {
         this.error.email = '邮箱不能为空！';
         flag = false;
       } else {
         this.error.email = '';
       }
+      // 检查输入的手机号是否为空
       if (!this.registerData.phoneNumber) {
         this.error.phoneNumber = '手机号不能为空！';
         flag = false;
       } else {
         this.error.phoneNumber = '';
       }
+      // 检查输入的问题答案是否正确
       if (this.problemVerification.toLowerCase() !== 'codefellow') {
         this.error.problemVerification = true;
         flag = false;
       } else {
         this.error.problemVerification = false;
+      }
+      // 检查用户是否同意条款
+      if (!this.negotiate){
+        this.negotiateErrorMessageeVisible = true;
+        flag = false;
+      } else {
+        this.negotiateErrorMessageeVisible = false;
+      }
+      // 检查用户是否遵守规则
+      if (!this.rules){
+        this.rulesErrorMessageVisible = true;
+        flag = false;
+      } else {
+        this.rulesErrorMessageVisible = false;
       }
       if (flag) {
         try {
@@ -232,6 +263,25 @@ export default {
 </script>
 
 <style scoped>
+.register-success-content {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.register-success-title {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.register-success-container {
+  width: 500px;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+}
 
 .register-form-input-item-title p{
   font-size: 12px;
@@ -285,6 +335,7 @@ export default {
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   /* border: 1px solid black; */
 }
@@ -380,6 +431,12 @@ export default {
 
 .register-form-check-item label a {
   text-decoration: none;
+}
+
+.register-form-check-item p {
+  font-size: 12px;
+  margin-left: 20px;
+  color: red;
 }
 
 .password-detector-box {

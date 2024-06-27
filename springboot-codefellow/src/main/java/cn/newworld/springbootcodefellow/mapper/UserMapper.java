@@ -93,4 +93,11 @@ public interface UserMapper {
      * @return 如果更新成功就返回true，否则就返回false
      */
     boolean updatePassword(String uuid, String account, String username, String password);
+
+    /**
+     * 通过手机号来查询用户
+     * @param phoneNumber 手机号
+     * @return 如果查询到就返回该用户，否则就返回null
+     */
+    User findUserByPhoneNumber(String phoneNumber);
 }

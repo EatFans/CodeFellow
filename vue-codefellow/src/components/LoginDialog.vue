@@ -36,7 +36,7 @@
                 </div>
                 <div class="login-help">
                   <a href="/register" >立即注册</a>
-                  <a href="#">忘记密码</a>
+                  <a href="/forget-password">忘记密码</a>
                 </div>
               </div>
               <div class="login-button-item">
@@ -80,6 +80,9 @@ export default {
     }
   },
   methods: {
+    login(){
+
+    },
     // 触发关闭弹窗的操作
     closeDialog() {
       this.$emit('update:visible', false);
