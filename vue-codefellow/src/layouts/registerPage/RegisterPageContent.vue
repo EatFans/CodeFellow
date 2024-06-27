@@ -201,16 +201,16 @@ export default {
           // 检查响应体数据，判断是否注册成功
           const status = response.data.status;
           const message = response.data.message;
-
-          console.log(status);
-          console.log(message);
-
+          const data = response.data.data;
+          if (data != null){
+            this.error = data;
+          }
           if (status == "success"){
             setTimeout(() => {
             this.isRegisterSuccess = true;
             }, 1500);
           } else {
-            alert("注册失败！ 失败原因："+message);
+            console.log(message);
           }
 
           

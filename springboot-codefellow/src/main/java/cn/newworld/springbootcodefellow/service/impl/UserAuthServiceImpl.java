@@ -57,22 +57,29 @@ public class UserAuthServiceImpl implements UserAuthService {
      */
     @Override
     public ResponseEntity<?> registerNewUser(RegisterRequest registerRequest, HttpServletRequest httpServletRequest) {
+        RegisterErrorData registerErrorData = new RegisterErrorData();
 
         if (userService.isAccountExists(registerRequest.getAccount())){
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户账号已经存在！无法注册！"));
+            registerErrorData.setAccount("该用户账号已经存在！无法注册！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户账号已经存在！无法注册！",registerErrorData));
         }
-        if (userService.isUsernameExists(registerRequest.getUsername()))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户名已经被使用！"));
-        if (userService.isEmailExists(registerRequest.getEmail()))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！"));
+        if (userService.isUsernameExists(registerRequest.getUsername())){
+            registerErrorData.setUsername("该用户名已经被使用！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该用户名已经被使用！",registerErrorData));
+        }
+        if (userService.isEmailExists(registerRequest.getEmail())){
+            registerErrorData.setEmail("该邮箱已经被使用！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该邮箱已经被使用！",registerErrorData));
+        }
 
         User user = createNewUser(registerRequest);
-        if (!userService.create(user))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法将数据保存进数据库中..."));
+        if (!userService.create(user)){
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法将数据保存进数据库中...",registerErrorData));
+        }
 
         emailService.sendVerifyEmail(user);
         userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(), UserAction.REGISTER,"用户注册完成，等待邮箱验证激活账号","Success",httpServletRequest);
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！"));
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",registerErrorData));
     }
 
     /**
