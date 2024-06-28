@@ -158,6 +158,7 @@ export default {
               setTimeout(() => {
                 // 关闭弹窗
                 this.closeDialog();
+                this.$router.go(0); // 刷新当前路由页面
               }, 500);
             }
             

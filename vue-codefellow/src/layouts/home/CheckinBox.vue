@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: 'CheckingBox',
   data(){
     return {
       day: 0

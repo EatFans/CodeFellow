@@ -40,7 +40,7 @@
 
           <!-- 签到框 -->
           <div class="body-sidebar-checkin-container">
-            <CheckzinBox />
+            <CheckinBox />
           </div>
 
           <!-- 任务栏 -->

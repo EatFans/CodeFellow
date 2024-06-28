@@ -8,6 +8,8 @@ import authAPI from "@/api/AuthAPI.js";
 
 const app = createApp(App);
 
+// 排除自定义元素的组件解析
+
 app.config.globalProperties.$axios = axios;
 app.config.globalProperties.$authAPI = authAPI;
 
