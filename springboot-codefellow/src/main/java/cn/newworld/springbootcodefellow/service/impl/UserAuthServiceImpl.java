@@ -163,11 +163,11 @@ public class UserAuthServiceImpl implements UserAuthService {
         if (loginRequest.getRememberMe()){
             redisService.set(user.getUuid(),token,14, TimeUnit.DAYS);
             userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间14天","Success",httpServletRequest);
-            return ResponseEntity.ok(new TokenResponse(token,14,TimeUnit.DAYS));
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！",new TokenResponse(token,14,TimeUnit.DAYS)));
         } else {
             redisService.set(user.getUuid(),token,12,TimeUnit.HOURS);
             userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间12小时","Success",httpServletRequest);
-            return ResponseEntity.ok(new TokenResponse(token,12,TimeUnit.HOURS));
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！",new TokenResponse(token,12,TimeUnit.HOURS)));
         }
     }
 
