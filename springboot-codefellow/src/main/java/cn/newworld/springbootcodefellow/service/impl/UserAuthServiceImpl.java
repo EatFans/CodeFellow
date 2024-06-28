@@ -133,29 +133,44 @@ public class UserAuthServiceImpl implements UserAuthService {
      */
     @Override
     public ResponseEntity<?> userLoginIn(LoginRequest loginRequest, HttpServletRequest httpServletRequest) {
-        if (!userService.isAccountExists(loginRequest.getAccount()))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！"));
+        LoginErrorData loginErrorData = new LoginErrorData();
+
+        if (!userService.isAccountExists(loginRequest.getAccount())){
+            loginErrorData.setAccount("该账号未注册！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"该账号未注册！",loginErrorData));
+        }
         User user = userService.getUserByAccount(loginRequest.getAccount());
-        if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword()))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"账号或密码错误！"));
-        if (!user.getIsVerification())
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未激活验证！"));
+        if (!passwordEncryptor.matches(loginRequest.getPassword(),user.getPassword())){
+            loginErrorData.setPassword("密码错误！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"密码错误！",loginErrorData));
+        }
+        if (!user.getIsVerification()){
+            loginErrorData.setLogin("无法登录！账号还未验证激活！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未验证激活！",loginErrorData));
+        }
         switch (user.getStatus()){
             case AccountStatus.DISABLED:
-                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于禁用状态！"));
+                loginErrorData.setLogin("无法登录！账号处于禁用状态！");
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于禁用状态！",loginErrorData));
             case AccountStatus.PENDING:
-                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未激活验证！"));
+                loginErrorData.setLogin("无法登录！账号还未激活验证！");
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "无法登录！账号还未激活验证！",loginErrorData));
             case AccountStatus.LOCKED:
-                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于锁定状态！"));
+                loginErrorData.setLogin("无法登录！账号处于锁定状态");
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于锁定状态！",loginErrorData));
             case AccountStatus.SUSPENDED:
-                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于暂停使用状态！"));
+                loginErrorData.setLogin("无法登录！账号处于暂停使用状态！");
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于暂停使用状态！",loginErrorData));
             case AccountStatus.BANNED:
-                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于封禁状态！"));
+                loginErrorData.setLogin("无法登录！账号处于封禁状态！");
+                return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"无法登录！账号处于封禁状态！",loginErrorData));
             default:
                 break;
         }
-        if (!userService.updateUserLoginTime(user))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录时间更新错误！"));
+        if (!userService.updateUserLoginTime(user)){
+            loginErrorData.setLogin("登录时间更新错误！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录时间更新错误！",loginErrorData));
+        }
 
         // 生成会话令牌（token）
         String token = tokenEncryptor.generateToken(user.getUuid());

@@ -14,24 +14,31 @@
 
         <div class="login-dialog-overlay-body-content">
           <div class="login-box">
-            <form action="#">
-              <div class="login-form-input-item">
-                <label for="login-amount">账户 <span>*</span></label>
-                <input type="text" id="login-amount" name="amount" :value="amount">
+            <form @submit.prevent="login">
+              <div class="login-form-input-item" :class="{'input-error' : error.account}">
+                <div class="login-form-input-item-title">
+                  <label for="login-amount">账户 <span>*</span></label>
+                  <p v-show="error.account">{{ error.account }}</p>
+                </div>
+                <input type="text" id="login-amount" name="amount" v-model="loginData.account">
               </div>
-              <div class="login-form-input-item">
-                <label for="login-password">密码 <span>*</span></label>
-                <input type="password" id="login-password" name="password" :value="password">
+              <div class="login-form-input-item" :class="{'input-error' : error.password}">
+                <div class="login-form-input-item-title">
+                  <label for="login-password">密码 <span>*</span></label>
+                  <p v-show="error.password">{{ error.password }}</p>
+                </div>
+                <input type="password" id="login-password" name="password" v-model="loginData.password">
               </div>
               <div class="login-form-item">
                 <div class="login-negotiate">
-                  <input type="checkbox" id="negotiate" name="negotiate" >
-                  <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
+                  <input type="checkbox" id="login-negotiate" name="negotiate" v-model="negotiate" />
+                  <label for="login-negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
+                  <p v-show="error.negotiateErrorVisible">请同意！！！</p>
                 </div>
               </div>
               <div class="login-form-item">
                 <div class="login-remember">
-                  <input type="checkbox" id="remember" name="remember" >
+                  <input type="checkbox" id="remember" name="remember" v-model="loginData.rememberMe" />
                   <label for="remember">自动登录</label>
                 </div>
                 <div class="login-help">
@@ -39,8 +46,13 @@
                   <a href="/forget-password">忘记密码</a>
                 </div>
               </div>
+
+              <div class="login-error-message">
+                <p v-show="error.login">{{error.login}}</p> 
+              </div>
+
               <div class="login-button-item">
-                <input type="button" value="登录">
+                <input type="submit" value="登录">
               </div>
             </form>
           </div>
@@ -62,6 +74,7 @@
 </template>
 
 <script>
+import authAPI from "@/api/AuthAPI";
 import Label from "@/components/Label.vue";
 
 export default {
@@ -75,13 +88,84 @@ export default {
   },
   data(){
     return {
-      amount: '',
-      password: '',
+      // 登录数据
+      loginData: {
+        account: '',
+        password: '',
+        rememberMe: true
+      },
+      // 
+      negotiate: false,
+
+      // 登录错误数据
+      error: {
+        account: '',
+        password: '',
+        negotiateErrorVisible: false,
+        login: ''
+      }
     }
   },
   methods: {
-    login(){
+    async login(){
+      let flag = true;
+      // 检查输入的账号是不是为空
+      if (!this.loginData.account){
+        this.error.account = '账号不能为空！';
+        flag = false;
+      } else {
+        this.error.account = '';
+      }
+      // 检查输入的密码是不是为空
+      if (!this.loginData.password){
+        this.error.password = '密码不能为空！';
+        flag = false;
+      } else {
+        this.error.password = '';
+      }
+      // 检查用户是否同意
+      if (!this.negotiate){
+        this.error.negotiateErrorVisible = true;
+        flag = false;
+      } else {
+        this.error.negotiateErrorVisible = false;
+      }
+      // 发送登录请求
+      if (flag){
+        try {
+          // 解析登录请求响应结果
+          const response = await authAPI.login(this.loginData);
+          const status = response.data.status;
+          const message = response.data.message;
+          const data = response.data.data;
 
+          // console.log(status);
+          // console.log(message);
+          // console.log(data);
+
+          // 如果登录失败响应状态为error
+          if (status == 'error'){
+            if (data != null){
+              this.error = data;
+            }
+          }
+          // 如果登录成功响应状态为success
+          if (status == 'success'){
+            if (data != null){
+              console.log('登录成功！');
+              // TODO:
+              
+              setTimeout(() => {
+                // 关闭弹窗
+                this.closeDialog();
+              }, 500);
+            }
+            
+          }
+        } catch (error) {
+          console.error('登录请求失败：', error);
+        }
+      }
     },
     // 触发关闭弹窗的操作
     closeDialog() {
@@ -96,6 +180,39 @@ export default {
 </script>
 
 <style scoped>
+.input-error input {
+  outline: 1px solid red;
+}
+
+.login-error-message {
+  margin-top: 5px;
+}
+
+.login-error-message p {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
+.login-negotiate p {
+  font-size: 12px;
+  margin-left: 10px;
+  color: red;
+}
+
+.login-form-input-item-title p {
+  font-size: 12px;
+  margin-left: 10px;
+  margin-top: 1px;
+  color: red;
+}
+
+.login-form-input-item-title {
+  display: flex;
+  flex-direction: row;
+}
+
 .login-dialog-overlay-container {
   position: fixed;
   top: 0;
@@ -119,7 +236,7 @@ export default {
 .login-dialog-overlay-header{
   width: 100%;
   height: 40px;
-  //border: 1px solid #2174f1;
+  /* border: 1px solid #2174f1; */
   border-radius: 0.7rem 0.7rem 0 0;
   display: flex;
   flex-direction: row;
@@ -153,16 +270,16 @@ export default {
   flex-direction: column;
   align-items: center;
 
-  //border: 2px solid #1c1010;
+  /* border: 2px solid #1c1010; */
 }
 
 .login-box {
   width: 320px;
-  height: 220px;
+  height: 235px;
   display: flex;
   justify-content: center;
 
-  //border: 1px solid #7db92e;
+  /* border: 1px solid #7db92e;  */
 
 }
 
@@ -201,7 +318,7 @@ export default {
 
   display: flex;
   flex-direction: row;
-  //border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .login-remember {
@@ -229,6 +346,11 @@ export default {
   color: gold;
 }
 
+.login-negotiate {
+  display: flex;
+  flex-direction: row;
+}
+
 .login-negotiate label {
   margin-left: 3px;
   font-size: 12px;
@@ -239,7 +361,7 @@ export default {
 }
 
 .login-button-item {
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .login-button-item input {
@@ -248,6 +370,11 @@ export default {
   border-radius: 4px;
   border:none;
   background: #7db92e;
+  color: #fff;
+}
+
+.login-button-item input:hover {
+  background: #a9da6a;
   color: #fff;
 }
 

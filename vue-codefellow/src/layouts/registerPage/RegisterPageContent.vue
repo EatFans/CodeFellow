@@ -82,8 +82,8 @@
             </div>
             <div class="register-form-check-item-box">
               <div class="register-form-check-item">
-                <input type="checkbox" id="negotiate" name="negotiate" v-model="negotiate">
-                <label for="negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
+                <input type="checkbox" id="register-negotiate" name="negotiate" v-model="negotiate">
+                <label for="register-negotiate">我同意 <a href="#">用户条款</a> 和 <a href="#">隐私协议</a> </label>
                 <p v-show="negotiateErrorMessageeVisible">请同意后进行注册！！！</p>
               </div>
               <div class="register-form-check-item">
@@ -184,6 +184,14 @@ export default {
       } else {
         this.error.passwordSure = '';
       }
+      // 检查输入的第一遍密码是否跟第二遍确定密码相同
+      if (this.registerData.password != this.passwordSure){
+        this.error.passwordSure = '确定密码与第一遍密码不相同！'
+        flag = false;
+      } else {
+        this.error.passwordSure = '';
+      }
+
       // 检查输入的用户名是否为空
       if (!this.registerData.username) {
         this.error.username = '用户名不能为空！';
