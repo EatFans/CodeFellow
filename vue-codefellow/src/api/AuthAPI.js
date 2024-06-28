@@ -9,11 +9,17 @@ const axiosInstance = axios.create({
 });
 
 const authAPI = {
+  // 登录接口
   login(credentials) {
     return axiosInstance.post('/login', credentials);
   },
+  // 注册接口
   register(registerData){
     return axiosInstance.post('/register',registerData);
+  },
+  // 验证登录token接口
+  verifyLoginToken(verifyLoginTokenData){
+    return axiosInstance.post('/verify-login-token',verifyLoginTokenData)
   }
 };
 

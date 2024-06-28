@@ -141,7 +141,7 @@ export default {
 
           // console.log(status);
           // console.log(message);
-          // console.log(data);
+          console.log(data);
 
           // 如果登录失败响应状态为error
           if (status == 'error'){
@@ -152,9 +152,13 @@ export default {
           // 如果登录成功响应状态为success
           if (status == 'success'){
             if (data != null){
-              console.log('登录成功！');
-              // TODO:
-              
+              const token = data.token;
+
+              // 测试日志输出
+              console.log('登录成功！'+token);
+
+              localStorage.setItem('token',token);
+
               setTimeout(() => {
                 // 关闭弹窗
                 this.closeDialog();
