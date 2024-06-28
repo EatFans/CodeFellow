@@ -1,7 +1,7 @@
 package cn.newworld.springbootcodefellow.controller;
 
 import cn.newworld.springbootcodefellow.model.dto.*;
-import cn.newworld.springbootcodefellow.service.intf.UserAuthService;
+import cn.newworld.springbootcodefellow.service.intf.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/auth")
-public class UserAuthController {
+public class AuthController {
 
-    private final UserAuthService userAuthService;
+    private final AuthService authService;
 
     @Autowired
-    public UserAuthController(UserAuthService userAuthService) {
-        this.userAuthService = userAuthService;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
     /**
@@ -32,7 +32,7 @@ public class UserAuthController {
      */
     @PostMapping("/register")
     public ResponseEntity<?> registerNewUser(@RequestBody RegisterRequest registerRequest, HttpServletRequest httpServletRequest){
-        return userAuthService.registerNewUser(registerRequest,httpServletRequest);
+        return authService.registerNewUser(registerRequest,httpServletRequest);
     }
 
     /**
@@ -44,7 +44,7 @@ public class UserAuthController {
      */
     @GetMapping("/verify")
     public String activateAccount(@RequestParam("uuid") String uuid, @RequestParam("account") String account, @RequestParam("username") String username, HttpServletRequest httpServletRequest){
-        return userAuthService.activateAccount(uuid,account,username,httpServletRequest);
+        return authService.activateAccount(uuid,account,username,httpServletRequest);
 
     }
 
@@ -55,7 +55,7 @@ public class UserAuthController {
      */
     @PostMapping("/login")
     public ResponseEntity<?> userLoginIn(@RequestBody LoginRequest loginRequest, HttpServletRequest httpServletRequest){
-        return userAuthService.userLoginIn(loginRequest,httpServletRequest);
+        return authService.userLoginIn(loginRequest,httpServletRequest);
     }
 
     /**
@@ -64,7 +64,7 @@ public class UserAuthController {
      */
     @PostMapping("/forget-password")
     public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request,HttpServletRequest httpServletRequest){
-        return userAuthService.forgetPassword(request,httpServletRequest);
+        return authService.forgetPassword(request,httpServletRequest);
     }
 
     /**
@@ -73,7 +73,7 @@ public class UserAuthController {
      */
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request,HttpServletRequest httpServletRequest){
-        return userAuthService.resetPassword(request,httpServletRequest);
+        return authService.resetPassword(request,httpServletRequest);
     }
 
     /**
@@ -83,12 +83,12 @@ public class UserAuthController {
      */
     @PostMapping("/verify-login-token")
     public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request,HttpServletRequest httpServletRequest){
-        return userAuthService.verifyLoginToken(request,httpServletRequest);
+        return authService.verifyLoginToken(request,httpServletRequest);
     }
 
     @GetMapping("/test")
     public ResponseEntity<?> test(@RequestParam("key") String key){
-        return userAuthService.test(key);
+        return authService.test(key);
     }
 
 

@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * author: EatFan
  */
 @Service
-public class UserAuthServiceImpl implements UserAuthService {
+public class AuthServiceImpl implements AuthService {
     private final UserService userService;
 
     private final PasswordEncryptor passwordEncryptor;
@@ -35,11 +35,11 @@ public class UserAuthServiceImpl implements UserAuthService {
     private final UserActionLogService userActionLogService;
 
     @Autowired
-    public UserAuthServiceImpl(UserService userService,
-                               PasswordEncryptor passwordEncryptor,
-                               EmailService emailService,
-                               RedisService redisService,
-                               UserActionLogService userActionLogService) {
+    public AuthServiceImpl(UserService userService,
+                           PasswordEncryptor passwordEncryptor,
+                           EmailService emailService,
+                           RedisService redisService,
+                           UserActionLogService userActionLogService) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;

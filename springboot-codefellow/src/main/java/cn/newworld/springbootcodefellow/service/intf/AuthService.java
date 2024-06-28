@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
  * 用户Auth 验证业务接口类
  * author: EatFan
  */
-public interface UserAuthService {
+public interface AuthService {
     ResponseEntity<?> registerNewUser(RegisterRequest registerRequest, HttpServletRequest httpServletRequest);
 
     String activateAccount(String uuid, String account, String username, HttpServletRequest httpServletRequest);

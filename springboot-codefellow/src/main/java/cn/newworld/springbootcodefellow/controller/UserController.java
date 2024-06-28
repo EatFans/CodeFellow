@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 关于用户个人资料或配置的修改的接口控制器
+ * 用户控制器类
  * author: EatFan
  */
 @RestController
-@RequestMapping("/profile")
-public class UserProfileController {
+@RequestMapping("/user")
+public class UserController {
 
-    public UserProfileController(){
+    public UserController(){
 
     }
 
