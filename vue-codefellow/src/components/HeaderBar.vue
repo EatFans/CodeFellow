@@ -51,7 +51,7 @@
           <p>{{user.name}}</p>
         </button>
 
-        <button  class="message-button">
+        <button  class="message-button" @click="test()">
           <i class='bx bxs-envelope' ></i>
         </button>
         <button class="star-button">
@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import authAPI from '@/api/AuthAPI';
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
 import LoginDialog from "@/components/LoginDialog.vue";
@@ -85,10 +86,15 @@ export default {
 
       dialogVisible: false, // 是否显示验证弹窗
 
-      isLogin: true,  // 是否登录
+      isLogin: false,  // 是否登录
       user: {
         name: "EatFan",
         avatar: "https://avatars.githubusercontent.com/u/122099628?v=4"
+      },
+
+      // 验证登录令牌数据
+      verifyLoginTokenData: {
+        token: ''
       }
     }
   },
@@ -96,22 +102,21 @@ export default {
     // 监听窗口大小变化
     window.addEventListener('resize', this.updateScreenWidth);
 
-    // 获取存在本地token
-    const token = localStorage.getItem('token');
-    // 检查本地token是否为空
-    if (token != null){
-      // TODO: 发送验证信息验证token是否有效
-      // 如果token有效就标识用户是保持登录状态
-      // 获取用户数据；头像、名称、
-    } else{
-      this.isLogin = false;
-    }
+    this.verifyLoginToken();  // 验证本地token，如果验证完毕就将isLogin设置为true，否将isLogin设置为false
   },
   destroyed() {
     // 移除窗口大小变化监听器
     window.removeEventListener('resize', this.updateScreenWidth);
   },
   methods: {
+    test(){
+      localStorage.removeItem('token');
+      console.log('已经移除存在localStorage中的token')
+      setTimeout(() => {
+        console.log('刷新页面中...');
+        this.$router.go(0);
+      }, 2000);
+    },
     updateScreenWidth() {
       this.screenWidth = window.innerWidth;
     },
@@ -133,7 +138,9 @@ export default {
     onMenuClick(){
       this.isShowLeftNav = !this.isShowLeftNav;
     },
-
+    /**
+     * 切换搜索下拉框容器元素显示状态
+     */
     toggleSearchDropContentElement() {
       this.isShowSearchDropdownContent = !this.isShowSearchDropdownContent; // 切换元素显示状态
 
@@ -142,6 +149,41 @@ export default {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts[1].split(';').shift();
+    },
+    /**
+     * 验证是否登录
+     */
+    async verifyLoginToken(){
+      // 获取存在本地token
+      const token = localStorage.getItem('token');
+      this.verifyLoginTokenData.token = token;
+      // 检查本地token是否为空
+      if (token != null){
+        try {
+          const response = await authAPI.verifyLoginToken(this.verifyLoginTokenData);
+        
+          const status = response.data.status;
+          const message = response.data.message;
+          const data = response.data.data;
+
+          if (status == 'success'){
+            this.isLogin = true;
+            console.log(message);
+          }
+          if (status == 'error'){
+            this.isLogin = false;
+            console.log(message);
+          }
+
+        } catch (error) {
+          console.error("token验证失败！"+error);
+        }
+
+      } else{
+        this.isLogin = false;
+        console.log("本地没有token，未登录！");
+      }
+      
     }
 
 
