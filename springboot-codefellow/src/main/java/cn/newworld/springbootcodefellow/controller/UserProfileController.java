@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,5 +16,7 @@ public class UserProfileController {
 
     }
 
-
+    public ResponseEntity<?> getUserProfile(){
+        return null;
+    }
 }

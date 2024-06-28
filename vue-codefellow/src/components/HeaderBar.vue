@@ -88,8 +88,8 @@ export default {
 
       isLogin: false,  // 是否登录
       user: {
-        name: "EatFan",
-        avatar: "https://avatars.githubusercontent.com/u/122099628?v=4"
+        name: '',
+        avatar: 'https://avatars.githubusercontent.com/u/122099628?v=4'
       },
 
       // 验证登录令牌数据
@@ -103,6 +103,7 @@ export default {
     window.addEventListener('resize', this.updateScreenWidth);
 
     this.verifyLoginToken();  // 验证本地token，如果验证完毕就将isLogin设置为true，否将isLogin设置为false
+    this.initData();  // 初始化组件数据，然后方便进行页面渲染
   },
   destroyed() {
     // 移除窗口大小变化监听器
@@ -182,8 +183,14 @@ export default {
       } else{
         this.isLogin = false;
         console.log("本地没有token，未登录！");
-      }
-      
+      } 
+    },
+
+    /**
+     * 初始化组件数据
+     */
+    initData(){
+      // 设置用户信息名字
     }
 
 

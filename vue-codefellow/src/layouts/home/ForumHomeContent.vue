@@ -95,7 +95,7 @@ export default {
   height: auto;
   max-width: 1200px;
   margin: 60px auto 100px;
-  //background: #00bd7e;
+  /* //background: #00bd7e; */
 }
 
 /* 论坛主页主体头部样式 */
@@ -152,11 +152,11 @@ export default {
 
 /* 主体侧边栏容器样式 */
 .body-sidebar {
-  //display: none;
+  /* //display: none; */
 
   width: 250px;
   margin-left: 15px;
-  //background: #00bd7e;
+  /* //background: #00bd7e; */
   right: 0;
   transition: all 0.3s ease; /* 添加过渡效果 */
 }

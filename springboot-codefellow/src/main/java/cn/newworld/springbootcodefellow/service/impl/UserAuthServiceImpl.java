@@ -31,7 +31,6 @@ public class UserAuthServiceImpl implements UserAuthService {
 
     private final RedisService redisService;
 
-    private final TokenEncryptor tokenEncryptor;
 
     private final UserActionLogService userActionLogService;
 
@@ -40,13 +39,11 @@ public class UserAuthServiceImpl implements UserAuthService {
                                PasswordEncryptor passwordEncryptor,
                                EmailService emailService,
                                RedisService redisService,
-                               TokenEncryptor tokenEncryptor,
                                UserActionLogService userActionLogService) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;
         this.redisService = redisService;
-        this.tokenEncryptor = tokenEncryptor;
         this.userActionLogService = userActionLogService;
     }
 
@@ -173,11 +170,12 @@ public class UserAuthServiceImpl implements UserAuthService {
         }
 
         // 生成会话令牌（token）
-        String token = tokenEncryptor.generateToken(user.getUuid());
+        String token = TokenEncryptor.generateToken(user.getUuid());
+
         // 根据 rememberMe 决定令牌有效时间
         if (loginRequest.getRememberMe()){
             redisService.set(user.getUuid(),token,14, TimeUnit.DAYS);
-            userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间14天","Success",httpServletRequest);
+            userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间14天"+TokenEncryptor.decryptToken(token),"Success",httpServletRequest);
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！",new TokenResponse(token,14,TimeUnit.DAYS)));
         } else {
             redisService.set(user.getUuid(),token,12,TimeUnit.HOURS);
@@ -288,9 +286,7 @@ public class UserAuthServiceImpl implements UserAuthService {
 
     @Override
     public ResponseEntity<?> test(String key) {
-        if (!redisService.exists(key))
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"key："+key+" 不存在redis中"));
-        Object value = redisService.get(key);
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"这个key的value值为："+value));
+        String uuid = TokenEncryptor.decryptToken(key);
+        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"token解密，原uuid为："+uuid));
     }
 }

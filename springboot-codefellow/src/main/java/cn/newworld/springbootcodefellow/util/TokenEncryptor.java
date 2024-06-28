@@ -1,9 +1,10 @@
 package cn.newworld.springbootcodefellow.util;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
 
 /**
  * 令牌加密器，用于加密和解密令牌。
@@ -11,40 +12,55 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class TokenEncryptor {
-    @Value("${token.encryption.key}")
-    private String TOKEN_ENCRYPTION_KEY;
-
-    private final PasswordEncoder passwordEncoder;
-
-    /**
-     * 构造方法，初始化BCryptPasswordEncoder实例。
-     * BCryptPasswordEncoder是Spring Security提供的用于加密密码的实现类，
-     * 它使用了强哈希函数BCrypt来保证令牌的安全性。
-     */
-    public TokenEncryptor() {
-        this.passwordEncoder = new BCryptPasswordEncoder();
-    }
+    // 令牌的密钥
+    private final static String TOKEN_ENCRYPTION_KEY = "I3anv9B12Y6tGd0T";
 
     /**
      * 将uuid进行加密，加密成为token。
      *
-     * @param uuid 原始密码，即用户输入的未加密的密码。
+     * @param uuid 用户uuid。
      * @return 加密后的token。
      */
-    public String generateToken(String uuid) {
-        String string = TOKEN_ENCRYPTION_KEY + uuid;
-        return passwordEncoder.encode(string);
+    public static String generateToken(String uuid) {
+        try {
+            // 将密钥转换为AES密钥规范
+            SecretKeySpec secretKey = new SecretKeySpec(TOKEN_ENCRYPTION_KEY.getBytes(), "AES");
+
+            // 获取AES加密实例，使用ECB模式和PKCS5填充
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+
+            // 初始化加密器，指定加密模式和密钥
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+            // 执行加密操作，并将结果转换为Base64编码的字符串
+            return Base64.getEncoder().encodeToString(cipher.doFinal(uuid.getBytes("UTF-8")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
-     * 验证uuid和加密后的token是否匹配。
+     * 解密方法，使用AES算法解密给定的令牌字符串。
      *
-     * @param uuid 用户uuid
-     * @param token token令牌。
-     * @return 如果匹配返回true，否则返回false。
+     * @param strToDecrypt 要解密的Base64编码的令牌字符串
+     * @return 解密后的原始UUID字符串
      */
-    public boolean matches(String uuid, String token) {
-        String string = TOKEN_ENCRYPTION_KEY + uuid;
-        return passwordEncoder.matches(string, token);
+    public static String decryptToken(String strToDecrypt) {
+        try {
+            // 将密钥转换为AES密钥规范
+            SecretKeySpec secretKey = new SecretKeySpec(TOKEN_ENCRYPTION_KEY.getBytes(), "AES");
+            // 获取AES解密实例，使用ECB模式和PKCS5填充
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            // 初始化解密器，指定解密模式和密钥
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            // 执行解密操作，并将结果转换为原始UUID字节数组
+            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(strToDecrypt));
+            // 将解密后的字节数组转换为字符串
+            return new String(decryptedBytes, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
