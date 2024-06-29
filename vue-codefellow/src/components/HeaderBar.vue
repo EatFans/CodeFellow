@@ -89,7 +89,7 @@ export default {
       isLogin: false,  // 是否登录
       user: {
         name: '',
-        avatar: 'https://avatars.githubusercontent.com/u/122099628?v=4'
+        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s'
       },
 
       // 验证登录令牌数据

@@ -34,7 +34,7 @@ export default {
         {
           title: "示例公告帖子1",
           labels: ["公告"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
+          postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
           postReadme: "这是一个测试的公告帖子，我也不知道写什么，所以我就随便写写写写写写写写写.....................",
           postLikeAmount: 999,
@@ -45,7 +45,7 @@ export default {
         {
           title: "示例公告帖子2",
           labels: ["公告"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
+          postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
           postReadme: "这是一个测试的公告帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
           postLikeAmount: 999,
@@ -59,7 +59,7 @@ export default {
         {
           title: "示例普通帖子1",
           labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
+          postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
           postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
           postLikeAmount: 999,
@@ -70,7 +70,7 @@ export default {
         {
           title: "示例普通帖子2",
           labels: ["原创","Java"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
+          postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
           postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
           postLikeAmount: 999,
