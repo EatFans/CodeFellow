@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class UserProfile {
     private int profileId;  // 资料id
-    private String UserUuid; // 用户uuid
+    private String userUuid; // 用户uuid
     private String username; // 用户名
     private String avatarUrl;   // 用户头像url
     private String gender; // 性别

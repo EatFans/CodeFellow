@@ -92,6 +92,10 @@
                 <p v-show="rulesErrorMessageVisible">请同意后进行注册！！！</p>
               </div>
             </div>
+            
+            <div class="register-error-message">
+              <p v-show="error.register">{{ error.register }}</p>
+            </div>
 
             <div class="register-form-button-item">
               <input type="submit" value="注册" >
@@ -151,6 +155,7 @@ export default {
         email: '',
         phoneNumber: '',
         problemVerification: false,
+        register: ''
       },
       // 请求响应数据对象
       response: {
@@ -271,6 +276,17 @@ export default {
 </script>
 
 <style scoped>
+.register-error-message {
+  margin-top: 5px;
+}
+
+.register-error-message p {
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  color: red;
+}
+
 .register-success-content {
   display: flex;
   justify-content: center;

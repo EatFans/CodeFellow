@@ -17,4 +17,5 @@ public class RegisterErrorData {
     private String email;
     private String phoneNumber;
     private boolean problemVerification;
+    private String register;
 }

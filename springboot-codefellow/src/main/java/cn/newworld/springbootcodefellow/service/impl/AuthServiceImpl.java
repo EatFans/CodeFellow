@@ -5,6 +5,7 @@ import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.constant.enums.UserAction;
 import cn.newworld.springbootcodefellow.model.dto.*;
 import cn.newworld.springbootcodefellow.model.entity.User;
+import cn.newworld.springbootcodefellow.model.entity.UserProfile;
 import cn.newworld.springbootcodefellow.service.intf.*;
 import cn.newworld.springbootcodefellow.util.PasswordEncryptor;
 import cn.newworld.springbootcodefellow.util.TokenEncryptor;
@@ -31,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final RedisService redisService;
 
-
+    private final UserProfileService userProfileService;
     private final UserActionLogService userActionLogService;
 
     @Autowired
@@ -39,11 +40,13 @@ public class AuthServiceImpl implements AuthService {
                            PasswordEncryptor passwordEncryptor,
                            EmailService emailService,
                            RedisService redisService,
+                           UserProfileService userProfileService,
                            UserActionLogService userActionLogService) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;
         this.redisService = redisService;
+        this.userProfileService = userProfileService;
         this.userActionLogService = userActionLogService;
     }
 
@@ -75,12 +78,34 @@ public class AuthServiceImpl implements AuthService {
 
         User user = createNewUser(registerRequest);
         if (!userService.create(user)){
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法将数据保存进数据库中...",registerErrorData));
+            registerErrorData.setRegister("注册失败！原因：无法创建用户！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法创建用户！",registerErrorData));
+        }
+        // 创建一个新的用户资料保存到数据中
+        UserProfile userProfile = createNewUserProfile(user);
+        if (!userProfileService.create(userProfile)){
+            registerErrorData.setRegister("注册失败！原因：无法创建用户资料！");
+            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败！原因：无法创建用户资料！",registerErrorData));
         }
 
         emailService.sendVerifyEmail(user);
         userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(), UserAction.REGISTER,"用户注册完成，等待邮箱验证激活账号","Success",httpServletRequest);
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"用户注册成功！我们将发送一封邮件到您的邮箱进行账号验证！验证完毕即可登录！",registerErrorData));
+    }
+
+    /**
+     * 创建一个新的用户资料对象
+     * @param user 需要创建用户资料的用户
+     * @return 返回一个创建初始化完成的UserProfile对象
+     */
+    private UserProfile createNewUserProfile(User user){
+        UserProfile userProfile = new UserProfile();
+        userProfile.setUserUuid(user.getUuid());
+        userProfile.setUsername(user.getUsername());
+        // 设置默认头像
+        userProfile.setAvatarUrl("https://github.com/EatFans/EatFans/assets/122099628/6cb303da-9e72-4f57-a242-736c51926b13");
+        userProfile.setGender("未知");
+        return userProfile;
     }
 
     /**

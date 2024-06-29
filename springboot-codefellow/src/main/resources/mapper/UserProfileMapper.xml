@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.newworld.springbootcodefellow.mapper.UserProfileMapper">
+
+    <!-- 插入一条用户资料数据到user_profile数据表中 -->
+    <insert id="insertUserProfile" parameterType="cn.newworld.springbootcodefellow.model.entity.UserProfile">
+        INSERT INTO user_profile
+            (userUuid, username,avatarUrl,gender)
+        VALUES
+            (#{userUuid},#{username},#{avatarUrl},#{gender})
+    </insert>
+
+</mapper>
