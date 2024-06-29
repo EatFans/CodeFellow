@@ -69,7 +69,7 @@
             </div>
             <div class="register-form-input-item">
               <label for="register-referrer">推荐人 </label>
-              <input type="text" id="register-referrer" name="referrer" v-model="registerData.referrer">
+              <input type="text" id="register-referrer" name="referrer" v-model="registerData.recommender">
               <p class="item-readme">你的推荐人的用户名称。（选填）</p>
             </div>
             <div class="register-form-input-item" :class="{ 'input-error': error.problemVerification }">
