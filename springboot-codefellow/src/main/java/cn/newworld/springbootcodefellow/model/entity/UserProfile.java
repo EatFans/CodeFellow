@@ -17,5 +17,9 @@ public class UserProfile {
     private int level;  // 账号等级
     private String officialCertification; // 官方认证信息
     private String identity; // 用户身份
-    // TODO:
+    private String bio;  // 个人介绍
+    private String company;  // 公司
+    private String location; // 地点
+    private String email;   // 邮箱
+    private String link;  // 第三方链接
 }
