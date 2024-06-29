@@ -16,6 +16,10 @@ public interface UserProfileMapper {
      */
     int insertUserProfile(UserProfile userProfile);
 
-
+    /**
+     * 通过uuid来找用户资料
+     * @param uuid 用户uuid
+     * @return 如果查询成功就返回该用户资料对象，否则就返回null
+     */
     UserProfile findUserProfileByUuid(String uuid);
 }

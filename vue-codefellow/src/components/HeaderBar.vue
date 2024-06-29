@@ -47,8 +47,8 @@
       <!-- 用户已经登录 -->
       <div v-else class="login-user-box">
         <button class="user-button">
-          <img :src="user.avatar" alt="">
-          <p>{{user.name}}</p>
+          <img :src="userProfile.avatarUrl" alt="">
+          <p>{{userProfile.username}}</p>
         </button>
 
         <button  class="message-button" @click="test()">
@@ -70,6 +70,7 @@
 
 <script>
 import authAPI from '@/api/AuthAPI';
+import userAPI from '@/api/UserAPI';
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
 import LoginDialog from "@/components/LoginDialog.vue";
@@ -88,15 +89,36 @@ export default {
 
       isLogin: false,  // 是否登录
       user: {
-        name: '',
-        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s'
+        name: '饭',
+        avatar: 'https://github.com/EatFans/EatFans/assets/122099628/6cb303da-9e72-4f57-a242-736c51926b13'
       },
 
       // 验证登录令牌数据
       verifyLoginTokenData: {
         token: ''
+      },
+
+      // 用户资料
+      userProfile: {
+        profileId: null,
+        userUuid: null,
+        username: null,
+        avatarUrl: null,
+        gender: null,
+        experience: null,
+        level: null,
+        officialCertification: null,
+        identity: null,
+        bio: null,
+        company: null,
+        location: null,
+        email: null,
+        link: null
       }
     }
+  },
+  beforeCreate(){
+    
   },
   created() {
     // 监听窗口大小变化
@@ -189,8 +211,30 @@ export default {
     /**
      * 初始化组件数据
      */
-    initData(){
-      // 设置用户信息名字
+    async initData(){
+      // 通过token来发送请求获取用户资料
+      if (this.verifyLoginTokenData != null){
+        try {
+          const response = await userAPI.getUserProfile(this.verifyLoginTokenData);
+
+          const status = response.data.status;
+          const message = response.data.message;
+          const data = response.data.data;
+
+          if (status == 'success'){
+            this.userProfile = data;
+            console.log(message);
+          }
+          if (status == 'error'){
+            console.log(message);
+          }
+        } catch (error) {
+          console.error('数据初始化失败！原因：'+error);
+        }
+      }
+
+      // console.log('数据已经初始化完毕！');
+      console.log(this.userProfile);
     }
 
 
@@ -387,7 +431,7 @@ export default {
 
   justify-content: flex-start;
 
-  //background: #00bd7e;
+  /* //background: #00bd7e; */
 }
 
 .user-button {
@@ -408,6 +452,7 @@ export default {
   border-radius: 5px;
   width: 25px;
   height: 25px;
+  margin-right: 2px;
 }
 
 .user-button p {
@@ -427,6 +472,7 @@ export default {
   flex: 0 0 auto; /* 不要伸缩，固定宽度 */
   width: calc((200px - 80px - 15px - 2 * 10px) / 3); /* 计算剩余按钮的宽度 */
   margin-right: 10px; /* 设置按钮之间的间隔 */
+  margin-top: 8px;
   border: none;
   background: transparent;
   color: #bcd5f9;

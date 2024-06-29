@@ -1,11 +1,9 @@
 package cn.newworld.springbootcodefellow.controller;
 
+import cn.newworld.springbootcodefellow.model.dto.LoginTokenRequest;
 import cn.newworld.springbootcodefellow.service.intf.UserControllerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户控制器类
@@ -23,8 +21,8 @@ public class UserController {
      * 获取用户资料api接口
      * @return 返回响应
      */
-    @GetMapping("/getUserProfile")
-    public ResponseEntity<?> getUserProfile(){
-        return userControllerService.getUserProfile();
+    @PostMapping("/getUserProfile")
+    public ResponseEntity<?> getUserProfile(@RequestBody LoginTokenRequest loginTokenRequest){
+        return userControllerService.getUserProfile(loginTokenRequest);
     }
 }

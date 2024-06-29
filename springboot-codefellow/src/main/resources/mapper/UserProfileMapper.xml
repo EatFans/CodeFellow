@@ -11,4 +11,8 @@
             (#{userUuid},#{username},#{avatarUrl},#{gender})
     </insert>
 
+    <!-- 通过用户uuid来查询用户资料 -->
+    <select id="findUserProfileByUuid" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.UserProfile">
+        SELECT * FROM user_profile WHERE userUuid = #{uuid}
+    </select>
 </mapper>

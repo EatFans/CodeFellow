@@ -199,11 +199,11 @@ public class AuthControllerServiceImpl implements AuthControllerService {
 
         // 根据 rememberMe 决定令牌有效时间
         if (loginRequest.getRememberMe()){
-            redisService.set(user.getUuid(),token,14, TimeUnit.DAYS);
+            redisService.setToken(user.getUuid(),token,14,TimeUnit.DAYS);
             userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间14天"+TokenEncryptor.decryptToken(token),"Success",httpServletRequest);
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！",new TokenResponse(token,14,TimeUnit.DAYS)));
         } else {
-            redisService.set(user.getUuid(),token,12,TimeUnit.HOURS);
+            redisService.setToken(user.getUuid(),token,12,TimeUnit.HOURS);
             userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(),UserAction.LOGIN,"用户正在登录，登录令牌有效时间12小时","Success",httpServletRequest);
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录成功！",new TokenResponse(token,12,TimeUnit.HOURS)));
         }
@@ -220,7 +220,7 @@ public class AuthControllerServiceImpl implements AuthControllerService {
         String email = request.getEmail();
         String phoneNumber = request.getPhoneNumber();
 
-        String redisKey = "forget-password~" + account;
+        String redisKey = "forget-password:" + account;
         // 检查用户是否在验证码未失效前请求过忘记密码接口，避免重复发送验证码
         if (redisService.exists(redisKey))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR, "验证码已发送，请稍后再试！"));
@@ -295,18 +295,9 @@ public class AuthControllerServiceImpl implements AuthControllerService {
         String token = request.getToken();
 
         // 验证token是否已经过期
-        if (!isValidToken(token))
+        if (!redisService.tokenExists(token))
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录令牌已经失效"));
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录令牌验证成功！"));
-    }
-
-    /**
-     * 检查token是否有效
-     * @param token 登录令牌
-     * @return 如果token有效就返回true，否则就返回false
-     */
-    private boolean isValidToken(String token){
-        return redisService.valueExists(token);
     }
 
     @Override

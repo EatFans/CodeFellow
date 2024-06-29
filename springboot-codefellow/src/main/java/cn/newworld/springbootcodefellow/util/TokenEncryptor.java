@@ -43,10 +43,10 @@ public class TokenEncryptor {
     /**
      * 解密方法，使用AES算法解密给定的令牌字符串。
      *
-     * @param strToDecrypt 要解密的Base64编码的令牌字符串
+     * @param token 要解密的Base64编码的令牌字符串
      * @return 解密后的原始UUID字符串
      */
-    public static String decryptToken(String strToDecrypt) {
+    public static String decryptToken(String token) {
         try {
             // 将密钥转换为AES密钥规范
             SecretKeySpec secretKey = new SecretKeySpec(TOKEN_ENCRYPTION_KEY.getBytes(), "AES");
@@ -55,7 +55,7 @@ public class TokenEncryptor {
             // 初始化解密器，指定解密模式和密钥
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             // 执行解密操作，并将结果转换为原始UUID字节数组
-            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(strToDecrypt));
+            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(token));
             // 将解密后的字节数组转换为字符串
             return new String(decryptedBytes, "UTF-8");
         } catch (Exception e) {

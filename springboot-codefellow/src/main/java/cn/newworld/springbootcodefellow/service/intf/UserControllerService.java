@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.service.intf;
 
+import cn.newworld.springbootcodefellow.model.dto.LoginTokenRequest;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -7,5 +8,5 @@ import org.springframework.http.ResponseEntity;
  * author: EatFan
  */
 public interface UserControllerService {
-    ResponseEntity<?> getUserProfile();
+    ResponseEntity<?> getUserProfile(LoginTokenRequest loginTokenRequest);
 }

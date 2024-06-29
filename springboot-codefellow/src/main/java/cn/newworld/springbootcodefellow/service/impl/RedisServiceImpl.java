@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class RedisServiceImpl implements RedisService {
+    private static final String TOKEN_PREFIX = "token:";
     private final RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
@@ -118,5 +119,27 @@ public class RedisServiceImpl implements RedisService {
     public boolean valueExists(Object value) {
         String key = getKey(value);
         return key != null;
+    }
+
+    /**
+     * 专用于存储 token 的方法
+     * @param userUuid 用户UUID
+     * @param token 登录令牌
+     * @param timeout 过期时间
+     * @param unit 时间单位
+     */
+    @Override
+    public void setToken(String userUuid, String token, long timeout, TimeUnit unit) {
+        set(TOKEN_PREFIX + userUuid, token, timeout, unit);
+    }
+
+    /**
+     * 专用于检查 token 是否存在的方法
+     * @param token 登录令牌
+     * @return 如果 token 存在则返回true，否则返回false
+     */
+    @Override
+    public boolean tokenExists(String token) {
+        return valueExists(token);
     }
 }

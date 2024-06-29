@@ -4,7 +4,7 @@ import router from "@/router/index.js";
 import store from "@/store/index.js";
 import axios from 'axios';
 import authAPI from "@/api/AuthAPI.js";
-
+import userAPI from './api/UserAPI';
 
 const app = createApp(App);
 
@@ -12,6 +12,7 @@ const app = createApp(App);
 
 app.config.globalProperties.$axios = axios;
 app.config.globalProperties.$authAPI = authAPI;
+app.config.globalProperties.$userAPI = userAPI;
 
 app.use(router);
 app.use(store);

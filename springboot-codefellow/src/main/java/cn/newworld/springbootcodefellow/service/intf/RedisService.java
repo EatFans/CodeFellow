@@ -67,4 +67,20 @@ public interface RedisService {
      * @return 如果值存在则返回true，否则返回false
      */
     boolean valueExists(Object value);
+
+    /**
+     * 专用于存储 token 的方法
+     * @param userUuid 用户UUID
+     * @param token 登录令牌
+     * @param timeout 过期时间
+     * @param unit 时间单位
+     */
+    void setToken(String userUuid, String token, long timeout, TimeUnit unit);
+
+    /**
+     * 专用于检查 token 是否存在的方法
+     * @param token 登录令牌
+     * @return 如果 token 存在则返回true，否则返回false
+     */
+    boolean tokenExists(String token);
 }

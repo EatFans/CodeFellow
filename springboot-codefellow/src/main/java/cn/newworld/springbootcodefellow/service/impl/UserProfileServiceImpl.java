@@ -36,4 +36,14 @@ public class UserProfileServiceImpl implements UserProfileService {
             return false;
         }
     }
+
+    /**
+     * 通过uuid来获取用户资料
+     * @param uuid 用户uuid
+     * @return 如果存在用户资料就返回，否则就返回null
+     */
+    @Override
+    public UserProfile getUserProfileByUuid(String uuid) {
+        return userProfileMapper.findUserProfileByUuid(uuid);
+    }
 }
