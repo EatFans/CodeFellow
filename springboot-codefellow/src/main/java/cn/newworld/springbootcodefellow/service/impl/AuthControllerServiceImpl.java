@@ -19,11 +19,11 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 用户Auth 验证业务实现类
+ * Auth 控制器主要逻辑业务实现类
  * author: EatFan
  */
 @Service
-public class AuthServiceImpl implements AuthService {
+public class AuthControllerServiceImpl implements AuthControllerService {
     private final UserService userService;
 
     private final PasswordEncryptor passwordEncryptor;
@@ -36,12 +36,12 @@ public class AuthServiceImpl implements AuthService {
     private final UserActionLogService userActionLogService;
 
     @Autowired
-    public AuthServiceImpl(UserService userService,
-                           PasswordEncryptor passwordEncryptor,
-                           EmailService emailService,
-                           RedisService redisService,
-                           UserProfileService userProfileService,
-                           UserActionLogService userActionLogService) {
+    public AuthControllerServiceImpl(UserService userService,
+                                     PasswordEncryptor passwordEncryptor,
+                                     EmailService emailService,
+                                     RedisService redisService,
+                                     UserProfileService userProfileService,
+                                     UserActionLogService userActionLogService) {
         this.userService = userService;
         this.passwordEncryptor = passwordEncryptor;
         this.emailService = emailService;

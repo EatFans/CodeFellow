@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 用户资料数据映射接口
+ * author: EatFan
  */
 @Mapper
 public interface UserProfileMapper {
@@ -14,4 +15,7 @@ public interface UserProfileMapper {
      * @return 如果插入成功就返回1，否则就小于1
      */
     int insertUserProfile(UserProfile userProfile);
+
+
+    UserProfile findUserProfileByUuid(String uuid);
 }
