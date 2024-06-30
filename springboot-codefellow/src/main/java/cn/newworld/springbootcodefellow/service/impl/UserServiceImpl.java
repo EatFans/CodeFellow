@@ -152,4 +152,16 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.findUserByPhoneNumber(phoneNumber);
         return user != null;
     }
+
+    /**
+     * 通过uuid、账号、用户名来获取该用户
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 如果获取到就返回user对象，否则就返回null
+     */
+    @Override
+    public User getUserByUUIDAndAccountAndUsername(String uuid, String account, String username) {
+        return userMapper.findUserByUuidAndAccountAndUsername(uuid,account,username);
+    }
 }

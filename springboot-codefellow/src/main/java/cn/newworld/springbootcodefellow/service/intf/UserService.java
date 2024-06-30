@@ -80,4 +80,13 @@ public interface UserService {
      * @return 如果存在就返回true，否则就返回false
      */
     boolean isPhoneNumberExists(String phoneNumber);
+
+    /**
+     * 通过uuid、账号、用户名来获取该用户
+     * @param uuid 用户uuid
+     * @param account 用户账号
+     * @param username 用户名
+     * @return 如果找用户就返回用户对象，否则就返回null
+     */
+    User getUserByUUIDAndAccountAndUsername(String uuid, String account, String username);
 }

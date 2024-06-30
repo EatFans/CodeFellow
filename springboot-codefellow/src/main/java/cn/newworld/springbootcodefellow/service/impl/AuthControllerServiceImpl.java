@@ -81,12 +81,7 @@ public class AuthControllerServiceImpl implements AuthControllerService {
             registerErrorData.setRegister("注册失败！原因：无法创建用户！");
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败! 原因：无法创建用户！",registerErrorData));
         }
-        // 创建一个新的用户资料保存到数据中
-        UserProfile userProfile = createNewUserProfile(user);
-        if (!userProfileService.create(userProfile)){
-            registerErrorData.setRegister("注册失败！原因：无法创建用户资料！");
-            return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"注册失败！原因：无法创建用户资料！",registerErrorData));
-        }
+
 
         emailService.sendVerifyEmail(user);
         userActionLogService.saveUserActionLog(user.getUuid(),user.getUsername(), UserAction.REGISTER,"用户注册完成，等待邮箱验证激活账号","Success",httpServletRequest);
@@ -139,8 +134,15 @@ public class AuthControllerServiceImpl implements AuthControllerService {
     @Override
     public String activateAccount(String uuid, String account, String username, HttpServletRequest httpServletRequest) {
         boolean isVerified = userService.verifyUserAccount(uuid, account, username);
+
         if (isVerified){
             userActionLogService.saveUserActionLog(uuid,username,UserAction.ACTIVATE_ACCOUNT,"用户已经成功在邮箱中验证激活了账号！","Success",httpServletRequest);
+            User user = userService.getUserByUUIDAndAccountAndUsername(uuid, account, username);
+            // 创建一个新的用户资料保存到数据中
+            UserProfile userProfile = createNewUserProfile(user);
+            if (!userProfileService.create(userProfile)){
+                return "账号验证激活失败！原因：无法创建用户资料！";
+            }
             return "账号验证激活成功！";
         } else {
             userActionLogService.saveUserActionLog(uuid,username,UserAction.ACTIVATE_ACCOUNT,"用户在验证激活账号时候失败！","Error",httpServletRequest);

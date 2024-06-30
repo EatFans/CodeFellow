@@ -347,7 +347,7 @@ export default {
 
 .user-button {
   margin-left: 0;
-  width: 40px;
+  min-width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -357,6 +357,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   text-decoration: none;
+
 }
 
 .user-button img {
@@ -383,7 +384,7 @@ export default {
   flex: 0 0 auto; /* 不要伸缩，固定宽度 */
   width: calc((200px - 80px - 15px - 2 * 10px) / 3); /* 计算剩余按钮的宽度 */
   margin-right: 10px; /* 设置按钮之间的间隔 */
-  margin-top: 8px;
+  margin-top: 6px;
   border: none;
   background: transparent;
   color: #bcd5f9;
