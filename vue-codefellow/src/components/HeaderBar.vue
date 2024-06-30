@@ -74,6 +74,7 @@ import userAPI from '@/api/UserAPI';
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
 import LoginDialog from "@/components/LoginDialog.vue";
+import { mapState } from 'vuex';
 export default {
   components:{
     LoginDialog,
@@ -87,45 +88,19 @@ export default {
 
       dialogVisible: false, // 是否显示验证弹窗
 
-      isLogin: false,  // 是否登录
-      user: {
-        name: '饭',
-        avatar: 'https://github.com/EatFans/EatFans/assets/122099628/6cb303da-9e72-4f57-a242-736c51926b13'
-      },
-
-      // 验证登录令牌数据
-      verifyLoginTokenData: {
-        token: ''
-      },
-
-      // 用户资料
-      userProfile: {
-        profileId: null,
-        userUuid: null,
-        username: null,
-        avatarUrl: null,
-        gender: null,
-        experience: null,
-        level: null,
-        officialCertification: null,
-        identity: null,
-        bio: null,
-        company: null,
-        location: null,
-        email: null,
-        link: null
-      }
     }
   },
-  beforeCreate(){
-    
+  computed: {
+    ...mapState('user', {
+      userProfile: state => state.userProfile,
+      isLogin: state => state.isLogin,
+      token: state => state.token
+    })
   },
   created() {
     // 监听窗口大小变化
     window.addEventListener('resize', this.updateScreenWidth);
 
-    this.verifyLoginToken();  // 验证本地token，如果验证完毕就将isLogin设置为true，否将isLogin设置为false
-    this.initData();  // 初始化组件数据，然后方便进行页面渲染
   },
   destroyed() {
     // 移除窗口大小变化监听器
@@ -173,70 +148,6 @@ export default {
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts[1].split(';').shift();
     },
-    /**
-     * 验证是否登录
-     */
-    async verifyLoginToken(){
-      // 获取存在本地token
-      const token = localStorage.getItem('token');
-      this.verifyLoginTokenData.token = token;
-      // 检查本地token是否为空
-      if (token != null){
-        try {
-          const response = await authAPI.verifyLoginToken(this.verifyLoginTokenData);
-        
-          const status = response.data.status;
-          const message = response.data.message;
-          const data = response.data.data;
-
-          if (status == 'success'){
-            this.isLogin = true;
-            console.log(message);
-          }
-          if (status == 'error'){
-            this.isLogin = false;
-            console.log(message);
-          }
-
-        } catch (error) {
-          console.error("token验证失败！"+error);
-        }
-
-      } else{
-        this.isLogin = false;
-        console.log("本地没有token，未登录！");
-      } 
-    },
-
-    /**
-     * 初始化组件数据
-     */
-    async initData(){
-      // 通过token来发送请求获取用户资料
-      if (this.verifyLoginTokenData != null){
-        try {
-          const response = await userAPI.getUserProfile(this.verifyLoginTokenData);
-
-          const status = response.data.status;
-          const message = response.data.message;
-          const data = response.data.data;
-
-          if (status == 'success'){
-            this.userProfile = data;
-            console.log(message);
-          }
-          if (status == 'error'){
-            console.log(message);
-          }
-        } catch (error) {
-          console.error('数据初始化失败！原因：'+error);
-        }
-      }
-
-      // console.log('数据已经初始化完毕！');
-      console.log(this.userProfile);
-    }
-
 
   }
 }

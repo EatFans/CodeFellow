@@ -14,6 +14,19 @@ app.config.globalProperties.$axios = axios;
 app.config.globalProperties.$authAPI = authAPI;
 app.config.globalProperties.$userAPI = userAPI;
 
-app.use(router);
-app.use(store);
-app.mount('#app');
+// 初始化数据
+Promise.all([
+    store.dispatch('user/initializeUser'),  // 初始化 auth 模块
+    // 可以添加更多的初始化 action
+  ]).then(() => {
+    // 使用路由和 Vuex Store
+    app.use(router);
+    app.use(store);
+  
+    // 挂载 Vue 实例
+    app.mount('#app');
+  }).catch(error => {
+    console.error("初始化数据时发生错误: ", error);
+    
+
+  });
