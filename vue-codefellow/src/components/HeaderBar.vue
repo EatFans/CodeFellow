@@ -46,17 +46,24 @@
       </div>
       <!-- 用户已经登录 -->
       <div v-else class="login-user-box">
-        <button class="user-button">
+        <button class="user-button" @click="toggleUserDropDownMenuDisplay">
           <img :src="userProfile.avatarUrl" alt="">
           <p>{{userProfile.username}}</p>
         </button>
+        <!-- 用户资料小浮窗 -->
+        <div v-show="userDropDownMenuVisible" class="user-dropdown-menu">
+
+        </div>
 
         <button  class="message-button" @click="test()">
           <i class='bx bxs-envelope' ></i>
         </button>
+        <!-- 用户消息小浮窗 -->
+
         <button class="star-button">
           <i class='bx bxs-bookmark-star' ></i>
         </button>
+
         <button class="post-button">
           <i class='bx bxs-book-add' ></i>
         </button>
@@ -85,6 +92,8 @@ export default {
       screenWidth: window.innerWidth, // 初始屏幕宽度
 
       dialogVisible: false, // 是否显示验证弹窗
+
+      userDropDownMenuVisible: false  // 用户浮窗菜单显示标识
 
     }
   },
@@ -143,6 +152,12 @@ export default {
     toggleSearchDropContentElement() {
       this.isShowSearchDropdownContent = !this.isShowSearchDropdownContent; // 切换元素显示状态
 
+    },
+    /**
+     * 切换用户浮窗菜单显示
+     */
+    toggleUserDropDownMenuDisplay(){
+      this.userDropDownMenuVisible = !this.userDropDownMenuVisible;
     }
 
   }
@@ -364,7 +379,9 @@ export default {
 }
 
 .user-button p {
-  margin-left: 5px;
+  margin-top: 5px;
+  margin-left: 8px;
+  font-size: 12px;
 }
 
 
@@ -405,5 +422,31 @@ export default {
   color: #fff;
 }
 
+/* 用户资料小浮窗样式 */
+.user-dropdown-menu {
+  position: absolute;
+  top: 34px; /* 设置为user-button底部 */
+  right: 0;
+  width: 320px;
+  height: 400px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25), 0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+  padding: 10px;
+  z-index: 10;
+  animation: slideInFromTop 0.5s ease; /* 添加动画 */
+}
+
+/* 出场动画效果 */
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 </style>
