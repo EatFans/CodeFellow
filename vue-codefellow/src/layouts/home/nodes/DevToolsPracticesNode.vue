@@ -10,7 +10,7 @@
 
         <div class="node-list-button">
           <button @click="onShowNodeButtonClick">
-            <i :class="isShowNode ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
+            <i :class="node3Visible ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
           </button>
         </div>
       </div>
@@ -18,7 +18,7 @@
     </div>
 
     <!-- 节点展开后容器 -->
-    <div v-show="isShowNode" class="node-content">
+    <div v-show="node3Visible" class="node-content">
       <!-- 新闻资讯 -->
 
       <!-- 公告 -->
@@ -31,20 +31,23 @@
 
 <script>
 import "@/assets/theme.css"
+import {mapState} from "vuex";
 
 export default {
+  name: 'DevToolPracticesNode',
   data()  {
     return {
-      isShowNode: true
+      // isShowNode: true
     }
+  },
+  computed: {
+    ...mapState('settings',{
+      node3Visible: state => state.node3Visible
+    })
   },
   methods: {
     onShowNodeButtonClick(){
-      if (this.isShowNode){
-        this.isShowNode = false;
-      } else {
-        this.isShowNode = true;
-      }
+      this.$store.commit('settings/SET_NODE_3_VISIBLE',!this.node3Visible);
     }
   }
 }

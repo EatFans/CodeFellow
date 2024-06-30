@@ -9,7 +9,7 @@
       </button>
 
       <!-- 左侧导航栏 -->
-      <LeftNav v-show="isShowLeftNav && screenWidth > 1500" />
+      <LeftNav v-show="leftNavVisible && screenWidth > 1500" />
     </div>
 
     <!-- Logo -->
@@ -69,8 +69,6 @@
 </template>
 
 <script>
-import authAPI from '@/api/AuthAPI';
-import userAPI from '@/api/UserAPI';
 import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
 import LoginDialog from "@/components/LoginDialog.vue";
@@ -83,7 +81,7 @@ export default {
   data() {
     return {
       isShowSearchDropdownContent: false, // 控制搜索下拉框是否显示的变量
-      isShowLeftNav: true,  // 是否显示左侧导航栏
+      // isShowLeftNav: true,  // 是否显示左侧导航栏
       screenWidth: window.innerWidth, // 初始屏幕宽度
 
       dialogVisible: false, // 是否显示验证弹窗
@@ -95,6 +93,9 @@ export default {
       userProfile: state => state.userProfile,
       isLogin: state => state.isLogin,
       token: state => state.token
+    }),
+    ...mapState('settings',{
+      leftNavVisible: state => state.leftNavVisible,
     })
   },
   created() {
@@ -134,7 +135,7 @@ export default {
      * 当头部菜单被点击
      */
     onMenuClick(){
-      this.isShowLeftNav = !this.isShowLeftNav;
+      this.$store.commit('settings/SET_LEFT_NAV_VISIBLE',!this.leftNavVisible);
     },
     /**
      * 切换搜索下拉框容器元素显示状态
@@ -142,12 +143,7 @@ export default {
     toggleSearchDropContentElement() {
       this.isShowSearchDropdownContent = !this.isShowSearchDropdownContent; // 切换元素显示状态
 
-    },
-    getCookie(keyName){
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts[1].split(';').shift();
-    },
+    }
 
   }
 }

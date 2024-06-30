@@ -10,7 +10,7 @@
 
         <div class="node-list-button">
           <button @click="onShowNodeButtonClick">
-            <i :class="isShowNode ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
+            <i :class="node2Visible ? 'bx bx-chevron-up' : 'bx bx-chevron-down'"></i>
           </button>
         </div>
       </div>
@@ -18,7 +18,7 @@
     </div>
 
     <!-- 节点展开后容器 -->
-    <div v-show="isShowNode" class="node-content">
+    <div v-show="node2Visible" class="node-content">
       <!-- 新闻资讯 -->
 
       <!-- 公告 -->
@@ -31,20 +31,23 @@
 
 <script>
 import "@/assets/theme.css"
+import {mapState} from "vuex";
 
 export default {
+  name: 'ProgrammingTechnologiesNode',
   data()  {
     return {
-      isShowNode: true
+      // isShowNode: true
     }
+  },
+  computed: {
+    ...mapState('settings',{
+      node2Visible: state => state.node2Visible
+    })
   },
   methods: {
     onShowNodeButtonClick(){
-      if (this.isShowNode){
-        this.isShowNode = false;
-      } else {
-        this.isShowNode = true;
-      }
+      this.$store.commit('settings/SET_NODE_2_VISIBLE',!this.node2Visible);
     }
   }
 }

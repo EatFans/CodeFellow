@@ -16,8 +16,8 @@ app.config.globalProperties.$userAPI = userAPI;
 
 // 初始化数据
 Promise.all([
-    store.dispatch('user/initializeUser'),  // 初始化 auth 模块
-    // 可以添加更多的初始化 action
+    store.dispatch('user/initializeUser'),  // 初始化 user 状态模块
+
   ]).then(() => {
     // 使用路由和 Vuex Store
     app.use(router);
