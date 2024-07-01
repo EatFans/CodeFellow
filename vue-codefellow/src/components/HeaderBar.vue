@@ -52,7 +52,7 @@
         </button>
         <!-- 用户资料小浮窗 -->
         <div v-show="userDropDownMenuVisible" class="user-dropdown-menu">
-
+          <UserDropDownMenu />
         </div>
 
         <button  class="message-button" @click="test()">
@@ -80,8 +80,10 @@ import '@/assets/theme.css'
 import LeftNav from "@/components/LeftNav.vue"
 import LoginDialog from "@/components/LoginDialog.vue";
 import { mapState } from 'vuex';
+import UserDropDownMenu from "@/components/UserDropDownMenu.vue";
 export default {
   components:{
+    UserDropDownMenu,
     LoginDialog,
     LeftNav
   },
