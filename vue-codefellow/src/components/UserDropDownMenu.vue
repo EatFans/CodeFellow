@@ -1,11 +1,15 @@
 <!-- 用户浮窗菜单 -->
 <template>
   <div class="user-drop-down-menu-container">
+    <!-- 用户信息主要内容 -->
     <div class="user-info-content">
+      <!-- 用户信息 -->
       <div class="user-info">
+        <!-- 用户头像 -->
         <div class="user-avatar">
           <img :src="userProfile.avatarUrl" alt="User Avatar" class="user-avatar-img">
         </div>
+        <!-- 用户名称 -->
         <div class="user-details">
           <p class="user-name">{{ userProfile.username }}</p>
         </div>
@@ -13,7 +17,8 @@
 
     </div>
 
-    <div class="user-action">
+    <!-- 用户操作主要内容 -->
+    <div class="user-action-content">
 
     </div>
   </div>
