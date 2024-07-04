@@ -429,8 +429,8 @@ export default {
   position: absolute;
   top: 34px; /* 设置为user-button底部 */
   right: 0;
-  width: 320px;
-  height: 400px;
+  width: 280px;
+  height: auto;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25), 0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);

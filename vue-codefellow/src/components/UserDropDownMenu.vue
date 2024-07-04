@@ -11,7 +11,8 @@
         </div>
         <!-- 用户名称 -->
         <div class="user-details">
-          <p class="user-name">{{ userProfile.username }}</p>
+          <p class="user-level">【lv：{{userProfile.level}}】</p>
+          <p class="user-name">{{ userProfile.username }} {{userProfile.identity}}【管理员】</p>
         </div>
       </div>
 
@@ -20,6 +21,11 @@
     <!-- 用户操作主要内容 -->
     <div class="user-action-content">
 
+    </div>
+
+    <!-- 退出登录 -->
+    <div class="user-exit-login">
+      <button>退出登录</button>
     </div>
   </div>
 </template>
@@ -42,16 +48,16 @@ export default {
   width: 100%;
   height: 100%;
 
-  background: #999999;
+  //background: #999999;
 }
 
 .user-info-content {
   width: 100%;
-  height: 100px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  //border: 1px solid black;
 }
 
 .user-info {
@@ -60,13 +66,13 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid red;
+  //border: 1px solid red;
 }
 
 .user-avatar{
   width: 64px;
   height: 64px;
-  border: 1px solid black;
+  //border: 1px solid black;
 }
 
 .user-avatar-img {
@@ -79,16 +85,49 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
+  //flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid deeppink;
+  //border: 1px solid deeppink;
 }
 
-.user-action {
+.user-name {
+  font-size: 13px;
+  color: #384764;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.user-level {
+  font-size: 13px;
+  color: #2174f1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.user-action-content {
   width: 100%;
   height: 250px;
   border: 1px solid black;
 
 }
 
+.user-exit-login {
+  width: 100%;
+  height: 35px;
+  //border: 1px solid black;
+}
+
+.user-exit-login button {
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+  color: #384764;
+  border: none;
+  border-radius: 8px;
+}
+
+.user-exit-login button:hover {
+  color: red;
+}
 </style>
