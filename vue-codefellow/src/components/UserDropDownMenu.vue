@@ -20,7 +20,27 @@
     </div>
 
     <div class="social-stats-container">
-
+      <!-- 粉丝量 -->
+      <div class="fan-count-item">
+        <a href="#" class="fan-count-item-content">
+          <h1>100</h1>
+          <p>粉丝</p>
+        </a>
+      </div>
+      <!-- 点赞量 -->
+      <div class="like-count-item">
+        <a href="#" class="like-count-item-content">
+          <h1>999</h1>
+          <p>点赞</p>
+        </a>
+      </div>
+      <!-- 关注量 -->
+      <div class="follow-count-item">
+        <a href="#" class="follow-count-item-content">
+          <h1>999</h1>
+          <p>关注</p>
+        </a>
+      </div>
     </div>
 
     <!-- 用户操作主要内容 -->
@@ -43,9 +63,11 @@
 
 <script>
 import {mapState} from "vuex";
+import App from "@/App.vue";
 
 export default {
   name: 'UserDropDownMenu',
+  components: {App},
   computed: {
     ...mapState('user',{
       userProfile: state => state.userProfile
@@ -76,7 +98,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  //border: 1px solid black;
 }
 
 .user-info {
@@ -107,7 +129,7 @@ export default {
   //flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid deeppink;
+  //border: 1px solid deeppink;
 }
 
 .user-name {
@@ -125,7 +147,40 @@ export default {
 .social-stats-container {
   width: 100%;
   height: 60px;
-  border: 1px solid red;
+  display: flex;
+  //border: 1px solid red;
+}
+
+.fan-count-item ,.like-count-item ,.follow-count-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  //border: 1px solid black;
+
+}
+
+.fan-count-item-content , .like-count-item-content, .follow-count-item-content{
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+
+  //background: #7db92e;
+}
+
+.fan-count-item-content p, .like-count-item-content p, .follow-count-item-content p{
+  color: #384764;
+  font-size: 13px;
+}
+
+.fan-count-item-content h1, .like-count-item-content h1, .follow-count-item-content h1{
+  color: black;
+  font-size: 18px;
 }
 
 .user-officialCertification {
@@ -139,16 +194,15 @@ export default {
   width: 100%;
   height: 250px;
   display: flex;
-  margin-top: 5px;
   flex-wrap: wrap;
-  border: 1px solid black;
+  //border: 1px solid black;
 
 }
 
 .account-details {
   width: 140px;
   height: 30px;
-  border: 1px solid black;
+  //border: 1px solid black;
 }
 
 .user-exit-login {
