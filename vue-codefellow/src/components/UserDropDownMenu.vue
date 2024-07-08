@@ -12,20 +12,31 @@
         <!-- 用户名称 -->
         <div class="user-details">
           <p class="user-level">【lv：{{userProfile.level}}】</p>
-          <p class="user-name">{{ userProfile.username }} {{userProfile.identity}}【管理员】</p>
+          <p class="user-name">{{ userProfile.username }}</p>
+<!--          <p class="user-officialCertification" v-show="userProfile.officialCertification"> [{{userProfile.officialCertification}}]</p>-->
         </div>
       </div>
 
     </div>
 
+    <div class="social-stats-container">
+
+    </div>
+
     <!-- 用户操作主要内容 -->
     <div class="user-action-content">
-
+      <div class="account-details"></div>
+      <div class="account-details"></div>
+      <div class="account-details"></div>
+      <div class="account-details"></div>
+      <div class="account-details"></div>
+      <div class="account-details"></div>
+      <div class="account-details"></div>
     </div>
 
     <!-- 退出登录 -->
     <div class="user-exit-login">
-      <button>退出登录</button>
+      <button @click="test">退出登录</button>
     </div>
   </div>
 </template>
@@ -39,6 +50,14 @@ export default {
     ...mapState('user',{
       userProfile: state => state.userProfile
     })
+  },
+  methods: {
+    test(){
+      localStorage.removeItem('token');
+      console.log('已经移除存在localStorage中的token')
+      console.log('刷新页面中...');
+      this.$router.go(0);
+    },
   }
 }
 </script>
@@ -57,7 +76,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  //border: 1px solid black;
+  border: 1px solid black;
 }
 
 .user-info {
@@ -70,14 +89,14 @@ export default {
 }
 
 .user-avatar{
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   //border: 1px solid black;
 }
 
 .user-avatar-img {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
 }
 
@@ -88,28 +107,48 @@ export default {
   //flex-direction: column;
   align-items: center;
   justify-content: center;
-  //border: 1px solid deeppink;
+  border: 1px solid deeppink;
 }
 
 .user-name {
   font-size: 13px;
   color: #384764;
-  margin-top: 5px;
   margin-bottom: 5px;
 }
 
 .user-level {
   font-size: 13px;
   color: #2174f1;
-  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.social-stats-container {
+  width: 100%;
+  height: 60px;
+  border: 1px solid red;
+}
+
+.user-officialCertification {
+  font-size: 13px;
+  color: #384764;
+  margin-top:5px;
   margin-bottom: 5px;
 }
 
 .user-action-content {
   width: 100%;
   height: 250px;
+  display: flex;
+  margin-top: 5px;
+  flex-wrap: wrap;
   border: 1px solid black;
 
+}
+
+.account-details {
+  width: 140px;
+  height: 30px;
+  border: 1px solid black;
 }
 
 .user-exit-login {
@@ -130,4 +169,6 @@ export default {
 .user-exit-login button:hover {
   color: red;
 }
+
+
 </style>

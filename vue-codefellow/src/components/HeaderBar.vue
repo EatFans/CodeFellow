@@ -428,8 +428,8 @@ export default {
 .user-dropdown-menu {
   position: absolute;
   top: 34px; /* 设置为user-button底部 */
-  right: 0;
-  width: 280px;
+  right: 50px;
+  width: 240px;
   height: auto;
   background: #fff;
   border-radius: 8px;
