@@ -23,14 +23,14 @@
       <!-- 粉丝量 -->
       <div class="fan-count-item">
         <a href="#" class="fan-count-item-content">
-          <h1>100</h1>
+          <h1>3w</h1>
           <p>粉丝</p>
         </a>
       </div>
       <!-- 点赞量 -->
       <div class="like-count-item">
         <a href="#" class="like-count-item-content">
-          <h1>999</h1>
+          <h1>999w</h1>
           <p>点赞</p>
         </a>
       </div>
@@ -45,13 +45,10 @@
 
     <!-- 用户操作主要内容 -->
     <div class="user-action-content">
-      <div class="account-details"></div>
-      <div class="account-details"></div>
-      <div class="account-details"></div>
-      <div class="account-details"></div>
-      <div class="account-details"></div>
-      <div class="account-details"></div>
-      <div class="account-details"></div>
+      <div class="user-action-item" v-for="(item,index) in userActionItems" :key="index">
+        <i :class="item.icon"></i>
+        <a :href="item.link">{{item.text}}</a>
+      </div>
     </div>
 
     <!-- 退出登录 -->
@@ -72,6 +69,19 @@ export default {
     ...mapState('user',{
       userProfile: state => state.userProfile
     })
+  },
+  data(){
+    return {
+      userActionItems: [
+        {icon: 'bx bxs-user', text: '个人中心', link: ''},
+        {icon: 'bx bxs-file', text: '帖子管理', link: ''},
+        {icon: 'bx bxs-book-alt', text: '我的学习', link: ''},
+        {icon: 'bx bxs-diamond', text: '会员中心', link: ''},
+        {icon: 'bx bxs-wallet', text: '钱包', link: ''},
+        {icon: 'bx bxs-hide', text: '隐私设置', link: ''},
+        {icon: 'bx bxs-shield', text: '账号与密码', link: ''},
+      ]
+    }
   },
   methods: {
     test(){
@@ -174,7 +184,7 @@ export default {
 }
 
 .fan-count-item-content p, .like-count-item-content p, .follow-count-item-content p{
-  color: #384764;
+  color: #999999;
   font-size: 13px;
 }
 
@@ -192,18 +202,37 @@ export default {
 
 .user-action-content {
   width: 100%;
-  height: 250px;
+  height: auto;
   display: flex;
   flex-wrap: wrap;
   //border: 1px solid black;
 
 }
 
-.account-details {
-  width: 140px;
+.user-action-item {
+  width: 100%;
   height: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+
   //border: 1px solid black;
 }
+
+.user-action-item i {
+  margin-left: 10px;
+  color: #999999;
+  font-size: 20px;
+}
+
+.user-action-item a {
+  text-decoration: none;
+  margin-left: 5px;
+  font-size: 14px;
+  color: #384764;
+}
+
 
 .user-exit-login {
   width: 100%;
