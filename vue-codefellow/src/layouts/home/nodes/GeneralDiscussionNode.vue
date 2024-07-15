@@ -20,14 +20,11 @@
     <!-- 节点展开后容器 -->
     <div v-show="node1Visible" class="node-content">
       <!-- 社区公告与反馈 -->
-      <div class="news-feedback-container">
-
+      <div class="news-feedback-node-item" @click="handlerForNodeLinkA">
+        <p>Hello World</p>
       </div>
       <!-- 新手报到与交流 -->
-      <div class="communication-container">
-
-      </div>
-      <div class="test-item">
+      <div class="communication-node-item" @click="handlerForNodeLinkB">
 
       </div>
     </div>
@@ -53,6 +50,12 @@ export default {
   methods: {
     onShowNodeButtonClick(){
       this.$store.commit('settings/SET_NODE_1_VISIBLE',!this.node1Visible);
+    },
+    handlerForNodeLinkA() {
+      this.$router.push('/forum/news-feedback');
+    },
+    handlerForNodeLinkB() {
+      this.$router.push('/forum/communication');
     }
   }
 }
@@ -60,6 +63,38 @@ export default {
 </script>
 
 <style scoped>
+.node-content {
+  width: 100%;
+  margin-top: 5px;
+  min-height: 180px;
+  background: transparent;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 社区公告与反馈容器 */
+.news-feedback-node-item {
+  height: 180px;
+  width: 48%;
+  background: blue;
+  background-size: cover;
+  margin-bottom: 10px;
+  margin-left: 12px;
+  border-radius: 5px;
+}
+
+.communication-node-item {
+  height: 180px;
+  width: 48%;
+  background: deeppink;
+  margin-bottom: 10px;
+  margin-right: 12px;
+  border-radius: 5px;
+}
+
+
 /* 论坛版块节点容器样式 */
 .forum-node-container {
   width: auto;
@@ -119,31 +154,5 @@ export default {
   font-size: 1.5em;
 }
 
-
-
-.node-content {
-  width: 100%;
-  margin-top: 5px;
-  min-height: 200px;
-  background: transparent;
-
-  display: flex;
-  //grid-template-columns: 1fr 1fr; /* 每行两个item */
-}
-
-/* 社区公告与反馈容器 */
-.news-feedback-container {
-  height: 140px;
-  width: 400px;
-  flex: 1;
-  background: gold;
-}
-
-.communication-container {
-  height: 140px;
-  width: 400px;
-  flex: 1;
-  background: deeppink;
-}
 
 </style>

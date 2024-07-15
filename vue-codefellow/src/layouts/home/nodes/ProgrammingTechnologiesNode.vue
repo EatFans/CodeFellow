@@ -19,12 +19,20 @@
 
     <!-- 节点展开后容器 -->
     <div v-show="node2Visible" class="node-content">
-      <!-- 新闻资讯 -->
+      <!-- 前端开发 -->
+      <div class="front-end-development-node-item" @click="handlerForLinkA">
 
-      <!-- 公告 -->
+      </div>
 
-      <!-- 开发讨论 -->
+      <!-- 后端开发 -->
+      <div class="backend-development-node-item" @click="handlerForLinkB">
 
+      </div>
+
+      <!-- 编程语言 -->
+      <div class="programming-language-node-item" @click="handlerForLinkC">
+
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +56,15 @@ export default {
   methods: {
     onShowNodeButtonClick(){
       this.$store.commit('settings/SET_NODE_2_VISIBLE',!this.node2Visible);
+    },
+    handlerForLinkA() {
+      this.$router.push('/forum/front-end-development');
+    },
+    handlerForLinkB() {
+      this.$router.push('/forum/backend-development');
+    },
+    handlerForLinkC() {
+      this.$router.push('/forum/programming-language');
     }
   }
 }
@@ -55,6 +72,44 @@ export default {
 </script>
 
 <style scoped>
+.node-content {
+  width: 100%;
+  margin-top: 5px;
+  min-height: 180px;
+  background: transparent;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.front-end-development-node-item {
+  height: 180px;
+  width: 48%;
+  background: url("/images/test.jpg");
+  background-size: cover;
+  margin-bottom: 10px;
+  margin-left: 12px;
+  border-radius: 5px;
+}
+
+.backend-development-node-item {
+  height: 180px;
+  width: 48%;
+  background: green;
+  margin-bottom: 10px;
+  margin-right: 12px;
+  border-radius: 5px;
+}
+
+.programming-language-node-item {
+  width: 100%;
+  height: 140px;
+  background: pink;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
 /* 论坛版块节点容器样式 */
 .forum-node-container {
   width: auto;
@@ -114,12 +169,4 @@ export default {
   font-size: 1.5em;
 }
 
-
-
-.node-content {
-  width: 100%;
-  margin-top: 5px;
-  height: 200px;
-  background: transparent;
-}
 </style>

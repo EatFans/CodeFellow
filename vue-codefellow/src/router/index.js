@@ -1,7 +1,7 @@
 import { createRouter,createWebHistory } from "vue-router";
 
-import ForumHome from "@/views/ForumHome.vue";
-import NewFeedback from "@/views/NewFeedback.vue"
+import ForumHome from "@/views/ForumHomePage.vue";
+import NewFeedback from "@/views/NewFeedbackPage.vue"
 import DonatePage from "@/views/DonatePage.vue";
 import EggPage1 from "@/views/EggPage1.vue"
 import Test from "@/views/Test.vue";
