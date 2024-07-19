@@ -24,13 +24,13 @@ export default {
       leftNavColors: [false, false, false, false, false, false,false,false],
       leftNavItems: [
         { icon: 'bx bxs-home-alt-2', text: '首页', link: '/forum' },
-        { icon: 'bx bxs-conversation', text: '社区中心', link: '/forum/news-feedback' },
-        { icon: 'bx bxs-file-blank', text: '资源中心', link: '#' },
-        { icon: 'bx bxs-folder', text: '项目中心', link: '#'},
-        { icon: 'bx bxs-bar-chart-alt-2', text: '排行榜', link: '#' },
+        { icon: 'bx bxs-conversation', text: '博客中心', link: '/blog' },
+        { icon: 'bx bxs-file-blank', text: '资源中心', link: '/resource' },
+        { icon: 'bx bxs-folder', text: '项目中心', link: '/project'},
+        { icon: 'bx bxs-bar-chart-alt-2', text: '排行榜', link: '/ranking-list' },
         { icon: 'bx bxs-heart', text: '为爱发电', link: '/donate' },
-        { icon: 'bx bxs-widget', text: '工具', link: '#'},
-        { icon: 'bx bxl-wikipedia', text: '文档', link: '#' }
+        { icon: 'bx bxs-widget', text: '工具', link: '/tool'},
+        { icon: 'bx bxl-wikipedia', text: '文档', link: '/doc' }
       ]
     }
   },
