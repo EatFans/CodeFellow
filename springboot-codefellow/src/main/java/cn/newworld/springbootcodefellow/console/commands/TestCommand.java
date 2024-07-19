@@ -4,7 +4,8 @@ import cn.newworld.springbootcodefellow.console.CommandExecutor;
 import cn.newworld.springbootcodefellow.util.ColorMessage;
 import cn.newworld.springbootcodefellow.util.Logger;
 
-public class TestCommand implements CommandExecutor {
+
+public class TestCommand implements CommandExecutor{
     @Override
     public boolean onCommand(String command, String[] args) {
         if (command.equalsIgnoreCase("test")){
@@ -14,4 +15,6 @@ public class TestCommand implements CommandExecutor {
         }
         return false;
     }
+
+
 }

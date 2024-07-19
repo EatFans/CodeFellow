@@ -4,11 +4,16 @@ import cn.newworld.springbootcodefellow.manager.CommandManager;
 import cn.newworld.springbootcodefellow.util.Logger;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
+import org.jline.reader.impl.completer.ArgumentCompleter;
+import org.jline.reader.impl.completer.StringsCompleter;
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -20,12 +25,16 @@ public class ConsoleCommandProcessor implements CommandLineRunner {
     private final AtomicBoolean running = new AtomicBoolean(true);
 
     private final CommandManager commandManager;
-    private final LineReader reader;
+    private final LineReader lineReader;
     @Autowired
-    public ConsoleCommandProcessor(CommandManager commandManager){
+    public ConsoleCommandProcessor(CommandManager commandManager) throws IOException {
         this.commandManager = commandManager;
-        LineReaderBuilder builder = LineReaderBuilder.builder();
-        this.reader = builder.build();
+        Terminal terminal = TerminalBuilder.builder().build();
+        Set<String> registeredCommands = commandManager.getRegisteredCommands();
+        this.lineReader = LineReaderBuilder.builder()
+                .terminal(terminal)
+                .completer(new ArgumentCompleter(new StringsCompleter(registeredCommands)))
+                .build();
     }
 
     @Override
@@ -48,7 +57,7 @@ public class ConsoleCommandProcessor implements CommandLineRunner {
     private void processConsoleCommands() {
         Logger.info("The console command system is starting...");
         while (running.get()){
-            String commandLine = reader.readLine("> ");
+            String commandLine = lineReader.readLine("> ");
             if (commandLine == null) {
                 continue;
             }

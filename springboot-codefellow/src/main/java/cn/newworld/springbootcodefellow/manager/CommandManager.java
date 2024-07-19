@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 指令管理器类，用于自动管理指令，随着springboot启动自动初始化注册指令以及对应的指令处理器对象
@@ -32,6 +33,15 @@ public class CommandManager {
     }
 
     /**
+     * 初始化注册服务端默认的tab补全
+     */
+    private void initTabCompleters() {
+        Logger.info("Initializing registration server default tab completer...",this.getClass());
+
+        Logger.info("Server default tab completer initialization registration completed！",this.getClass());
+    }
+
+    /**
      * 注册指令
      * @param command 指令主名称
      * @param commandExecutor 指令对应的执行器
@@ -39,6 +49,7 @@ public class CommandManager {
     public void registerCommand(String command, CommandExecutor commandExecutor){
         commands.put(command,commandExecutor);
     }
+
 
     /**
      * 通过指令主名称来获取指令对应的指令执行器
@@ -48,4 +59,14 @@ public class CommandManager {
     public CommandExecutor getCommandExecutor(String command){
         return commands.get(command);
     }
+
+    /**
+     * 获取所有已经注册的指令
+     * @return 返回所有已经注册的指令
+     */
+    public Set<String> getRegisteredCommands() {
+        return commands.keySet();
+    }
+
+
 }
