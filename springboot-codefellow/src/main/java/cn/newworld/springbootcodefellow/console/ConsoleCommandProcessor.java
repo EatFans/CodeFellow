@@ -2,6 +2,8 @@ package cn.newworld.springbootcodefellow.console;
 
 import cn.newworld.springbootcodefellow.manager.CommandManager;
 import cn.newworld.springbootcodefellow.util.Logger;
+import org.jline.reader.LineReader;
+import org.jline.reader.LineReaderBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -17,10 +19,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ConsoleCommandProcessor implements CommandLineRunner {
     private final AtomicBoolean running = new AtomicBoolean(true);
 
-    private CommandManager commandManager;
+    private final CommandManager commandManager;
+    private final LineReader reader;
     @Autowired
     public ConsoleCommandProcessor(CommandManager commandManager){
         this.commandManager = commandManager;
+        LineReaderBuilder builder = LineReaderBuilder.builder();
+        this.reader = builder.build();
     }
 
     @Override
@@ -42,11 +47,13 @@ public class ConsoleCommandProcessor implements CommandLineRunner {
      */
     private void processConsoleCommands() {
         Logger.info("The console command system is starting...");
-        Scanner scanner = new Scanner(System.in);
         while (running.get()){
-            String commandString = scanner.nextLine();
+            String commandLine = reader.readLine("> ");
+            if (commandLine == null) {
+                continue;
+            }
             // 分割指令和参数
-            String[] commandStrings = commandString.split(" ");
+            String[] commandStrings = commandLine.split(" ");
             if (commandStrings.length > 0) {
                 String command = commandStrings[0];
                 String[] args = new String[commandStrings.length - 1];
@@ -74,7 +81,7 @@ public class ConsoleCommandProcessor implements CommandLineRunner {
                 Logger.error("\"/"+command + "\" Command execution failed!",commandExecutor.getClass());
             }
         } else  {
-            Logger.error("Unknown command! The command : "+command, this.getClass());
+            Logger.error("Unknown command! The command : \"/"+command+"\"", this.getClass());
         }
     }
 }

@@ -71,8 +71,23 @@
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
-			<version>0.9.1</version> <!-- 替换为你使用的版本 -->
+			<version>0.9.1</version>
 		</dependency>
+
+		<!-- 控制台彩色字体依赖库 -->
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<!-- 控制台输入行依赖库 -->
+		<dependency>
+			<groupId>org.jline</groupId>
+			<artifactId>jline</artifactId>
+			<version>3.25.0</version>
+		</dependency>
+
 
 
 	</dependencies>

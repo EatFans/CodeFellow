@@ -1,7 +1,8 @@
 package cn.newworld.springbootcodefellow.manager;
 
 import cn.newworld.springbootcodefellow.console.CommandExecutor;
-import cn.newworld.springbootcodefellow.console.command.TestCommand;
+import cn.newworld.springbootcodefellow.console.commands.StopCommand;
+import cn.newworld.springbootcodefellow.console.commands.TestCommand;
 import cn.newworld.springbootcodefellow.util.Logger;
 import org.springframework.stereotype.Component;
 
@@ -24,9 +25,10 @@ public class CommandManager {
      * 初始化注册服务端默认的指令执行器
      */
     private void initCommands() {
-        Logger.info("CommandManager 正在注册指令初始化中...",this.getClass());
+        Logger.info("Initializing registration server default commands...",this.getClass());
+        registerCommand("stop",new StopCommand());
         registerCommand("test",new TestCommand());
-        Logger.info("CommandManager 指令注册初始化完毕！",this.getClass());
+        Logger.info("Server default commands initialization registration completed！",this.getClass());
     }
 
     /**

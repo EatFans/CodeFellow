@@ -1,5 +1,6 @@
 package cn.newworld.springbootcodefellow.util;
 
+import java.lang.management.ManagementFactory;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -9,12 +10,6 @@ import java.time.format.DateTimeFormatter;
  * 自定义日志类
  */
 public class Logger {
-
-    // ANSI 转义码
-    private static final String RESET = "\033[0m"; // 重置颜色
-    private static final String INFO_COLOR = "\033[97m"; // 白色
-    private static final String WARN_COLOR = "\033[33m"; // 黄色
-    private static final String ERROR_COLOR = "\033[31m"; // 红色
 
     /**
      * 获取系统时间并保存格式返回
@@ -29,48 +24,51 @@ public class Logger {
         return c.getName();
     }
 
-    private static String getLogFormat(String level, String message, String color) {
-        return String.format("%s%s [%s] --- [%s] : %s%s",
-                color,
+    private static String getProcessId(){
+        String processName = ManagementFactory.getRuntimeMXBean().getName();
+        return processName.split("@")[0];
+    }
+
+    private static String getLogFormat(String level, String message) {
+        return String.format("%s  %s %s --- [%s] : %s",
                 getTimeFormat(),
                 level,
+                getProcessId(),
                 "springboot-codefellow",
-                message,
-                RESET);
+                message);
     }
 
     public static void info(String message) {
-        System.out.println(getLogFormat("INFO", message, INFO_COLOR));
+        System.out.println(ColorMessage.white(getLogFormat("INFO", message)));
     }
 
     public static void warning(String message) {
-        System.out.println(getLogFormat("WARN", message, WARN_COLOR));
+        System.out.println(ColorMessage.yellow(getLogFormat("WARN", message)));
     }
 
     public static void error(String message) {
-        System.out.println(getLogFormat("ERROR", message, ERROR_COLOR));
+        System.out.println(ColorMessage.red(getLogFormat("ERROR", message)));
     }
 
-    private static String getLogFormat(String level, Class<?> c, String message, String color) {
-        return String.format("%s%s [%s] --- [%s] [%s] : %s%s",
-                color,
+    private static String getLogFormat(String level, Class<?> c, String message) {
+        return String.format("%s  %s %s --- [%s] [%s] : %s",
                 getTimeFormat(),
                 level,
+                getProcessId(),
                 "springboot-codefellow",
                 getClassName(c),
-                message,
-                RESET);
+                message);
     }
 
     public static void info(String message, Class<?> c) {
-        System.out.println(getLogFormat("INFO", c, message, INFO_COLOR));
+        System.out.println(ColorMessage.white(getLogFormat("INFO", c, message)));
     }
 
     public static void warning(String message, Class<?> c) {
-        System.out.println(getLogFormat("WARN", c, message, WARN_COLOR));
+        System.out.println(ColorMessage.yellow(getLogFormat("WARN", c, message)));
     }
 
     public static void error(String message, Class<?> c) {
-        System.out.println(getLogFormat("ERROR", c, message, ERROR_COLOR));
+        System.out.println(ColorMessage.red(getLogFormat("ERROR", c, message)));
     }
 }
