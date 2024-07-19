@@ -85,12 +85,5 @@ public class AuthController {
     public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request,HttpServletRequest httpServletRequest){
         return authControllerService.verifyLoginToken(request,httpServletRequest);
     }
-
-    @GetMapping("/test")
-    public ResponseEntity<?> test(@RequestParam("key") String key){
-        return authControllerService.test(key);
-    }
-
-
 }
 

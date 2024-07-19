@@ -110,7 +110,7 @@ public class AuthControllerServiceImpl implements AuthControllerService {
      */
     private User createNewUser(RegisterRequest registerRequest){
         User user = new User();
-        String userUUID = UUIDGenerator.generateUUID(registerRequest.getAccount());
+        String userUUID = UUIDGenerator.generate36CharUUID(registerRequest.getAccount());
         user.setUuid(userUUID);  // 给该用户创建一个uuid
         user.setAccount(registerRequest.getAccount());
         user.setPassword(passwordEncryptor.encodePassword(registerRequest.getPassword()));
@@ -297,14 +297,10 @@ public class AuthControllerServiceImpl implements AuthControllerService {
         String token = request.getToken();
 
         // 验证token是否已经过期
-        if (!redisService.tokenExists(token))
+        if (!redisService.tokenExists(token)){
             return ResponseEntity.ok(new ApiResponse(ResponseStatus.ERROR,"登录令牌已经失效"));
+        }
         return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"登录令牌验证成功！"));
     }
 
-    @Override
-    public ResponseEntity<?> test(String key) {
-        String uuid = TokenEncryptor.decryptToken(key);
-        return ResponseEntity.ok(new ApiResponse(ResponseStatus.SUCCESS,"token解密，原uuid为："+uuid));
-    }
 }

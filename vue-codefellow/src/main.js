@@ -22,7 +22,6 @@ Promise.all([
     // 使用路由和 Vuex Store
     app.use(router);
     app.use(store);
-  
     // 挂载 Vue 实例
     app.mount('#app');
   }).catch(error => {

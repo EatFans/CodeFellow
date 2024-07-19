@@ -33,6 +33,7 @@ export default {
       pinnedPosts: [
         {
           title: "示例公告帖子1",
+          postUUID: "fhdakfhdsajk-fdsafdhji-ewqewq",
           labels: ["公告"],
           postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
@@ -44,6 +45,7 @@ export default {
         },
         {
           title: "示例公告帖子2",
+          postUUID: "fhdakfhdsajk-fdsafdhji-ewqewq",
           labels: ["公告"],
           postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
@@ -58,6 +60,7 @@ export default {
       posts: [
         {
           title: "示例普通帖子1",
+          postUUID: "fhdakfhdsajk-fdsafdhji-ewqewq",
           labels: ["转载","C++","QT"],
           postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
@@ -69,6 +72,7 @@ export default {
         },
         {
           title: "示例普通帖子2",
+          postUUID: "fhdakfhdsajk-fdsafdhji-ewqewq",
           labels: ["原创","Java"],
           postAuthorAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yIcZRiufRzMzcRtLbusbSWPfFfXS9jsg-Q&s",
           postAuthorName: "EatFan",
@@ -78,204 +82,8 @@ export default {
           postDate: "2024/6/5",
           postCover: "/images/cover.jpg"
         },
-        {
-          title: "示例普通帖子3",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子4",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子5",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子6",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子7",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子8",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子9",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子10",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子11",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子12",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子13",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子14",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子15",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子16",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子17",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子18",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子19",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
-        {
-          title: "示例普通帖子20",
-          labels: ["转载","C++","QT"],
-          postAuthorAvatar: "https://avatars.githubusercontent.com/u/122099628?v=4",
-          postAuthorName: "EatFan",
-          postReadme: "这是一个测试的普通帖子，我也不知道写什么，所以我就随便写写写写写写写写写，阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴",
-          postLikeAmount: 999,
-          postDislikeAmount: 999,
-          postDate: "2024/6/5",
-          postCover: "/images/cover.jpg"
-        },
+
+
       ],
 
 

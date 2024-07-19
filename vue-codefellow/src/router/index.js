@@ -6,6 +6,8 @@ import DonatePage from "@/views/DonatePage.vue";
 import EggPage1 from "@/views/EggPage1.vue"
 import Test from "@/views/Test.vue";
 import RegisterPage from "@/views/RegisterPage.vue";
+import CommunicationPage from "@/views/CommunicationPage.vue";
+import PostPage from "@/views/PostPage.vue";
 
 // 创建路由
 const router = createRouter({
@@ -38,6 +40,19 @@ const router = createRouter({
             component: NewFeedback,
             meta: {
                 title: '社区公告与反馈 | CodeFellow 开发者交流论坛'
+            }
+        },
+        {
+            // 社区公告与反馈 帖子页面
+            path:"/forum/news-feedback/post/:postId",
+            name: "Post",
+            component: PostPage,
+        },
+        {
+            path: "/forum/communication",
+            component: CommunicationPage,
+            meta: {
+                title: '新手报到与交流 | CodeFellow 开发者交流论坛'
             }
         },
         {

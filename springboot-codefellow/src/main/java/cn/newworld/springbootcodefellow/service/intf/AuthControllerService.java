@@ -21,5 +21,4 @@ public interface AuthControllerService {
 
     ResponseEntity<?> verifyLoginToken(LoginTokenRequest request,HttpServletRequest httpServletRequest);
 
-    ResponseEntity<?> test(String key);
 }

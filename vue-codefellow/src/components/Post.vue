@@ -69,6 +69,7 @@ export default {
       validator(value) {
         return (
             'title' in value &&
+            'postUUID' in value &&
             'labels' in value &&
             'postAuthorAvatar' in value &&
             'postAuthorName' in value &&
