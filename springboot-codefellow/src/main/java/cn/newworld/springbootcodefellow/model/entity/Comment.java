@@ -8,4 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Comment {
+    private String commentUUID;
+    private String postUUID;
+
 }

@@ -90,7 +90,7 @@ public class ConsoleCommandProcessor implements CommandLineRunner {
                 Logger.error("\"/"+command + "\" Command execution failed!",commandExecutor.getClass());
             }
         } else  {
-            Logger.error("Unknown command! The command : \"/"+command+"\"", this.getClass());
+            Logger.error("Unknown command! The command : \"/"+command+"\"");
         }
     }
 }
