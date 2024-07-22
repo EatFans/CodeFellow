@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class Post {
     // 帖子的基础数据
-    private String postUUID;  // 帖子 uuid  不能为空、可以作为索引
+    private String postUuid;  // 帖子 uuid  不能为空、可以作为索引
     private String title;  // 帖子标题       不能为空
     private String readme;    // 帖子自述介绍   不能为空
     private String content;  // 帖子内容        不能为空
@@ -31,13 +31,17 @@ public class Post {
     private long viewCount;   // 帖子浏览量          可以为空、可以作为索引
     private long likeCount;  // 帖子点赞量           可以为空、可以作为索引
     private long dislikeCount;  // 帖子被踩量        可以为空、可以作为索引
-    private long shareCount;  // 帖子分享量
+    private long shareCount;  // 帖子分享量          可以为空、可以作为索引
+
 
     // 帖子状态
     private String status; // 帖子的状态、可以作为索引
     private boolean isPinned; // 帖子是否为置顶、可以作为索引
     private boolean isFeatured;  // 帖子是否为精华、可以作为索引
     private boolean isLocked;   // 帖子是否为锁定、可以作为索引
+    private boolean isReviewed;         // 帖子是否已经通过审核、可以作为索引
+    private long reportedCount;            // 帖子被举报的数量
+    private String visibility;  // 帖子访问权限，如公开、私密、仅好友可见
 
     // 帖子评论区
     private List<Comment> comments;
