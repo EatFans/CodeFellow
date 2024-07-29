@@ -13,4 +13,10 @@ public interface PostService {
      * @return 如果创建成功就返回true，否则就返回false
      */
     boolean create(Post post);
+
+    /**
+     * 生成一个唯一的Uuid
+     * @return 返回已经生成好的uuid
+     */
+    String generateUniqueUuid();
 }
