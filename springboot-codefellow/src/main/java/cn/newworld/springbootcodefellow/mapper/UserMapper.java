@@ -112,4 +112,11 @@ public interface UserMapper {
      */
     User findUserByPhoneNumber(String phoneNumber);
 
+    /**
+     * 通过用户uuid、名字来找到该用户
+     * @param uuid 用户uuid
+     * @param username 用户名
+     * @return 找到就返回该用户
+     */
+    User findUserByUuidAndUsername(String uuid, String username);
 }

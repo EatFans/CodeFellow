@@ -40,6 +40,11 @@
     <select id="findUserByUuidAndAccountAndUsername" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
         SELECT * FROM user WHERE uuid = #{uuid} AND account = #{account} AND username = #{username}
     </select>
+
+    <!-- 通过用户uuid、用户名找到该用户 -->
+    <select id="findUserByUuidAndUsername" parameterType="java.lang.String" resultType="cn.newworld.springbootcodefellow.model.entity.User">
+        SELECT * FROM user WHERE uuid = #{uuid} AND username = #{username}
+    </select>
     
     <!-- 更新用户账号状态 -->
     <update id="updateStatus" parameterType="java.lang.String">
