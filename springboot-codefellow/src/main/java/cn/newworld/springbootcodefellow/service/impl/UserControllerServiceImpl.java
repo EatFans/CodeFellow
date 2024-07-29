@@ -2,7 +2,7 @@ package cn.newworld.springbootcodefellow.service.impl;
 
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.model.dto.ApiResponse;
-import cn.newworld.springbootcodefellow.model.dto.LoginTokenRequest;
+import cn.newworld.springbootcodefellow.model.dto.user.LoginTokenRequest;
 import cn.newworld.springbootcodefellow.model.entity.UserProfile;
 import cn.newworld.springbootcodefellow.service.intf.RedisService;
 import cn.newworld.springbootcodefellow.service.intf.UserControllerService;

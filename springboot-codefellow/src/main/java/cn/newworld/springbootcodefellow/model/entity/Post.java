@@ -2,7 +2,6 @@ package cn.newworld.springbootcodefellow.model.entity;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,13 +16,15 @@ public class Post {
     private String readme;    // 帖子自述介绍   不能为空
     private String content;  // 帖子内容        不能为空
     private String coverUrl;  // 帖子封面图片url    可以为空
-    private String authorUUID;   // 帖子作者uuid   不能为空、可以作为索引
+    private String authorUuid;   // 帖子作者uuid   不能为空、可以作为索引
     private String authorName;  // 帖子作者名字     不能为空、可以作为索引
-    private Date createAt;  // 帖子创建时候的时间戳   默认自动添加 可以作为索引
+    private Data createAt;  // 帖子创建时候的时间戳   默认自动添加 可以作为索引
     private Data updateAt; // 帖子更新时候的时间戳    不能为空，第一次创建时候，就为创建时间，后续手动修改这个时间戳     可以作为索引
 
     // 帖子分类和标签
-    private List<String> labels;  // 帖子标签       不能为空、可以作为索引
+    private String label1;  // 第一个标签 不能为空
+    private String label2;  // 第二个标签 可以为空
+    private String label3;  // 第三个标签 可以为空
     private String sectionType;  // 帖子版块类型     不能为空、可以作为索引
 
     // 帖子互动信息

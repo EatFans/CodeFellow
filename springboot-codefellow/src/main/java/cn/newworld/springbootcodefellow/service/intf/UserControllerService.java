@@ -1,6 +1,6 @@
 package cn.newworld.springbootcodefellow.service.intf;
 
-import cn.newworld.springbootcodefellow.model.dto.LoginTokenRequest;
+import cn.newworld.springbootcodefellow.model.dto.user.LoginTokenRequest;
 import org.springframework.http.ResponseEntity;
 
 /**

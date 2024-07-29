@@ -1,4 +1,4 @@
-package cn.newworld.springbootcodefellow.model.dto;
+package cn.newworld.springbootcodefellow.model.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;

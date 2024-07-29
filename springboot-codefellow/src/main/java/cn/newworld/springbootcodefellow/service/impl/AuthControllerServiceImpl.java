@@ -4,6 +4,7 @@ import cn.newworld.springbootcodefellow.constant.consist.AccountStatus;
 import cn.newworld.springbootcodefellow.constant.consist.ResponseStatus;
 import cn.newworld.springbootcodefellow.constant.enums.UserAction;
 import cn.newworld.springbootcodefellow.model.dto.*;
+import cn.newworld.springbootcodefellow.model.dto.user.*;
 import cn.newworld.springbootcodefellow.model.entity.User;
 import cn.newworld.springbootcodefellow.model.entity.UserProfile;
 import cn.newworld.springbootcodefellow.service.intf.*;
@@ -293,7 +294,7 @@ public class AuthControllerServiceImpl implements AuthControllerService {
      * @return 返回请求完毕的响应数据体
      */
     @Override
-    public ResponseEntity<?> verifyLoginToken(LoginTokenRequest request,HttpServletRequest httpServletRequest) {
+    public ResponseEntity<?> verifyLoginToken(LoginTokenRequest request, HttpServletRequest httpServletRequest) {
         String token = request.getToken();
 
         // 验证token是否已经过期

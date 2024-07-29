@@ -5,8 +5,19 @@
 
     <!-- 向数据库中插入一条新的帖子数据 -->
     <insert id="insertPost" parameterType="cn.newworld.springbootcodefellow.model.entity.Post">
-
+        INSERT INTO posts (postUuid,title,readme,content,
+        <if test="coverUrl != null">coverUrl,</if>
+        authorUuid,authorName,label1,
+        <if test="label2 != null">label2,</if>
+        <if test="label3 != null">label3,</if>
+        sectionType)
+        VALUES (
+        #{postUuid},#{title},#{readme},#{content},
+        <if test="coverUrl != null">#{coverUrl},</if>
+        #{authorUuid},#{authorName},#{label1},
+        <if test="label2 != null">#{label2},</if>
+        <if test="label3 != null">#{label3},</if>
+        #{sectionType})
     </insert>
-
 
 </mapper>

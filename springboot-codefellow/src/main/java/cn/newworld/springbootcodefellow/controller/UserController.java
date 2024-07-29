@@ -1,6 +1,6 @@
 package cn.newworld.springbootcodefellow.controller;
 
-import cn.newworld.springbootcodefellow.model.dto.LoginTokenRequest;
+import cn.newworld.springbootcodefellow.model.dto.user.LoginTokenRequest;
 import cn.newworld.springbootcodefellow.service.intf.UserControllerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
 package cn.newworld.springbootcodefellow.controller;
 
-import cn.newworld.springbootcodefellow.model.dto.*;
+import cn.newworld.springbootcodefellow.model.dto.user.*;
 import cn.newworld.springbootcodefellow.service.intf.AuthControllerService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +63,7 @@ public class AuthController {
      * @return 返回
      */
     @PostMapping("/forget-password")
-    public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request,HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> forgetPassword(@RequestBody ForgetPasswordRequest request, HttpServletRequest httpServletRequest){
         return authControllerService.forgetPassword(request,httpServletRequest);
     }
 
@@ -72,7 +72,7 @@ public class AuthController {
      * @return 返回
      */
     @PostMapping("/reset-password")
-    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request,HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> resetPassword(@RequestBody ResetPasswordRequest request, HttpServletRequest httpServletRequest){
         return authControllerService.resetPassword(request,httpServletRequest);
     }
 
@@ -82,7 +82,7 @@ public class AuthController {
      * @return 返回请求完毕的响应数据体
      */
     @PostMapping("/verify-login-token")
-    public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request,HttpServletRequest httpServletRequest){
+    public ResponseEntity<?> verifyLoginToken(@RequestBody LoginTokenRequest request, HttpServletRequest httpServletRequest){
         return authControllerService.verifyLoginToken(request,httpServletRequest);
     }
 }

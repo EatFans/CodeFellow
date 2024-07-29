@@ -1,6 +1,6 @@
 package cn.newworld.springbootcodefellow.service.intf;
 
-import cn.newworld.springbootcodefellow.model.dto.*;
+import cn.newworld.springbootcodefellow.model.dto.user.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 
@@ -16,9 +16,9 @@ public interface AuthControllerService {
 
     ResponseEntity<?> userLoginIn(LoginRequest loginRequest, HttpServletRequest httpServletRequest);
 
-    ResponseEntity<?> forgetPassword(ForgetPasswordRequest request,  HttpServletRequest httpServletRequest);
+    ResponseEntity<?> forgetPassword(ForgetPasswordRequest request, HttpServletRequest httpServletRequest);
     ResponseEntity<?> resetPassword(ResetPasswordRequest request, HttpServletRequest httpServletRequest);
 
-    ResponseEntity<?> verifyLoginToken(LoginTokenRequest request,HttpServletRequest httpServletRequest);
+    ResponseEntity<?> verifyLoginToken(LoginTokenRequest request, HttpServletRequest httpServletRequest);
 
 }
