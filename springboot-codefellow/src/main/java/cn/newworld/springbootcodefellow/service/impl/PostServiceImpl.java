@@ -38,6 +38,10 @@ public class PostServiceImpl implements PostService {
         }
     }
 
+    /**
+     * 生成一个唯一的Uuid
+     * @return 返回已经生成好的uuid
+     */
     @Override
     public String generateUniqueUuid() {
         String uuid;
@@ -47,10 +51,13 @@ public class PostServiceImpl implements PostService {
         return uuid;
     }
 
-    // 模拟数据库检查UUID是否存在的方法
-    private boolean doesUuidExist(String uuid) {
-        // TODO: 实现检查UUID在数据库中是否存在的逻辑
-        // 例如，使用查询语句检查 posts 表中的 postUuid 字段是否已存在此 UUID
-        return false; // 假设返回false表示UUID不存在
+    /**
+     * 在数据库中查询uuid是否已经存在
+     * @param uuid 帖子的uuid
+     * @return 如果存在就返回true，否则就返回false
+     */
+    @Override
+    public boolean doesUuidExist(String uuid) {
+        return postMapper.countByPostUuid(uuid) > 0;
     }
 }

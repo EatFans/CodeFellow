@@ -19,4 +19,11 @@ public interface PostService {
      * @return 返回已经生成好的uuid
      */
     String generateUniqueUuid();
+
+    /**
+     * 检查是否存在这个uuid
+     * @param uuid 帖子uuid
+     * @return 如果存在就返回true，否则就返回false
+     */
+    boolean doesUuidExist(String uuid);
 }

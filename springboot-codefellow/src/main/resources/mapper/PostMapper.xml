@@ -19,5 +19,11 @@
         <if test="label3 != null">#{label3},</if>
         #{sectionType})
     </insert>
-
+    
+    <!-- 在数据库中查询postUuid存在的数量 -->
+    <select id="countByPostUuid" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM posts
+        WHERE postUuid = #{#postUuid}
+    </select>
 </mapper>

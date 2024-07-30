@@ -16,4 +16,10 @@ public interface PostMapper {
      */
     int insertPost(Post post);
 
+    /**
+     * 查询PostUuid存在数量
+     * @param postUuid 帖子uuid
+     * @return 返回查询到的帖子uuid数量
+     */
+    int countByPostUuid(String postUuid);
 }
