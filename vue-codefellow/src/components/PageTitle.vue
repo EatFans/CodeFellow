@@ -41,9 +41,9 @@ export default {
   position: absolute;
   bottom: 10px;
   left: 15px; /* 标题距离标题装饰块左边 10px */
-  font-size: 23px;
-  font-weight: 300; /* 较细的字体权重 */
-  color: #1c1010; /* 较柔和的文本颜色 */
+  font-size: 25px;
+  font-weight: 500; /* 较细的字体权重 */
+  color: #384764; /* 较柔和的文本颜色 */
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 </style>

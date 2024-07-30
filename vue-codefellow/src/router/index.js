@@ -44,7 +44,7 @@ const router = createRouter({
         },
         {
             // 社区公告与反馈 帖子页面
-            path:"/forum/news-feedback/post/:postId",
+            path:"/post/:sectionType/:postUuid",
             name: "Post",
             component: PostPage,
         },
