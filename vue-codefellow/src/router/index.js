@@ -8,6 +8,11 @@ import Test from "@/views/Test.vue";
 import RegisterPage from "@/views/RegisterPage.vue";
 import CommunicationPage from "@/views/CommunicationPage.vue";
 import PostPage from "@/views/PostPage.vue";
+import BlogPage from "@/views/BlogPage.vue";
+import ResourcePage from "@/views/ResourcePage.vue";
+import ProjectPage from "@/views/ProjectPage.vue";
+import RankingListPage from "@/views/RankingListPage.vue";
+import ToolPage from "@/views/ToolPage.vue";
 
 // 创建路由
 const router = createRouter({
@@ -32,6 +37,46 @@ const router = createRouter({
             component: ForumHome,
             meta: {
                 title: '主页 | CodeFellow 开发者交流论坛'
+            }
+        },
+        {
+            // 博客页面
+            path: "/blog",
+            component: BlogPage,
+            meta: {
+                title: '博客中心 | CodeFellow 开发者交流论坛'
+            }
+        },
+        {
+            // 资源中心页面
+            path: "/resource",
+            component: ResourcePage,
+            meta: {
+                title: '资源中心 | CodeFellow 开发者论坛'
+            }
+        },
+        {
+            // 项目中心页面
+            path: "/project",
+            component: ProjectPage,
+            meta: {
+                title: '项目中心 | CodeFellow 开发者论坛'
+            }
+        },
+        {
+            // 排行榜页面
+            path: "/ranking-list",
+            component: RankingListPage,
+            meta: {
+                title: '排行榜 | CodeFellow 开发者论坛'
+            }
+        },
+        {
+            // 工具页面
+            path: "/tool",
+            component: ToolPage,
+            meta: {
+                title: '工具 | CodeFellow 开发者论坛'
             }
         },
         {
