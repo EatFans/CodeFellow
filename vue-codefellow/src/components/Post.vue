@@ -85,7 +85,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .post-container {
   height: 75px;
   width: 100%;
